@@ -1,15 +1,4 @@
-<div class="footer">
-        本站不托管任何 APK 文件，所有下载均跳转至官方渠道。<br>
-        应用版权归各自开发者所有。
-    </div>
-
-    <script>
-        // ==========================================
-        // 🚀 在这里添加或修改你的应用数据
-        // category (分类) 必须和上面的按钮文字一致
-        // ==========================================
-        const appsData = [
-            {
+{
                 name: "微信",
                 desc: "腾讯官方出品的通讯软件。",
                 category: "社交",
@@ -42,21 +31,13 @@
         const appList = document.getElementById('appList');
         const categoryBtns = document.querySelectorAll('.category-btn');
 
-        // 渲染应用列表的函数
         function renderApps(category = 'all') {
-            appList.innerHTML = ''; // 清空当前列表
-
-            // 过滤出对应的分类
-            const filteredApps = appsData.filter(app => 
-                category === 'all' || app.category === category
-            );
-
+            appList.innerHTML = ''; 
+            const filteredApps = appsData.filter(app => category === 'all' || app.category === category);
             if (filteredApps.length === 0) {
                 appList.innerHTML = '<p style="text-align:center;color:#999;margin-top:20px;">该分类下暂时没有应用哦~</p>';
                 return;
             }
-
-            // 生成卡片
             filteredApps.forEach(app => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
@@ -72,20 +53,14 @@
             });
         }
 
-        // 监听分类按钮点击事件
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // 切换按钮高亮
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
-                // 根据分类渲染应用
-                const category = btn.getAttribute('data-category');
-                renderApps(category);
+                renderApps(btn.getAttribute('data-category'));
             });
         });
 
-        // 页面加载时，初始化渲染全部应用
         renderApps('all');
     </script>
 </body>
