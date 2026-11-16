@@ -3,377 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>应用推荐中心</title>
+    <title>精选应用推荐</title>
     <style>
+        /* 基础设置与深色背景 */
         :root {
-            --bg-color: #f2f2f7;
-            --card-bg: #ffffff;
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --btn-play: #34a853;
-            --btn-web: #007aff;
-            --active-tab: #007aff;
+            --bg: #0f1115;
+            --card: #1a1d24;
+            --text: #ffffff;
+            --text-muted: #8b8e96;
+            --accent: #3b82f6;
+            --btn-play: linear-gradient(135deg, #34a853, #2c8c46);
+            --btn-web: linear-gradient(135deg, #007aff, #0062cc);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            padding-bottom: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 50px;
         }
-        .header { text-align: center; padding: 30px 20px 15px; }
-        .header h1 { margin: 0; font-size: 24px; color: #000; }
-        .header p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); }
-        
-        /* 分类导航栏 */
-        .category-nav {
-            display: flex;
-            justify-content: flex-start;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 10px 20px 20px;
-            gap: 10px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .category-nav::-webkit-scrollbar { display: none; }
-        
-        /* 分类按钮 */
-        .category-btn {
-            padding: 8px 18px;
-            border-radius: 20px;
-            background-color: #e5e5ea;
-            color: var(--text-main);
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .category-btn.active {
-            background-color: var(--active-tab);
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
-        }
-        
-        /* 应用列表容器 */
-        .app-list {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        
-        /* 应用卡片 */
-        .app-card {
-            background: var(--card-bg);
-            border-radius: 16px;
+
+        /* 顶部导航与毛玻璃效果 */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 17, 21, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
+        .header p { font-size: 14px; color: var(--text-muted); }
+
+        /* 分类横向滚动 */
+        .categories {
+            display: flex;
+            overflow-x: auto;
+            padding: 15px 20px;
+            gap: 12px;
+            scrollbar-width: none;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        
+        .cat-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: var(--card);
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            white-space: nowrap;
+        }
+        .cat-btn.active {
+            background: var(--text);
+            color: #000;
+            border-color: var(--text);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* 应用列表网格 */
+        .app-grid {
+            padding: 10px 20px;
             display: flex;
             flex-direction: column;
-            animation: fadeIn 0.3s ease;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .app-title { font-size: 18px; font-weight: bold; margin: 0 0 5px 0; }
-        .app-desc { font-size: 14px; color: var(--text-muted); margin: 0 0 15px 0; flex: 1; }
+
+        /* 华丽的卡片设计 */
+        .app-card {
+            background: var(--card);
+            border-radius: 22px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .app-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.1);
+        }
         
-        /* 按钮组 */
-        .btn-group { display: flex; gap: 10px; }
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 卡片内部结构 */
+        .app-header { display: flex; align-items: center; gap: 15px; }
+        .app-icon {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #ff6b6b, #c0392b);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        .app-info { flex: 1; }
+        .app-title { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+        .app-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+        /* 精美的按钮组 */
+        .btn-group { display: flex; gap: 12px; }
         .btn {
             flex: 1;
-            display: block;
             text-align: center;
-            padding: 10px 0;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
+            padding: 12px 0;
+            border-radius: 14px;
             font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.2s, transform 0.2s;
         }
-        .btn-play { background-color: var(--btn-play); color: white; }
-        .btn-web { background-color: var(--btn-web); color: white; }
-        .footer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 40px; padding: 0 20px; }
+        .btn:active { transform: scale(0.96); }
+        .btn-play { background: var(--btn-play); box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3); }
+        .btn-web { background: var(--btn-web); box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3); }
+
+        /* 底部说明 */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
+
     <div class="header">
-        <h1>应用推荐中心</h1>
-        <p>官方安全下载 · 拒绝第三方篡改</p>
+        <h1>探索应用</h1>
+        <p>发现属于你的绝佳工具</p>
     </div>
 
-    <!-- 分类按钮区域 -->
-    <div class="category-nav" id="categoryNav">
-        <button class="category-btn active" data-category="all">全部应用</button>
-        <button class="category-btn" data-category="社交">社交</button>
-        <button class="category-btn" data-category="工具">工具</button>
-        <button class="category-btn" data-category="游戏">游戏</button>
+    <div class="categories" id="categories">
+        <button class="cat-btn active" data-category="全部">全部</button>
+        <button class="cat-btn" data-category="社交">社交</button>
+        <button class="cat-btn" data-category="工具">工具</button>
+        <button class="cat-btn" data-category="游戏">游戏</button>
     </div>
 
-    <!-- 应用列表区域 -->
-    <div class="app-list" id="appList"></div>
+    <div class="app-grid" id="appGrid"></div>
 
     <div class="footer">
-        本站不托管任何 APK 文件，所有下载均跳转至官方渠道。<br>
-        应用版权归各自开发者所有。
+        本站仅提供官方安全下载链接<br>
+        不托管任何安装包，版权归开发者所有
     </div>
 
     <script>
+        // 你的应用数据
         const appsData = [
             {
                 name: "微信",
-                desc: "腾讯官方出品的通讯软件。",
+                desc: "腾讯官方出品的跨平台通讯软件，支持语音、视频和文件传输。",
                 category: "社交",
                 playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm",
-                webUrl: "https://weixin.qq.com/"
+                webUrl: "https://weixin.qq.com/",
+                iconChar: "微",
+                iconColor: "#07c160"
             },
             {
                 name: "Telegram",
-                desc: "极速、安全的即时通讯软件。",
+                desc: "极速、安全且免费的即时通讯软件，注重隐私保护。",
                 category: "社交",
                 playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger",
-                webUrl: "https://telegram.org/"
+                webUrl: "https://telegram.org/",
+                iconChar: "T",
+                iconColor: "#0088cc"
             },
             {
                 name: "哔哩哔哩",
-                desc: "年轻人聚集的文化社区。",
+                desc: "国内知名的年轻人文化社区，涵盖动画、番剧、游戏等。",
                 category: "工具",
                 playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili",
-                webUrl: "https://app.bilibili.com/"
+                webUrl: "https://app.bilibili.com/",
+                iconChar: "B",
+                iconColor: "#fb7299"
             },
             {
                 name: "原神",
-                desc: "开放世界冒险游戏。",
+                desc: "米哈游自研的一款开放世界冒险游戏，探索提瓦特大陆。",
                 category: "游戏",
                 playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-                webUrl: "https://ys.mihoyo.com/"
+                webUrl: "https://ys.mihoyo.com/",
+                iconChar: "原",
+                iconColor: "#ffc107"
             }
         ];
 
-        const appList = document.getElementById('appList');
-        const categoryBtns = document.querySelectorAll('.category-btn');
+        const appGrid = document.getElementById('appGrid');
+        const catBtns = document.querySelectorAll('.cat-btn');
 
-        function renderApps(category = 'all') {
-            appList.innerHTML = ''; 
-            const filteredApps = appsData.filter(app => category === 'all' || app.category === category);
-            if (filteredApps.length === 0) {
-                appList.innerHTML = '<p style="text-align:center;color:#999;margin-top:20px;">该分类下暂时没有应用哦~</p>';
+        function renderApps(category = '全部') {
+            appGrid.innerHTML = '';
+            
+            // 过滤数据
+            const list = appsData.filter(app => category === '全部' || app.category === category);
+
+            if(list.length === 0) {
+                appGrid.innerHTML = '<div style="text-align:center; color:#555; padding:50px 0; font-size:15px;">这里空空如也~</div>';
                 return;
             }
-            filteredApps.forEach(app => {
+
+            // 渲染卡片
+            list.forEach((app, index) => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
+                // 添加个错开动画的延迟
+                card.style.animationDelay = `${index * 0.08}s`;
+                
                 card.innerHTML = `
-                    <h2 class="app-title">${app.name}</h2>
-                    <p class="app-desc">${app.desc}</p>
+                    <div class="app-header">
+                        <div class="app-icon" style="background: ${app.iconColor}; box-shadow: 0 5px 15px ${app.iconColor}40;">
+                            ${app.iconChar}
+                        </div>
+                        <div class="app-info">
+                            <h2 class="app-title">${app.name}</h2>
+                            <p class="app-desc">${app.desc}</p>
+                        </div>
+                    </div>
                     <div class="btn-group">
                         <a href="${app.playUrl}" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>
                         <a href="${app.webUrl}" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>
                     </div>
                 `;
- <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>应用推荐中心</title>
-    <style>
-        :root {
-            --bg-color: #f2f2f7;
-            --card-bg: #ffffff;
-            --text-main: #1d1d1f;
-            --text-muted: #86868b;
-            --btn-play: #34a853;
-            --btn-web: #007aff;
-            --active-tab: #007aff;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            padding-bottom: 40px;
-        }
-        .header { text-align: center; padding: 30px 20px 15px; }
-        .header h1 { margin: 0; font-size: 24px; color: #000; }
-        .header p { margin: 5px 0 0; font-size: 14px; color: var(--text-muted); }
-        
-        /* 分类导航栏 */
-        .category-nav {
-            display: flex;
-            justify-content: flex-start;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 10px 20px 20px;
-            gap: 10px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .category-nav::-webkit-scrollbar { display: none; }
-        
-        /* 分类按钮 */
-        .category-btn {
-            padding: 8px 18px;
-            border-radius: 20px;
-            background-color: #e5e5ea;
-            color: var(--text-main);
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .category-btn.active {
-            background-color: var(--active-tab);
-            color: white;
-            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
-        }
-        
-        /* 应用列表容器 */
-        .app-list {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        
-        /* 应用卡片 */
-        .app-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            animation: fadeIn 0.3s ease;
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .app-title { font-size: 18px; font-weight: bold; margin: 0 0 5px 0; }
-        .app-desc { font-size: 14px; color: var(--text-muted); margin: 0 0 15px 0; flex: 1; }
-        
-        /* 按钮组 */
-        .btn-group { display: flex; gap: 10px; }
-        .btn {
-            flex: 1;
-            display: block;
-            text-align: center;
-            padding: 10px 0;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-        }
-        .btn-play { background-color: var(--btn-play); color: white; }
-        .btn-web { background-color: var(--btn-web); color: white; }
-        .footer { text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 40px; padding: 0 20px; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>应用推荐中心</h1>
-        <p>官方安全下载 · 拒绝第三方篡改</p>
-    </div>
-
-    <!-- 分类按钮区域 -->
-    <div class="category-nav" id="categoryNav">
-        <button class="category-btn active" data-category="all">全部应用</button>
-        <button class="category-btn" data-category="社交">社交</button>
-        <button class="category-btn" data-category="工具">工具</button>
-        <button class="category-btn" data-category="游戏">游戏</button>
-    </div>
-
-    <!-- 应用列表区域 -->
-    <div class="app-list" id="appList"></div>
-
-    <div class="footer">
-        本站不托管任何 APK 文件，所有下载均跳转至官方渠道。<br>
-        应用版权归各自开发者所有。
-    </div>
-
-    <script>
-        const appsData = [
-            {
-                name: "微信",
-                desc: "腾讯官方出品的通讯软件。",
-                category: "社交",
-                playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm",
-                webUrl: "https://weixin.qq.com/"
-            },
-            {
-                name: "Telegram",
-                desc: "极速、安全的即时通讯软件。",
-                category: "社交",
-                playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger",
-                webUrl: "https://telegram.org/"
-            },
-            {
-                name: "哔哩哔哩",
-                desc: "年轻人聚集的文化社区。",
-                category: "工具",
-                playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili",
-                webUrl: "https://app.bilibili.com/"
-            },
-            {
-                name: "原神",
-                desc: "开放世界冒险游戏。",
-                category: "游戏",
-                playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-                webUrl: "https://ys.mihoyo.com/"
-            }
-        ];
-
-        const appList = document.getElementById('appList');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-
-        function renderApps(category = 'all') {
-            appList.innerHTML = ''; 
-            const filteredApps = appsData.filter(app => category === 'all' || app.category === category);
-            if (filteredApps.length === 0) {
-                appList.innerHTML = '<p style="text-align:center;color:#999;margin-top:20px;">该分类下暂时没有应用哦~</p>';
-                return;
-            }
-            filteredApps.forEach(app => {
-                const card = document.createElement('div');
-                card.className = 'app-card';
-                card.innerHTML = `
-                    <h2 class="app-title">${app.name}</h2>
-                    <p class="app-desc">${app.desc}</p>
-                    <div class="btn-group">
-                        <a href="${app.playUrl}" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>
-                        <a href="${app.webUrl}" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>
-                    </div>
-                `;
-                appList.appendChild(card);
+                appGrid.appendChild(card);
             });
         }
 
-        categoryBtns.forEach(btn => {
+        // 分类点击事件
+        catBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
+                catBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderApps(btn.getAttribute('data-category'));
+                renderApps(btn.dataset.category);
             });
         });
 
-        renderApps('all');
-    </script>
-</body>
-</html>               appList.appendChild(card);
-            });
-        }
-
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderApps(btn.getAttribute('data-category'));
-            });
-        });
-
-        renderApps('all');
+        // 初始化渲染
+        renderApps('全部');
     </script>
 </body>
 </html>
