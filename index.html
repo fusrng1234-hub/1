@@ -1,7 +1,12 @@
-<script>
+<div class="footer">
+        本站不托管任何 APK 文件，所有下载均跳转至官方渠道。<br>
+        应用版权归各自开发者所有。
+    </div>
+
+    <script>
         // ==========================================
         // 🚀 在这里添加或修改你的应用数据
-        // 分类 (category) 必须和上面的按钮 text 一致
+        // category (分类) 必须和上面的按钮文字一致
         // ==========================================
         const appsData = [
             {
@@ -41,6 +46,7 @@
         function renderApps(category = 'all') {
             appList.innerHTML = ''; // 清空当前列表
 
+            // 过滤出对应的分类
             const filteredApps = appsData.filter(app => 
                 category === 'all' || app.category === category
             );
@@ -50,6 +56,7 @@
                 return;
             }
 
+            // 生成卡片
             filteredApps.forEach(app => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
@@ -68,7 +75,7 @@
         // 监听分类按钮点击事件
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // 切换按钮高亮状态
+                // 切换按钮高亮
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
@@ -78,7 +85,7 @@
             });
         });
 
-        // 初始化，渲染全部应用
+        // 页面加载时，初始化渲染全部应用
         renderApps('all');
     </script>
 </body>
