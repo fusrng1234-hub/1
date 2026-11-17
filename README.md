@@ -11,7 +11,7 @@
 
 ## 🛠️ 如何使用
 1. Fork 或下载本仓库。
-2. 打开 `index.html`，找到代码底部的 `appsData` 数组。
+2. 打开 `源代码.HTML `，找到代码底部的 `appsData` 数组。
 3. 按照格式添加你的应用：
    ```javascript
    { 
