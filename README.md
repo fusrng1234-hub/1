@@ -1,26 +1,38 @@
-# 1# 📱 极简应用推荐网页模板
+# 📱 极简暗黑风应用推荐站 (App Showcase)
 
-这是一个纯前端（HTML + CSS + JavaScript）的轻量级应用推荐展示页面。
-无需任何服务器或数据库，直接托管在 GitHub Pages 即可使用。
+这是一个纯前端（HTML + CSS + Vanilla JS）的轻量级应用推荐展示页面。
+无需任何服务器、数据库或构建工具，直接托管在 GitHub Pages、Cloudflare Pages 或 Vercel 即可使用。
 
 ## ✨ 特性
-- **极简暗黑 UI**：类似 App Store 的卡片设计，带有悬浮动画和毛玻璃效果。
-- **免后端**：所有应用数据直接写在 `index.html` 的 JavaScript 数组里。
-- **双通道下载**：提供 Google Play 和 官方网站的双重下载引导，拒绝流氓软件。
-- **自带分类**：顶部导航栏支持社交、影音、游戏、工具等分类动态切换。
 
-## 🛠️ 如何使用
-1. Fork 或下载本仓库。
-2. 打开 `源代码.HTML `，找到代码底部的 `appsData` 数组。
-3. 按照格式添加你的应用：
-   ```javascript
-   { 
-       name: "应用名称", 
-       desc: "应用简介", 
-       category: "分类（需和顶部按钮对应）", 
-       playUrl: "Google Play 链接", 
-       webUrl: "官方网站链接", 
-       iconChar: "图标里显示的字母", 
-       iconColor: "图标背景颜色代码" 
-   }
-…
+- **极简暗黑 UI**：类似 App Store 的卡片设计，带有悬浮动画和毛玻璃（Glassmorphism）效果。
+- **完全响应式**：完美适配手机端（H5）和桌面端。
+- **双通道下载**：每个应用都提供 `Google Play` 和 `官方网站` 的双重下载引导，拒绝流氓软件。
+- **动态分类**：顶部导航栏支持分类动态切换，丝滑无刷新。
+- **零门槛维护**：所有应用数据直接写在一个 JavaScript 数组里，增删改查只需改几行字，无需懂复杂的代码。
+
+## 🚀 如何部署（以 GitHub Pages 为例）
+
+1. **Fork 或下载本仓库**。
+2. 在仓库的 `Settings`（设置）中找到 `Pages`。
+3. 在 `Build and deployment` 的 `Branch` 选项中，选择 `main` 分支，点击 `Save`。
+4. 等待 1 分钟，刷新页面，你将获得一个 `https://你的用户名.github.io/仓库名/` 的链接，直接访问即可！
+
+## 🛠️ 如何定制你自己的应用列表
+
+打开 `源代码.html` 文件，滑到最底部的 `<script>` 标签内，找到 `const appsData = [ ... ]` 这一段。
+
+### 添加/修改应用
+
+直接在数组里添加或修改对象，格式如下：
+
+```javascript
+{
+    name: "应用名称",             // 显示的大标题
+    desc: "应用的一句话简介",      // 显示在标题下方
+    category: "分类名称",         // 必须与顶部按钮的 data-category 对应，如 "游戏"、"工具"
+    playUrl: "Google Play链接",   // 绿色按钮的跳转地址
+    webUrl: "官方网站链接",        // 蓝色按钮的跳转地址
+    iconChar: "字母或文字",        // 如果没有图片，图标里显示的占位字
+    iconColor: "#FF0000"         // 占位图标的背景色（支持 Hex 颜色代码）
+}
