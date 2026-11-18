@@ -131,15 +131,14 @@
         <input type="text" id="searchInput" class="search-box" placeholder="搜索应用、游戏、工具...">
     </div>
 
-    <!-- 新增了“写代码”和“玩机”分类 -->
     <div class="categories" id="categories">
         <button class="cat-btn active" data-category="全部">全部</button>
         <button class="cat-btn" data-category="写代码">写代码</button>
         <button class="cat-btn" data-category="玩机">玩机</button>
         <button class="cat-btn" data-category="社交">社交</button>
+        <button class="cat-btn" data-category="工具">工具</button>
         <button class="cat-btn" data-category="影音">影音</button>
         <button class="cat-btn" data-category="游戏">游戏</button>
-        <button class="cat-btn" data-category="工具">工具</button>
     </div>
 
     <div class="app-grid" id="appGrid"></div>
@@ -152,58 +151,94 @@
 
     <script>
         // ==========================================
-        // 数据池：新增“写代码”和“玩机”数据
-        // 增加 pcUrl 字段，如果不想要 PC 按钮，删掉该行即可
+        // 数据池
         // ==========================================
         const appsData = [
-            // ================= 写代码 (开发者必备) =================
-            { name: "Visual Studio Code", desc: "微软出品的轻量级跨平台代码编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.microsoft.vscode", webUrl: "https://code.visualstudio.com/", pcUrl: "https://code.visualstudio.com/Download", iconChar: "VS", iconColor: "#007ACC" },
-            { name: "GitHub", desc: "全球最大的代码托管与开源社区。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.github.android", webUrl: "https://github.com/", pcUrl: "https://desktop.github.com/", iconChar: "GH", iconColor: "#181717" },
-            { name: "Python", desc: "广受欢迎的通用编程语言环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.python.org/", pcUrl: "https://www.python.org/downloads/", iconChar: "Py", iconColor: "#3776AB" },
-            { name: "Node.js", desc: "基于 Chrome V8 引擎的 JavaScript 运行环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://nodejs.org/", pcUrl: "https://nodejs.org/en/download/", iconChar: "JS", iconColor: "#339933" },
-            { name: "Postman", desc: "强大的 API 接口测试与开发工具。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.postmanlabs.mobile", webUrl: "https://www.postman.com/", pcUrl: "https://www.postman.com/downloads/", iconChar: "PM", iconColor: "#FF6C37" },
-            { name: "Docker", desc: "开源的应用容器引擎，一键部署环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.docker.com/", pcUrl: "https://www.docker.com/products/docker-desktop/", iconChar: "D", iconColor: "#2496ED" },
-            { name: "IntelliJ IDEA", desc: "Java 语言开发效率神器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.jetbrains.android", webUrl: "https://www.jetbrains.com/idea/", pcUrl: "https://www.jetbrains.com/idea/download/", iconChar: "IJ", iconColor: "#000000" },
-            { name: "Sublime Text", desc: "极其轻量、丝滑的文本编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.sublimetext.com/", pcUrl: "https://www.sublimetext.com/download", iconChar: "ST", iconColor: "#FF9800" },
-            
-            // ================= 玩机 (极客/搞机必备) =================
-            { name: "Magisk", desc: "强大的 Android 系统底层修改工具 (需刷入)。", category: "玩机", playUrl: "https://github.com/topjohnwu/Magisk", webUrl: "https://github.com/topjohnwu/Magisk", pcUrl: "", iconChar: "M", iconColor: "#00BCD4" },
-            { name: "MT 管理器", desc: "安卓平台强大的文件管理与 APK 逆向工具。", category: "玩机", playUrl: "https://mt2.cn/", webUrl: "https://mt2.cn/", pcUrl: "", iconChar: "MT", iconColor: "#F44336" },
-            { name: "Termux", desc: "安卓上的 Linux 终端模拟器，极客最爱。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.termux/", webUrl: "https://termux.dev/", pcUrl: "", iconChar: "TX", iconColor: "#333333" },
-            { name: "F-Droid", desc: "开源 Android 应用商店，拒绝流氓软件。", category: "玩机", playUrl: "https://f-droid.org/", webUrl: "https://f-droid.org/", pcUrl: "", iconChar: "FD", iconColor: "#1976D2" },
-            { name: "Aurora Store", desc: "开源的第三方 Google Play 客户端。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.aurora.store/", webUrl: "https://auroraoss.com/", pcUrl: "", iconChar: "A", iconColor: "#4CAF50" },
-            { name: "ADB & Fastboot", desc: "安卓官方调试桥，刷机玩机必备工具。", category: "玩机", playUrl: "https://developer.android.com/tools/releases/platform-tools", webUrl: "https://developer.android.com/studio/releases/platform-tools", pcUrl: "https://dl.google.com/android/repository/platform-tools-latest-windows.zip", iconChar: "ADB", iconColor: "#3DDC84" },
-            { name: "Tasker", desc: "安卓自动化神器，触发各种高级指令。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm", webUrl: "https://tasker.joaoapps.com/", pcUrl: "", iconChar: "T", iconColor: "#FF5722" },
-            { name: "Winlator", desc: "在安卓手机上模拟运行 Windows PC 游戏。", category: "玩机", playUrl: "https://github.com/brunodev85/winlator", webUrl: "https://github.com/brunodev85/winlator", pcUrl: "", iconChar: "W", iconColor: "#1A73E8" },
-
             // ================= 社交 =================
             { name: "WhatsApp", desc: "大马最普及的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.whatsapp", webUrl: "https://www.whatsapp.com/", pcUrl: "https://www.whatsapp.com/download", iconChar: "W", iconColor: "#25D366" },
             { name: "Instagram", desc: "分享生活瞬间，全球图文。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.android", webUrl: "https://www.instagram.com/", iconChar: "I", iconColor: "#E1306C" },
+            { name: "Facebook", desc: "全球最大的社交网络。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.facebook.katana", webUrl: "https://www.facebook.com/", iconChar: "F", iconColor: "#1877F2" },
+            { name: "TikTok", desc: "风靡全球的短视频平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically", webUrl: "https://www.tiktok.com/", iconChar: "T", iconColor: "#000000" },
             { name: "Telegram", desc: "极速、安全的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger", webUrl: "https://telegram.org/", pcUrl: "https://desktop.telegram.org/", iconChar: "T", iconColor: "#0088cc" },
             { name: "微信", desc: "腾讯出品的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm", webUrl: "https://weixin.qq.com/", pcUrl: "https://pc.weixin.qq.com/", iconChar: "微", iconColor: "#07c160" },
-            
+            { name: "QQ", desc: "腾讯出品的即时通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mobileqq", webUrl: "https://im.qq.com/", pcUrl: "https://im.qq.com/pcqq", iconChar: "Q", iconColor: "#12B7F5" },
+            { name: "小红书", desc: "你的生活方式指南。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.xingin.xhs", webUrl: "https://www.xiaohongshu.com/", iconChar: "红", iconColor: "#FF2442" },
+            { name: "X (Twitter)", desc: "全球实时新闻与热点讨论。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.twitter.android", webUrl: "https://x.com/", iconChar: "X", iconColor: "#000000" },
+            { name: "Threads", desc: "Meta 的文字社交平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.barcelona", webUrl: "https://www.threads.net/", iconChar: "@", iconColor: "#000000" },
+            { name: "Snapchat", desc: "阅后即焚的趣味社交。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.snapchat.android", webUrl: "https://www.snapchat.com/", iconChar: "S", iconColor: "#FFFC00" },
+            { name: "Discord", desc: "社群语音聊天软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.discord", webUrl: "https://discord.com/", pcUrl: "https://discord.com/download", iconChar: "D", iconColor: "#5865F2" },
+            { name: "Line", desc: "日韩台马地区常用的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=jp.naver.line.android", webUrl: "https://line.me/", pcUrl: "https://line.me/en/download", iconChar: "L", iconColor: "#06C755" },
+            { name: "微博", desc: "随时随地发现新鲜事。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.sina.weibo", webUrl: "https://weibo.com/", iconChar: "微", iconColor: "#E6162D" },
+            { name: "LinkedIn", desc: "全球职场社交平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.linkedin.android", webUrl: "https://www.linkedin.com/", iconChar: "in", iconColor: "#0A66C2" },
+            { name: "Reddit", desc: "美国最大的论坛社区。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.reddit.frontpage", webUrl: "https://www.reddit.com/", iconChar: "R", iconColor: "#FF4500" },
+            { name: "Pinterest", desc: "全球灵感图片素材库。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.pinterest", webUrl: "https://www.pinterest.com/", iconChar: "P", iconColor: "#E60023" },
+            { name: "Tinder", desc: "全球著名的滑动交友软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tinder", webUrl: "https://tinder.com/", iconChar: "T", iconColor: "#FD5068" },
+            { name: "Bumble", desc: "女性主导的约会交友软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.bumble.app", webUrl: "https://bumble.com/", iconChar: "B", iconColor: "#FFC629" },
+            { name: "Viber", desc: "免费通话和即时通讯。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.viber.voip", webUrl: "https://www.viber.com/", iconChar: "V", iconColor: "#7360F2" },
+
             // ================= 工具 =================
             { name: "Grab", desc: "大马最常用的打车外卖。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger", webUrl: "https://www.grab.com/my/", iconChar: "G", iconColor: "#00B14F" },
+            { name: "Touch 'n Go", desc: "马来西亚国民级电子钱包。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=my.com.tngdigital.ewallet", webUrl: "https://www.touchngo.com.my/", iconChar: "T", iconColor: "#0066CC" },
+            { name: "Shopee", desc: "东南亚最火的电商平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.shopee.my", webUrl: "https://shopee.com.my/", iconChar: "S", iconColor: "#EE4D2D" },
+            { name: "Lazada", desc: "大马购物必备电商。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.lazada.android", webUrl: "https://www.lazada.com.my/", iconChar: "L", iconColor: "#0F146D" },
+            { name: "Foodpanda", desc: "大马主流外卖平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.global.foodpanda.android", webUrl: "https://www.foodpanda.my/", iconChar: "F", iconColor: "#D70F64" },
             { name: "Google Chrome", desc: "谷歌快速安全浏览器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.android.chrome", webUrl: "https://www.google.com/chrome/", pcUrl: "https://www.google.com/chrome/", iconChar: "C", iconColor: "#4285F4" },
-            { name: "Spotify", desc: "正版音乐流媒体平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.spotify.music", webUrl: "https://www.spotify.com/", pcUrl: "https://www.spotify.com/download/", iconChar: "S", iconColor: "#1DB954" },
+            { name: "Google Maps", desc: "全球最强大的地图。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.maps", webUrl: "https://maps.google.com/", iconChar: "M", iconColor: "#34A853" },
+            { name: "Waze", desc: "避开塞车的实时导航。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.waze", webUrl: "https://www.waze.com/", iconChar: "W", iconColor: "#00D3FE" },
             { name: "ChatGPT", desc: "OpenAI 出品的 AI 助手。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt", webUrl: "https://chatgpt.com/", iconChar: "AI", iconColor: "#10A37F" },
+            { name: "CapCut", desc: "剪映国际版视频剪辑。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.lemon.lvoverseas", webUrl: "https://www.capcut.com/", pcUrl: "https://www.capcut.com/download", iconChar: "C", iconColor: "#000000" },
+            { name: "Canva", desc: "在线平面设计神器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.canva.editor", webUrl: "https://www.canva.com/", iconChar: "C", iconColor: "#00C4CC" },
+            { name: "Google Drive", desc: "谷歌云盘存储。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.docs", webUrl: "https://drive.google.com/", iconChar: "D", iconColor: "#0F9D58" },
+            { name: "Gmail", desc: "谷歌官方邮箱。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.gm", webUrl: "https://mail.google.com/", iconChar: "G", iconColor: "#EA4335" },
+            { name: "Google Translate", desc: "谷歌翻译，多语言互译。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.translate", webUrl: "https://translate.google.com/", iconChar: "译", iconColor: "#4285F4" },
+            { name: "Microsoft Word", desc: "微软官方文档编辑。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.microsoft.office.word", webUrl: "https://www.microsoft.com/", pcUrl: "https://www.microsoft.com/en-us/microsoft-365/word", iconChar: "W", iconColor: "#2B579A" },
+            { name: "Zoom", desc: "全球视频会议工具。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=us.zoom.videomeetings", webUrl: "https://zoom.us/", pcUrl: "https://zoom.us/download", iconChar: "Z", iconColor: "#2D8CFF" },
+            { name: "PayPal", desc: "全球跨境支付平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.paypal.android.p2pmobile", webUrl: "https://www.paypal.com/", iconChar: "P", iconColor: "#00457C" },
+            { name: "Speedtest", desc: "网络测速工具。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest", webUrl: "https://www.speedtest.net/", iconChar: "S", iconColor: "#00B0FF" },
+            { name: "1.1.1.1", desc: "Cloudflare 隐私安全 DNS。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone", webUrl: "https://1.1.1.1/", pcUrl: "https://1.1.1.1/", iconChar: "1", iconColor: "#F38020" },
+            { name: "Bitwarden", desc: "开源密码管理器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.x8bit.bitwarden", webUrl: "https://bitwarden.com/", pcUrl: "https://bitwarden.com/download/", iconChar: "B", iconColor: "#175DDC" },
+            { name: "Alipay (支付宝)", desc: "中国主流电子钱包。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone", webUrl: "https://www.alipay.com/", iconChar: "支", iconColor: "#1677FF" },
+
+            // ================= 写代码 =================
+            { name: "Visual Studio Code", desc: "微软轻量级跨平台代码编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.microsoft.vscode", webUrl: "https://code.visualstudio.com/", pcUrl: "https://code.visualstudio.com/Download", iconChar: "VS", iconColor: "#007ACC" },
+            { name: "GitHub", desc: "全球最大的代码托管与开源社区。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.github.android", webUrl: "https://github.com/", pcUrl: "https://desktop.github.com/", iconChar: "GH", iconColor: "#181717" },
+            { name: "Python", desc: "广受欢迎的通用编程语言环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.python.org/", pcUrl: "https://www.python.org/downloads/", iconChar: "Py", iconColor: "#3776AB" },
+            { name: "Node.js", desc: "基于 Chrome V8 引擎的 JS 运行环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://nodejs.org/", pcUrl: "https://nodejs.org/en/download/", iconChar: "JS", iconColor: "#339933" },
+            { name: "Postman", desc: "强大的 API 接口测试与开发工具。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.postmanlabs.mobile", webUrl: "https://www.postman.com/", pcUrl: "https://www.postman.com/downloads/", iconChar: "PM", iconColor: "#FF6C37" },
+            { name: "Docker", desc: "开源的应用容器引擎。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.docker.com/", pcUrl: "https://www.docker.com/products/docker-desktop/", iconChar: "D", iconColor: "#2496ED" },
+            { name: "IntelliJ IDEA", desc: "Java 语言开发效率神器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.jetbrains.android", webUrl: "https://www.jetbrains.com/idea/", pcUrl: "https://www.jetbrains.com/idea/download/", iconChar: "IJ", iconColor: "#000000" },
             
-            // ================= 游戏 =================
+            // ================= 玩机 =================
+            { name: "Magisk", desc: "强大的 Android 底层修改工具。", category: "玩机", playUrl: "https://github.com/topjohnwu/Magisk", webUrl: "https://github.com/topjohnwu/Magisk", iconChar: "M", iconColor: "#00BCD4" },
+            { name: "MT 管理器", desc: "安卓强大的文件管理与逆向工具。", category: "玩机", playUrl: "https://mt2.cn/", webUrl: "https://mt2.cn/", iconChar: "MT", iconColor: "#F44336" },
+            { name: "Termux", desc: "安卓上的 Linux 终端模拟器。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.termux/", webUrl: "https://termux.dev/", iconChar: "TX", iconColor: "#333333" },
+            { name: "F-Droid", desc: "开源 Android 应用商店。", category: "玩机", playUrl: "https://f-droid.org/", webUrl: "https://f-droid.org/", iconChar: "FD", iconColor: "#1976D2" },
+            { name: "Aurora Store", desc: "开源的第三方 Google Play 客户端。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.aurora.store/", webUrl: "https://auroraoss.com/", iconChar: "A", iconColor: "#4CAF50" },
+            { name: "ADB & Fastboot", desc: "安卓官方调试桥，刷机必备。", category: "玩机", playUrl: "https://developer.android.com/tools/releases/platform-tools", webUrl: "https://developer.android.com/studio/releases/platform-tools", pcUrl: "https://dl.google.com/android/repository/platform-tools-latest-windows.zip", iconChar: "ADB", iconColor: "#3DDC84" },
+            { name: "Tasker", desc: "安卓自动化神器。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm", webUrl: "https://tasker.joaoapps.com/", iconChar: "T", iconColor: "#FF5722" },
+            { name: "Winlator", desc: "在安卓手机上模拟运行 Windows 游戏。", category: "玩机", playUrl: "https://github.com/brunodev85/winlator", webUrl: "https://github.com/brunodev85/winlator", iconChar: "W", iconColor: "#1A73E8" },
+
+            // ================= 影音 =================
+            { name: "YouTube", desc: "全球最大的视频分享平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube", webUrl: "https://www.youtube.com/", iconChar: "Y", iconColor: "#FF0000" },
+            { name: "Netflix", desc: "顶级流媒体服务平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.netflix.mediaclient", webUrl: "https://www.netflix.com/", iconChar: "N", iconColor: "#E50914" },
+            { name: "Spotify", desc: "正版音乐流媒体平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.spotify.music", webUrl: "https://www.spotify.com/", pcUrl: "https://www.spotify.com/download/", iconChar: "S", iconColor: "#1DB954" },
+            { name: "哔哩哔哩", desc: "年轻人的文化社区。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili", webUrl: "https://app.bilibili.com/", iconChar: "B", iconColor: "#fb7299" },
+            { name: "Disney+", desc: "迪士尼独家影视库。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.disney.disneyplus", webUrl: "https://www.disneyplus.com/", iconChar: "D", iconColor: "#113CCF" },
+            { name: "Viu", desc: "东南亚火热的追剧神器。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.viu.pad", webUrl: "https://www.viu.com/", iconChar: "V", iconColor: "#FFD700" },
+
+            // ================= 游戏 (已替换为你提供的最新完整列表) =================
             { name: "Mobile Legends", desc: "东南亚最火的 MOBA 竞技。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
-            { name: "原神", desc: "开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", pcUrl: "https://ys.mihoyo.com/download", iconChar: "原", iconColor: "#ffc107" },
+            { name: "PUBG MOBILE", desc: "全球知名的战术竞技类射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig", webUrl: "https://www.pubgmobile.com/", pcUrl: "https://www.pubgmobile.com/en/download.shtml", iconChar: "P", iconColor: "#F4A460" },
+            { name: "Blockman GO", desc: "3D像素风格的沙盒多人在线游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods", webUrl: "https://www.blockmango.com/", iconChar: "B", iconColor: "#00bcd4" },
+            { name: "Free Fire", desc: "节奏极快的生存射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth", webUrl: "https://ff.garena.com/", iconChar: "F", iconColor: "#FF5722" },
+            { name: "我的世界", desc: "风靡全球的 3D 沙盒建造游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", webUrl: "https://www.minecraft.net/", pcUrl: "https://www.minecraft.net/en-us/download", iconChar: "M", iconColor: "#4CAF50" },
             { name: "Roblox", desc: "3D 沙盒游戏平台。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client", webUrl: "https://www.roblox.com/", pcUrl: "https://www.roblox.com/download", iconChar: "R", iconColor: "#e2231a" },
-            { name: "Mobile Legends", desc: "东南亚最火的 MOBA 竞技。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
-{ name: "PUBG MOBILE", desc: "全球知名的战术竞技类射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig", webUrl: "https://www.pubgmobile.com/", pcUrl: "https://www.pubgmobile.com/en/download.shtml", iconChar: "P", iconColor: "#F4A460" },
-{ name: "Blockman GO", desc: "3D像素风格的沙盒多人在线游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods", webUrl: "https://www.blockmango.com/", iconChar: "B", iconColor: "#00bcd4" },
-{ name: "Free Fire", desc: "节奏极快的生存射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth", webUrl: "https://ff.garena.com/", iconChar: "F", iconColor: "#FF5722" },
-{ name: "我的世界", desc: "风靡全球的 3D 沙盒建造游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", webUrl: "https://www.minecraft.net/", pcUrl: "https://www.minecraft.net/en-us/download", iconChar: "M", iconColor: "#4CAF50" },
-{ name: "Roblox", desc: "3D 沙盒游戏平台。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client", webUrl: "https://www.roblox.com/", pcUrl: "https://www.roblox.com/download", iconChar: "R", iconColor: "#e2231a" },
-{ name: "原神", desc: "开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", pcUrl: "https://ys.mihoyo.com/download", iconChar: "原", iconColor: "#ffc107" },
-{ name: "崩坏：星穹铁道", desc: "银河冒险策略游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea", webUrl: "https://hsr.hoyoverse.com/", pcUrl: "https://hsr.hoyoverse.com/download", iconChar: "星", iconColor: "#4A148C" },
-{ name: "Call of Duty", desc: "使命召唤手游版。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter", webUrl: "https://www.callofduty.com/mobile", iconChar: "C", iconColor: "#000000" },
-{ name: "Stumble Guys", desc: "多人派对闯关游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.kitkagames.fallbuddies", webUrl: "https://stumbleguys.com/", pcUrl: "https://store.steampowered.com/app/1677740/Stumble_Guys/", iconChar: "S", iconColor: "#FFCA28" },
-{ name: "部落冲突", desc: "经典策略对战游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans", webUrl: "https://supercell.com/", iconChar: "C", iconColor: "#8D6E63" },
-{ name: "荒野乱斗", desc: "快节奏 3v3 乱斗游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.brawlstars", webUrl: "https://supercell.com/", iconChar: "B", iconColor: "#FFC107" }
+            { name: "原神", desc: "开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", pcUrl: "https://ys.mihoyo.com/download", iconChar: "原", iconColor: "#ffc107" },
+            { name: "崩坏：星穹铁道", desc: "银河冒险策略游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea", webUrl: "https://hsr.hoyoverse.com/", pcUrl: "https://hsr.hoyoverse.com/download", iconChar: "星", iconColor: "#4A148C" },
+            { name: "Call of Duty", desc: "使命召唤手游版。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter", webUrl: "https://www.callofduty.com/mobile", iconChar: "C", iconColor: "#000000" },
+            { name: "Stumble Guys", desc: "多人派对闯关游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.kitkagames.fallbuddies", webUrl: "https://stumbleguys.com/", pcUrl: "https://store.steampowered.com/app/1677740/Stumble_Guys/", iconChar: "S", iconColor: "#FFCA28" },
+            { name: "部落冲突", desc: "经典策略对战游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans", webUrl: "https://supercell.com/", iconChar: "C", iconColor: "#8D6E63" },
+            { name: "荒野乱斗", desc: "快节奏 3v3 乱斗游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.brawlstars", webUrl: "https://supercell.com/", iconChar: "B", iconColor: "#FFC107" }
         ];
 
         const appGrid = document.getElementById('appGrid');
@@ -263,11 +298,10 @@
                         iconStyle = 'background: ' + app.iconColor + '; box-shadow: 0 5px 15px ' + app.iconColor + '40;';
                     }
 
-                    // ===== 核心修改：动态生成按钮组 =====
+                    // ===== 动态生成按钮组 =====
                     let btnHTML = '<div class="btn-group">';
                     if (app.playUrl) btnHTML += '<a href="' + app.playUrl + '" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>';
                     if (app.webUrl) btnHTML += '<a href="' + app.webUrl + '" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>';
-                    // 如果有 pcUrl 才显示 PC 按钮
                     if (app.pcUrl) btnHTML += '<a href="' + app.pcUrl + '" class="btn btn-pc" target="_blank" rel="noopener">PC 下载</a>';
                     btnHTML += '</div>';
 
