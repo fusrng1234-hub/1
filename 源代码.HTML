@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>探索应用 - 极客应用库</title>
+    <title>探索应用 - 极简框架</title>
     <style>
         :root {
             --bg: #0f1115;
@@ -72,7 +72,7 @@
         }
         .cat-btn.active { background: var(--text); color: #000; border-color: var(--text); }
         
-        /* 电脑端网格 */
+        /* 电脑端自适应网格 */
         .app-grid {
             padding: 20px;
             display: grid;
@@ -114,7 +114,7 @@
         .btn-web { background: var(--btn-web); }
         .btn-pc { background: var(--btn-pc); }
         
-        /* 加载提示 */
+        /* 加载与空状态提示 */
         .loading-text { grid-column: 1 / -1; text-align: center; padding: 20px; color: #555; display: none; }
         .no-result { grid-column: 1 / -1; text-align: center; padding: 50px 0; color: #555; font-size: 16px; }
     </style>
@@ -125,49 +125,58 @@
         <div class="header-top">
             <div>
                 <h1>探索应用</h1>
-                <p>海量应用，安全直达</p>
+                <p>纯前端极简应用库 (求大神指导)</p>
             </div>
         </div>
-        <input type="text" id="searchInput" class="search-box" placeholder="搜索应用、游戏、工具...">
+        <input type="text" id="searchInput" class="search-box" placeholder="搜索应用...">
     </div>
 
+    <!-- 分类导航栏 -->
     <div class="categories" id="categories">
         <button class="cat-btn active" data-category="全部">全部</button>
-        <button class="cat-btn" data-category="写代码">写代码</button>
-        <button class="cat-btn" data-category="玩机">玩机</button>
         <button class="cat-btn" data-category="社交">社交</button>
         <button class="cat-btn" data-category="工具">工具</button>
-        <button class="cat-btn" data-category="影音">影音</button>
         <button class="cat-btn" data-category="游戏">游戏</button>
     </div>
 
+    <!-- 应用容器 -->
     <div class="app-grid" id="appGrid"></div>
     <div class="loading-text" id="loadingText">加载更多应用中...</div>
 
-    <div class="footer">
+    <div class="footer" style="text-align: center; margin-top: 40px; font-size: 12px; color: #555;">
         本站仅提供官方安全下载链接，不托管任何安装包。<br>
         应用版权归各自开发者所有。
     </div>
 
     <script>
         // ==========================================
-        // 数据池
+        // 数据池：请在这里添加你的应用数据
+        // pcUrl（电脑版链接）可选，不填则不显示PC按钮
         // ==========================================
         const appsData = [
-                 // ================= 游戏 =================
-{ name: "Mobile Legends", desc: "东南亚最火的 MOBA 竞技。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
-{ name: "PUBG MOBILE", desc: "全球知名的战术竞技类射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig", webUrl: "https://www.pubgmobile.com/", pcUrl: "https://www.pubgmobile.com/en/download.shtml", iconChar: "P", iconColor: "#F4A460" },
-{ name: "Blockman GO", desc: "3D像素风格的沙盒多人在线游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods", webUrl: "https://www.blockmango.com/", iconChar: "B", iconColor: "#00bcd4" },
-{ name: "Free Fire", desc: "节奏极快的生存射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth", webUrl: "https://ff.garena.com/", iconChar: "F", iconColor: "#FF5722" },
-{ name: "我的世界", desc: "风靡全球的 3D 沙盒建造游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", webUrl: "https://www.minecraft.net/", pcUrl: "https://www.minecraft.net/en-us/download", iconChar: "M", iconColor: "#4CAF50" },
-{ name: "Roblox", desc: "3D 沙盒游戏平台。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client", webUrl: "https://www.roblox.com/", pcUrl: "https://www.roblox.com/download", iconChar: "R", iconColor: "#e2231a" },
-{ name: "原神", desc: "开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", pcUrl: "https://ys.mihoyo.com/download", iconChar: "原", iconColor: "#ffc107" },
-{ name: "崩坏：星穹铁道", desc: "银河冒险策略游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea", webUrl: "https://hsr.hoyoverse.com/", pcUrl: "https://hsr.hoyoverse.com/download", iconChar: "星", iconColor: "#4A148C" },
-{ name: "Call of Duty", desc: "使命召唤手游版。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter", webUrl: "https://www.callofduty.com/mobile", iconChar: "C", iconColor: "#000000" },
-{ name: "Stumble Guys", desc: "多人派对闯关游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.kitkagames.fallbuddies", webUrl: "https://stumbleguys.com/", pcUrl: "https://store.steampowered.com/app/1677740/Stumble_Guys/", iconChar: "S", iconColor: "#FFCA28" },
-{ name: "部落冲突", desc: "经典策略对战游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans", webUrl: "https://supercell.com/", iconChar: "C", iconColor: "#8D6E63" },
-{ name: "荒野乱斗", desc: "快节奏 3v3 乱斗游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.brawlstars", webUrl: "https://supercell.com/", iconChar: "B", iconColor: "#FFC107" } 
-      ];
+            // 示例 1：包含 PC 端下载
+            { 
+                name: "微信", 
+                desc: "腾讯出品的通讯软件。", 
+                category: "社交", 
+                playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm", 
+                webUrl: "https://weixin.qq.com/", 
+                pcUrl: "https://pc.weixin.qq.com/", 
+                iconChar: "微", 
+                iconColor: "#07c160" 
+            },
+            // 示例 2：只有移动端
+            { 
+                name: "小红书", 
+                desc: "你的生活方式指南。", 
+                category: "社交", 
+                playUrl: "https://play.google.com/store/apps/details?id=com.xingin.xhs", 
+                webUrl: "https://www.xiaohongshu.com/", 
+                iconChar: "红", 
+                iconColor: "#FF2442" 
+            }
+            // 继续往下复制粘贴即可添加更多...
+        ];
 
         const appGrid = document.getElementById('appGrid');
         const catBtns = document.querySelectorAll('.cat-btn');
@@ -187,6 +196,7 @@
                 appGrid.innerHTML = '';
                 currentPage = 1;
                 hasMore = true;
+                // 同时过滤分类和搜索词
                 filteredApps = appsData.filter(app => {
                     const matchCategory = currentCategory === '全部' || app.category === currentCategory;
                     const matchSearch = app.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -199,6 +209,7 @@
             isLoading = true;
             loadingText.style.display = 'block';
 
+            // 模拟网络延迟
             setTimeout(() => {
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = startIndex + itemsPerPage;
@@ -226,7 +237,7 @@
                         iconStyle = 'background: ' + app.iconColor + '; box-shadow: 0 5px 15px ' + app.iconColor + '40;';
                     }
 
-                    // ===== 动态生成按钮组 =====
+                    // 动态生成按钮组（智能判断是否有链接）
                     let btnHTML = '<div class="btn-group">';
                     if (app.playUrl) btnHTML += '<a href="' + app.playUrl + '" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>';
                     if (app.webUrl) btnHTML += '<a href="' + app.webUrl + '" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>';
@@ -255,12 +266,14 @@
             }, 300);
         }
 
+        // 触底加载更多
         window.addEventListener('scroll', () => {
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
                 renderApps();
             }
         });
 
+        // 分类点击
         catBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 catBtns.forEach(b => b.classList.remove('active'));
@@ -271,6 +284,7 @@
             });
         });
 
+        // 搜索防抖
         let searchTimeout;
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
