@@ -1,169 +1,192 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>探索应用 - 极客应用库</title>
-    <style>
-        :root {
-            --bg: #0f1115;
-            --card: #1a1d24;
-            --text: #ffffff;
-            --text-muted: #8b8e96;
-            --btn-play: linear-gradient(135deg, #34a853, #2c8c46);
-            --btn-web: linear-gradient(135deg, #007aff, #0062cc);
-            --btn-pc: linear-gradient(135deg, #9c27b0, #673ab7);
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            padding-bottom: 50px;
-        }
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(15, 17, 21, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .header-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px; }
-        .header h1 { font-size: 26px; font-weight: 800; }
-        .header p { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
-        
-        /* 搜索框 */
-        .search-box {
-            width: 100%;
-            padding: 12px 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: white;
-            font-size: 15px;
-            outline: none;
-            transition: all 0.3s;
-        }
-        .search-box:focus { background: rgba(255,255,255,0.12); border-color: #007aff; }
-        .search-box::placeholder { color: #666; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1018">
+<meta name="description" content="极客应用库：发现实用应用、开发工具与数字生活软件。">
+<meta name="color-scheme" content="dark">
+<title>极客应用库 · 探索应用</title>
+<style>
+:root{--bg:#090e16;--panel:#111a27;--card:#151f2e;--muted:#8d9bad;--white:#f4f8ff;--line:rgba(255,255,255,.08);--blue:#38a5ff;--green:#38e0ad;--purple:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:radial-gradient(ellipse at 80% -10%,rgba(35,117,160,.2),transparent 38%),var(--bg);color:var(--white);min-height:100vh;padding-bottom:100px}
+button,input{font:inherit}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:50;padding:calc(12px + env(safe-area-inset-top)) 17px 13px;background:rgba(9,14,22,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:linear-gradient(140deg,#1f9cff,#25e0b0 58%,#9774ff);box-shadow:0 5px 24px rgba(42,185,219,.22)}
+.brand h1{font-size:20px;letter-spacing:.3px;font-weight:850}
+.brand p{font-size:11px;color:var(--muted);margin-top:2px}
+.header-tag{font-size:11px;color:#a8f4dc;border:1px solid rgba(56,224,173,.25);background:rgba(56,224,173,.08);padding:6px 9px;border-radius:20px}
+.search-wrap{position:relative}
+.search-wrap span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#8fa2b8}
+.search-box{width:100%;height:46px;padding:0 15px 0 42px;border-radius:15px;background:#151f2c;border:1px solid var(--line);color:white;outline:none;font-size:14px}
+.search-box:focus{border-color:rgba(56,165,255,.7);box-shadow:0 0 0 3px rgba(56,165,255,.1)}
+.search-box::placeholder{color:#748397}
+main{max-width:1100px;margin:auto}
+.hero{margin:19px 16px 22px;padding:23px 21px;min-height:160px;border:1px solid rgba(93,191,255,.18);border-radius:23px;overflow:hidden;position:relative;background:radial-gradient(circle at 85% 20%,rgba(73,148,255,.34),transparent 28%),radial-gradient(circle at 70% 100%,rgba(49,223,176,.18),transparent 34%),linear-gradient(125deg,#172c45,#172039 60%,#211d3c)}
+.hero:after{content:"✧";position:absolute;right:24px;top:10px;font-size:104px;color:rgba(178,218,255,.15);transform:rotate(12deg)}
+.hero-kicker{font-size:11px;letter-spacing:2px;color:#8fe8d0;font-weight:700}
+.hero h2{font-size:25px;line-height:1.25;margin:10px 0 7px;max-width:75%}
+.hero p{font-size:12px;color:#b7c7d9;max-width:72%;line-height:1.6}
+.hero-link{display:inline-flex;margin-top:15px;text-decoration:none;font-size:12px;font-weight:750;padding:9px 15px;border-radius:11px;color:#07151c;background:linear-gradient(100deg,#54e4bb,#65baff)}
+.section{padding:0 16px;margin:26px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:13px}
+.section-head h2{font-size:18px;font-weight:800}
+.section-head p{font-size:11px;color:var(--muted);margin-top:4px}
+.section-more{border:0;background:none;color:#70c9ff;font-size:12px}
+.hscroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,78%);gap:11px;overflow-x:auto;padding:1px 1px 8px;scrollbar-width:none}
+.hscroll::-webkit-scrollbar,.categories::-webkit-scrollbar{display:none}
+.feature-card{background:linear-gradient(140deg,#192a3b,#172131);border:1px solid var(--line);border-radius:18px;padding:15px;min-height:125px}
+.feature-top{display:flex;gap:12px;align-items:center}
+.app-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:white;font-size:19px;font-weight:850;flex-shrink:0;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.18)}
+.app-icon img{width:100%;height:100%;object-fit:cover}
+.feature-card h3{font-size:15px;margin-bottom:4px}
+.feature-card p{font-size:11px;color:var(--muted);line-height:1.45}
+.feature-actions{display:flex;gap:7px;margin-top:13px}
+.pill-link{font-size:11px;text-decoration:none;padding:7px 11px;border-radius:9px;background:linear-gradient(110deg,#237fdb,#27bca5);font-weight:700}
+.pill-link.secondary{background:#27364a;color:#c8d8e8}
+.rank-tabs{display:flex;gap:8px;margin-bottom:12px}
+.rank-tab{border:1px solid var(--line);background:#131d2a;color:#9aabbd;padding:8px 13px;border-radius:20px;font-size:12px}
+.rank-tab.active{color:#06151b;border:0;background:linear-gradient(100deg,#4be0b2,#63b8ff);font-weight:800}
+.rank-list{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden}
+.rank-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.rank-row:last-child{border-bottom:0}
+.rank-no{width:23px;text-align:center;font-size:15px;font-weight:900;color:#91a2b5}
+.rank-no.top{color:#ffc96a}
+.rank-name{flex:1;font-size:13px;font-weight:700}
+.rank-category{font-size:10px;color:var(--muted)}
+.categories{display:flex;gap:9px;overflow-x:auto;padding:0 16px 7px;scrollbar-width:none}
+.cat-btn{white-space:nowrap;border:1px solid var(--line);background:#141e2b;color:#9eafc1;padding:9px 15px;border-radius:22px;font-size:12px;font-weight:700}
+.cat-btn.active{background:linear-gradient(100deg,#39dcae,#5caeff);color:#07151b;border-color:transparent}
+.app-grid{padding:0 16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.app-card{min-width:0;background:linear-gradient(145deg,#172231,#121b28);border:1px solid var(--line);border-radius:17px;padding:13px;display:flex;flex-direction:column;gap:11px;animation:rise .25s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.app-header{display:flex;align-items:center;gap:10px;min-width:0}
+.app-card .app-icon{width:43px;height:43px;border-radius:13px;font-size:16px}
+.app-info{min-width:0;flex:1}
+.app-title{font-size:13px;font-weight:800;overflow-wrap:anywhere;line-height:1.3}
+.app-desc{font-size:10px;color:var(--muted);line-height:1.45;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.btn-group{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.btn{flex:1 1 42%;min-width:0;text-align:center;text-decoration:none;padding:8px 5px;border-radius:9px;font-size:10px;font-weight:750;color:white}
+.btn-play{background:linear-gradient(120deg,#249d67,#28bd9b)}
+.btn-web{background:linear-gradient(120deg,#167edc,#2766c8)}
+.btn-pc{background:linear-gradient(120deg,#8052ce,#a34bb9)}
+.empty{grid-column:1/-1;text-align:center;padding:45px 10px;color:var(--muted);font-size:13px}
+.loading-text{text-align:center;padding:18px;color:#718196;font-size:11px;display:none}
+.footer{text-align:center;padding:28px 18px 15px;color:#718196;font-size:10px;line-height:1.8}
+.bottom-nav{position:fixed;z-index:60;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);padding:9px 7px calc(9px + env(safe-area-inset-bottom));background:rgba(13,20,30,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
+.nav-item{border:0;background:none;color:#8292a5;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;text-decoration:none}
+.nav-item b{font-size:18px;font-weight:500;line-height:1.2}
+.nav-item.active{color:#63e2bd}
+@media(min-width:700px){.hero{margin:25px 22px}.section{padding:0 22px}.categories{padding-left:22px}.app-grid{padding:0 22px;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.hscroll{grid-auto-columns:260px}.topbar{padding-left:max(22px,calc((100% - 1056px)/2));padding-right:max(22px,calc((100% - 1056px)/2))}}
+@media(min-width:1000px){.app-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:360px){.app-grid{gap:8px;padding:0 11px}.app-card{padding:10px}.app-title{font-size:12px}.btn{font-size:9px}.section{padding:0 11px}.hero{margin-left:11px;margin-right:11px}}
 
-        /* 顶部分类栏 */
-        .categories {
-            display: flex;
-            overflow-x: auto;
-            padding: 15px 20px;
-            gap: 12px;
-            scrollbar-width: none;
-        }
-        .categories::-webkit-scrollbar { display: none; }
-        .cat-btn {
-            padding: 8px 20px;
-            border-radius: 20px;
-            background: var(--card);
-            color: var(--text-muted);
-            font-size: 15px;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .cat-btn.active { background: var(--text); color: #000; border-color: var(--text); }
-        
-        /* 电脑端网格 */
-        .app-grid {
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-        .app-card {
-            background: var(--card);
-            border-radius: 22px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            border: 1px solid rgba(255,255,255,0.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideUp 0.4s ease forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        .app-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.1); }
-        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-        
-        .app-header { display: flex; align-items: center; gap: 15px; }
-        .app-icon {
-            width: 60px; height: 60px; border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 28px; font-weight: bold; overflow: hidden; flex-shrink: 0;
-        }
-        .app-info { flex: 1; }
-        .app-title { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
-        .app-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
-        
-        /* 按钮组：支持多按钮自适应 */
-        .btn-group { display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap; }
-        .btn { 
-            flex: 1 1 30%; 
-            text-align: center; 
-            padding: 10px 0; 
-            border-radius: 10px; 
-            font-size: 13px; 
-            font-weight: 600; 
-            text-decoration: none; 
-            color: white; 
-            white-space: nowrap; 
-        }
-        .btn-play { background: var(--btn-play); }
-        .btn-web { background: var(--btn-web); }
-        .btn-pc { background: var(--btn-pc); }
-        
-        /* 加载提示 */
-        .loading-text { grid-column: 1 / -1; text-align: center; padding: 20px; color: #555; display: none; }
-        .no-result { grid-column: 1 / -1; text-align: center; padding: 50px 0; color: #555; font-size: 16px; }
-    </style>
+.toolbar{display:flex;align-items:center;gap:8px;padding:0 16px 12px}
+.sort-label{font-size:11px;color:var(--muted)}
+.sort-select,.filter-fav{height:34px;border:1px solid var(--line);border-radius:10px;background:#151f2c;color:#dce8f5;padding:0 10px;font-size:11px}
+.filter-fav{margin-left:auto;color:#8fe8d0}
+.filter-fav.active{background:linear-gradient(100deg,#39dcae,#5caeff);color:#07151b;border-color:transparent;font-weight:800}
+.card-open{border:0;background:none;color:#76caff;text-align:left;font-size:11px;font-weight:750;padding:2px 0}
+.card-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.fav-btn{border:1px solid var(--line);background:#1b2939;color:#aebed0;border-radius:9px;padding:6px 9px;font-size:12px}
+.fav-btn.saved{color:#ff91b3;border-color:rgba(255,145,179,.35);background:rgba(255,90,140,.1)}
+.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:none;align-items:flex-end;justify-content:center;padding:14px}
+.modal-backdrop.show{display:flex}
+.detail-modal{position:relative;width:min(100%,560px);max-height:86vh;overflow:auto;background:#121d2b;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px 18px 24px;box-shadow:0 20px 70px rgba(0,0,0,.5)}
+.modal-close{position:absolute;right:13px;top:10px;width:34px;height:34px;border:0;border-radius:50%;background:#26364a;color:white;font-size:23px}
+.detail-head{display:flex;gap:13px;align-items:center;padding-right:35px;margin-bottom:15px}
+.detail-head .app-icon{width:58px;height:58px}
+.detail-modal h2{font-size:20px;margin-bottom:5px}
+.detail-meta{font-size:11px;color:#9aadc2}
+.detail-description{font-size:13px;line-height:1.7;color:#d0dbe8;margin:16px 0}
+.detail-links{display:flex;flex-wrap:wrap;gap:8px}
+.detail-links .btn{flex:1 1 42%;font-size:12px;padding:11px}
+.detail-note{font-size:10px;color:#8294a9;line-height:1.6;margin-top:16px}
+@media(min-width:700px){.modal-backdrop{align-items:center}.app-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+</style>
 </head>
 <body>
+<header class="topbar" id="top">
+  <div class="brand-row">
+    <div class="brand"><div class="logo">✦</div><div><h1>极客应用库</h1><p>发现好应用 · 探索新工具</p></div></div>
+    <span class="header-tag">GEEK STORE</span>
+  </div>
+  <div class="search-wrap"><span>⌕</span><input id="searchInput" class="search-box" type="search" placeholder="搜索应用、游戏、工具..." autocomplete="off"></div>
+</header>
 
-    <div class="header">
-        <div class="header-top">
-            <div>
-                <h1>探索应用</h1>
-                <p>海量应用，安全直达</p>
-            </div>
-        </div>
-        <input type="text" id="searchInput" class="search-box" placeholder="搜索应用、游戏、工具...">
-    </div>
+<main>
+  <section class="hero">
+    <div class="hero-kicker">GEEK APP DISCOVERY</div>
+    <h2>探索 · 更大的可能</h2>
+    <p>精选实用应用与数字工具，让每一次发现都更有价值。</p>
+    <a class="hero-link" href="#allApps">立即探索　→</a>
+  </section>
 
-    <div class="categories" id="categories">
-        <button class="cat-btn active" data-category="全部">全部</button>
-        <button class="cat-btn" data-category="写代码">写代码</button>
-        <button class="cat-btn" data-category="玩机">玩机</button>
-        <button class="cat-btn" data-category="社交">社交</button>
-        <button class="cat-btn" data-category="工具">工具</button>
-        <button class="cat-btn" data-category="影音">影音</button>
-        <button class="cat-btn" data-category="游戏">游戏</button>
-    </div>
+  <section class="section" id="popularSection">
+    <div class="section-head"><div><h2>🔥 热门推荐</h2><p>值得加入收藏的精选应用</p></div><button class="section-more" data-jump="allApps">查看全部 ›</button></div>
+    <div class="hscroll" id="featuredApps"></div>
+  </section>
 
-    <div class="app-grid" id="appGrid"></div>
-    <div class="loading-text" id="loadingText">加载更多应用中...</div>
+  <section class="section" id="newSection">
+    <div class="section-head"><div><h2>✨ 最新上架</h2><p>应用库中的新鲜面孔</p></div><button class="section-more" data-jump="allApps">更多应用 ›</button></div>
+    <div class="hscroll" id="latestApps"></div>
+  </section>
 
-    <div class="footer" style="text-align: center; margin-top: 40px; font-size: 12px; color: #555;">
-        本站仅提供官方安全下载链接，不托管任何安装包。<br>
-        应用版权归各自开发者所有。
-    </div>
+  <section class="section" id="rankingSection">
+    <div class="section-head"><div><h2>🏆 应用排行榜</h2><p>按应用库推荐顺序展示</p></div></div>
+    <div class="rank-tabs"><button class="rank-tab active" data-rank="popular">热门榜</button><button class="rank-tab" data-rank="rising">飙升榜</button><button class="rank-tab" data-rank="new">新锐榜</button></div>
+    <div class="rank-list" id="rankList"></div>
+  </section>
 
-    <script>
-        // ==========================================
-        // 数据池：超全应用库
-        // ==========================================
-        const appsData = [
+  <section class="section" id="allApps">
+    <div class="section-head"><div><h2>全部应用</h2><p id="resultCount">浏览应用库</p></div></div>
+  </section>
+  <nav class="categories" id="categories">
+    <button class="cat-btn active" data-category="全部">全部</button>
+    <button class="cat-btn" data-category="写代码">写代码</button>
+    <button class="cat-btn" data-category="玩机">玩机</button>
+    <button class="cat-btn" data-category="社交">社交</button>
+    <button class="cat-btn" data-category="工具">工具</button>
+    <button class="cat-btn" data-category="影音">影音</button>
+    <button class="cat-btn" data-category="游戏">游戏</button>
+  </nav>
+  <div class="toolbar">
+    <label class="sort-label" for="sortSelect">排序</label>
+    <select id="sortSelect" class="sort-select">
+      <option value="default">默认推荐</option>
+      <option value="name">名称 A–Z</option>
+      <option value="category">按分类</option>
+    </select>
+    <button id="favoritesOnly" class="filter-fav" type="button">♡ 只看收藏</button>
+  </div>
+  <div class="app-grid" id="appGrid"></div>
+  <div class="loading-text" id="loadingText">正在加载更多应用…</div>
+  <footer class="footer">本站提供应用官方页面及下载入口，不托管安装包。<br>应用版权归各自开发者所有，请留意应用来源与权限。</footer>
+</main>
+
+<nav class="bottom-nav" aria-label="底部导航">
+  <a class="nav-item active" href="#top"><b>⌂</b><span>首页</span></a>
+  <a class="nav-item" href="#categories"><b>▦</b><span>分类</span></a>
+  <a class="nav-item" href="#rankingSection"><b>♛</b><span>排行</span></a>
+  <a class="nav-item" href="#allApps"><b>⇩</b><span>应用</span></a>
+  <a class="nav-item" href="#allApps" id="favoritesNav"><b>♡</b><span>收藏</span></a>
+</nav>
+
+<div class="modal-backdrop" id="appModal" aria-hidden="true">
+  <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+    <div id="detailContent"></div>
+  </section>
+</div>
+
+<script>
+const appsData = [
             // ================= 写代码 =================
             { name: "Visual Studio Code", desc: "微软轻量级跨平台代码编辑器。", category: "写代码", playUrl: "", webUrl: "https://code.visualstudio.com/", pcUrl: "https://code.visualstudio.com/Download", iconChar: "VS", iconColor: "#007ACC" },
             { name: "GitHub", desc: "全球最大的代码托管与开源社区。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.github.android", webUrl: "https://github.com/", pcUrl: "https://desktop.github.com/", iconChar: "GH", iconColor: "#181717" },
@@ -298,129 +321,122 @@
             { name: "植物大战僵尸2", desc: "经典塔防休闲游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.ea.game.pvz2_row", webUrl: "https://www.ea.com/", iconChar: "植", iconColor: "#8BC34A" }
         ];
 
-        const appGrid = document.getElementById('appGrid');
-        const catBtns = document.querySelectorAll('.cat-btn');
-        const searchInput = document.getElementById('searchInput');
-        const loadingText = document.getElementById('loadingText');
+const appGrid=document.getElementById('appGrid');
+const searchInput=document.getElementById('searchInput');
+const loadingText=document.getElementById('loadingText');
+const catBtns=document.querySelectorAll('.cat-btn');
+let currentCategory='全部',searchQuery='',filteredApps=[...appsData],currentPage=1,isLoading=false,hasMore=true;
+let sortMode='default',favoritesOnly=false;
+const itemsPerPage=20;
+const FAVORITES_KEY='geek-app-library-favorites-v1';
+function readFavorites(){try{return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)||'[]'));}catch(e){return new Set();}}
+let favorites=readFavorites();
+function saveFavorites(){try{localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favorites]));}catch(e){}}
+function isFavorite(name){return favorites.has(name);}
+function toggleFavorite(name){
+  if(favorites.has(name))favorites.delete(name);else favorites.add(name);
+  saveFavorites();renderApps(true);fillShowcases();
+}
+function escapeHtml(value){
+  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+const findApp=name=>appsData.find(a=>a.name===name);
+const iconMarkup=app=>app.iconUrl?'<img src="'+app.iconUrl+'" alt="">':app.iconChar;
+function makeLinks(app,compact=false){
+  let out='';
+  if(app.playUrl)out+='<a class="btn btn-play" href="'+app.playUrl+'" target="_blank" rel="noopener noreferrer">'+(app.playText||'Google Play')+'</a>';
+  if(app.playUrl2)out+='<a class="btn btn-play" href="'+app.playUrl2+'" target="_blank" rel="noopener noreferrer">'+(app.playText2||'Google Play')+'</a>';
+  if(app.webUrl)out+='<a class="btn btn-web" href="'+app.webUrl+'" target="_blank" rel="noopener noreferrer">'+(compact?'官网':'官网下载')+'</a>';
+  if(app.pcUrl)out+='<a class="btn btn-pc" href="'+app.pcUrl+'" target="_blank" rel="noopener noreferrer">PC 下载</a>';
+  return out;
+}
+function featureCard(app){
+  if(!app)return '';
+  return '<article class="feature-card"><div class="feature-top"><div class="app-icon" style="background:'+app.iconColor+'">'+iconMarkup(app)+'</div><div><h3>'+escapeHtml(app.name)+'</h3><p>'+escapeHtml(app.desc)+'</p></div></div><div class="feature-actions"><button class="pill-link" type="button" onclick="showAppDetails(\''+escapeHtml(app.name).replace(/'/g,"\\'")+'\')">查看详情</button>'+(app.webUrl?'<a class="pill-link secondary" href="'+app.webUrl+'" target="_blank" rel="noopener noreferrer">官方网站</a>':'')+'</div></article>';
+}
+function fillShowcases(){
+  const featuredNames=['Termux','GitHub','ChatGPT','Shizuku','Visual Studio Code','Roblox'];
+  const latestNames=['Winlator','Shizuku','ChatGPT','CapCut','Bitwarden','Termius'];
+  document.getElementById('featuredApps').innerHTML=featuredNames.map(n=>featureCard(findApp(n))).join('');
+  document.getElementById('latestApps').innerHTML=latestNames.map(n=>featureCard(findApp(n))).join('');
+  renderRanking('popular');
+}
+function renderRanking(type){
+  const sets={
+    popular:['ChatGPT','YouTube','WhatsApp','Google Chrome','Roblox'],
+    rising:['Termux','Shizuku','Winlator','CapCut','Telegram'],
+    new:['Bitwarden','Termius','Canva','Discord','GitHub']
+  };
+  document.getElementById('rankList').innerHTML=sets[type].map((name,i)=>{
+    const app=findApp(name);if(!app)return '';
+    return '<div class="rank-row"><span class="rank-no '+(i<3?'top':'')+'">'+String(i+1).padStart(2,'0')+'</span><span class="app-icon" style="width:34px;height:34px;border-radius:10px;background:'+app.iconColor+';font-size:13px">'+iconMarkup(app)+'</span><span class="rank-name">'+app.name+'</span><span class="rank-category">'+app.category+'</span></div>';
+  }).join('');
+}
+function renderApps(reset=false){
+  if(reset){appGrid.innerHTML='';currentPage=1;hasMore=true;filteredApps=appsData.filter(app=>(currentCategory==='全部'||app.category===currentCategory)&&(!favoritesOnly||isFavorite(app.name))&&(app.name.toLowerCase().includes(searchQuery.toLowerCase())||app.desc.toLowerCase().includes(searchQuery.toLowerCase())));if(sortMode==='name')filteredApps.sort((a,b)=>a.name.localeCompare(b.name,'zh-CN'));else if(sortMode==='category')filteredApps.sort((a,b)=>a.category.localeCompare(b.category,'zh-CN')||a.name.localeCompare(b.name,'zh-CN'));}
+  if(!hasMore||isLoading)return;
+  isLoading=true;loadingText.style.display='block';
+  const start=(currentPage-1)*itemsPerPage,end=start+itemsPerPage,items=filteredApps.slice(start,end);
+  if(items.length===0&&currentPage===1){appGrid.innerHTML='<div class="empty">没有找到相关应用，试试其他关键词吧。</div>';loadingText.style.display='none';document.getElementById('resultCount').textContent='0 个结果';isLoading=false;return;}
+  items.forEach((app,index)=>{
+    const card=document.createElement('article');card.className='app-card';card.style.animationDelay=(index*.018)+'s';
+    const iconStyle=app.iconUrl?'':'background:'+app.iconColor+';box-shadow:0 5px 15px '+app.iconColor+'35';
+    card.innerHTML='<div class="app-header"><div class="app-icon" style="'+iconStyle+'">'+iconMarkup(app)+'</div><div class="app-info"><h3 class="app-title">'+escapeHtml(app.name)+'</h3><p class="app-desc">'+escapeHtml(app.desc)+'</p></div></div><div class="card-actions"><button class="card-open" type="button">查看详情 ›</button><button class="fav-btn '+(isFavorite(app.name)?'saved':'')+'" type="button" aria-label="收藏">'+(isFavorite(app.name)?'♥ 已收藏':'♡ 收藏')+'</button></div><div class="btn-group">'+makeLinks(app)+'</div>';
+    card.querySelector('.card-open').addEventListener('click',()=>openDetails(app));
+    card.querySelector('.fav-btn').addEventListener('click',()=>toggleFavorite(app.name));
+    appGrid.appendChild(card);
+  });
+  currentPage++;hasMore=end<filteredApps.length;loadingText.style.display='none';
+  document.getElementById('resultCount').textContent=filteredApps.length+' 个应用';
+  isLoading=false;
+}
+catBtns.forEach(btn=>btn.addEventListener('click',()=>{
+  catBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  currentCategory=btn.dataset.category;renderApps(true);
+}));
+let searchTimer;
+searchInput.addEventListener('input',e=>{
+  clearTimeout(searchTimer);searchTimer=setTimeout(()=>{searchQuery=e.target.value.trim();renderApps(true);},180);
+});
+window.addEventListener('scroll',()=>{
+  if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-260)renderApps();
+},{passive:true});
+document.querySelectorAll('[data-jump]').forEach(btn=>btn.addEventListener('click',()=>document.getElementById(btn.dataset.jump).scrollIntoView({behavior:'smooth'})));
+document.querySelectorAll('.rank-tab').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.rank-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderRanking(btn.dataset.rank);
+}));
+document.querySelectorAll('.nav-item').forEach(link=>link.addEventListener('click',()=>{
+  document.querySelectorAll('.nav-item').forEach(a=>a.classList.remove('active'));link.classList.add('active');
+}));
 
-        let currentCategory = '全部';
-        let searchQuery = '';
-        let filteredApps = [...appsData];
-        let currentPage = 1;
-        const itemsPerPage = 24; // 每次加载 24 个
-        let isLoading = false;
-        let hasMore = true;
+function openDetails(app){
+  const iconStyle=app.iconUrl?'':'background:'+app.iconColor;
+  document.getElementById('detailContent').innerHTML=
+    '<div class="detail-head"><div class="app-icon" style="'+iconStyle+'">'+iconMarkup(app)+'</div><div><h2 id="detailTitle">'+escapeHtml(app.name)+'</h2><div class="detail-meta">'+escapeHtml(app.category)+' · 应用详情</div></div></div>'+
+    '<p class="detail-description">'+escapeHtml(app.desc)+'</p>'+
+    '<div class="detail-links">'+makeLinks(app)+'</div>'+
+    '<p class="detail-note">下载前请确认页面来源、应用名称及开发者信息。本站只提供跳转入口，不托管安装包。</p>'+
+    '<button class="fav-btn '+(isFavorite(app.name)?'saved':'')+'" id="detailFav" type="button" style="margin-top:14px">'+(isFavorite(app.name)?'♥ 已收藏':'♡ 收藏应用')+'</button>';
+  document.getElementById('detailFav').addEventListener('click',()=>{toggleFavorite(app.name);openDetails(app);});
+  const modal=document.getElementById('appModal');modal.classList.add('show');modal.setAttribute('aria-hidden','false');
+}
+window.showAppDetails=name=>{const app=findApp(name);if(app)openDetails(app);};
+function closeDetails(){const modal=document.getElementById('appModal');modal.classList.remove('show');modal.setAttribute('aria-hidden','true');}
+document.getElementById('modalClose').addEventListener('click',closeDetails);
+document.getElementById('appModal').addEventListener('click',e=>{if(e.target.id==='appModal')closeDetails();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetails();});
+document.getElementById('sortSelect').addEventListener('change',e=>{sortMode=e.target.value;renderApps(true);});
+document.getElementById('favoritesOnly').addEventListener('click',e=>{
+  favoritesOnly=!favoritesOnly;e.currentTarget.classList.toggle('active',favoritesOnly);
+  e.currentTarget.textContent=favoritesOnly?'♥ 正在看收藏':'♡ 只看收藏';renderApps(true);
+});
+document.getElementById('favoritesNav').addEventListener('click',()=>{
+  favoritesOnly=true;document.getElementById('favoritesOnly').classList.add('active');
+  document.getElementById('favoritesOnly').textContent='♥ 正在看收藏';renderApps(true);
+  document.getElementById('allApps').scrollIntoView({behavior:'smooth'});
+});
 
-        function renderApps(reset = false) {
-            if (reset) {
-                appGrid.innerHTML = '';
-                currentPage = 1;
-                hasMore = true;
-                filteredApps = appsData.filter(app => {
-                    const matchCategory = currentCategory === '全部' || app.category === currentCategory;
-                    const matchSearch = app.name.toLowerCase().includes(searchQuery.toLowerCase());
-                    return matchCategory && matchSearch;
-                });
-            }
-
-            if (!hasMore || isLoading) return;
-
-            isLoading = true;
-            loadingText.style.display = 'block';
-
-            setTimeout(() => {
-                const startIndex = (currentPage - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                const pageItems = filteredApps.slice(startIndex, endIndex);
-
-                if (pageItems.length === 0 && currentPage === 1) {
-                    appGrid.innerHTML = '<div class="no-result">没有找到相关应用哦~</div>';
-                    loadingText.style.display = 'none';
-                    isLoading = false;
-                    return;
-                }
-
-                pageItems.forEach((app, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'app-card';
-                    card.style.animationDelay = (index * 0.02) + 's'; 
-                    
-                    let iconHTML = app.iconChar;
-                    if(app.iconUrl) {
-                        iconHTML = '<img src="' + app.iconUrl + '" style="width: 100%; height: 100%; object-fit: cover;">';
-                    }
-                    
-                    let iconStyle = '';
-                    if(!app.iconUrl) {
-                        iconStyle = 'background: ' + app.iconColor + '; box-shadow: 0 5px 15px ' + app.iconColor + '40;';
-                    }
-
-                    // ===== 动态生成按钮组 =====
-                    let btnHTML = '<div class="btn-group">';
-                    
-                    if (app.playUrl) {
-                        let text1 = app.playText ? app.playText : 'Google Play';
-                        btnHTML += '<a href="' + app.playUrl + '" class="btn btn-play" target="_blank" rel="noopener">' + text1 + '</a>';
-                    }
-                    
-                    if (app.playUrl2) {
-                        let text2 = app.playText2 ? app.playText2 : 'Google Play';
-                        btnHTML += '<a href="' + app.playUrl2 + '" class="btn btn-play" target="_blank" rel="noopener">' + text2 + '</a>';
-                    }
-
-                    if (app.webUrl) btnHTML += '<a href="' + app.webUrl + '" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>';
-                    if (app.pcUrl) btnHTML += '<a href="' + app.pcUrl + '" class="btn btn-pc" target="_blank" rel="noopener">PC 下载</a>';
-                    btnHTML += '</div>';
-
-                    card.innerHTML = 
-                        '<div class="app-header">' +
-                            '<div class="app-icon" style="' + iconStyle + '">' + iconHTML + '</div>' +
-                            '<div class="app-info">' +
-                                '<h2 class="app-title">' + app.name + '</h2>' +
-                                '<p class="app-desc">' + app.desc + '</p>' +
-                            '</div>' +
-                        '</div>' + btnHTML;
-                    appGrid.appendChild(card);
-                });
-
-                currentPage++;
-                if (endIndex >= filteredApps.length) {
-                    hasMore = false;
-                    loadingText.style.display = 'none';
-                } else {
-                    loadingText.style.display = 'none';
-                }
-                isLoading = false;
-            }, 300);
-        }
-
-        window.addEventListener('scroll', () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-                renderApps();
-            }
-        });
-
-        catBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                catBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentCategory = btn.getAttribute('data-category');
-                window.scrollTo(0, 0);
-                renderApps(true);
-            });
-        });
-
-        let searchTimeout;
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                searchQuery = e.target.value;
-                window.scrollTo(0, 0);
-                renderApps(true);
-            }, 300);
-        });
-
-        renderApps(true);
-    </script>
+fillShowcases();renderApps(true);
+</script>
 </body>
 </html>
