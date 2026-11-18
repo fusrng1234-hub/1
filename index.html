@@ -61,7 +61,7 @@
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
         
-        /* 升级后的网格布局 */
+        /* 核心修改：电脑端自适应网格布局 */
         .app-grid {
             padding: 20px;
             display: grid;
@@ -145,17 +145,39 @@
     </div>
 
     <script>
-        // 数据配置区 (保持你之前的数据即可)
         const appsData = [
+            // ================= 社交类 =================
             { name: "WhatsApp", desc: "简单、可靠、安全的免费即时通讯应用。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.whatsapp", webUrl: "https://www.whatsapp.com/", iconChar: "W", iconColor: "#25D366" },
             { name: "Instagram", desc: "分享你的生活瞬间，探索全球精彩图文。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.android", webUrl: "https://www.instagram.com/", iconChar: "I", iconColor: "#E1306C" },
             { name: "Facebook", desc: "全球最大的社交网络平台，与朋友保持联系。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.facebook.katana", webUrl: "https://www.facebook.com/", iconChar: "F", iconColor: "#1877F2" },
             { name: "TikTok", desc: "风靡全球的短视频平台，发现无限创意。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically", webUrl: "https://www.tiktok.com/", iconChar: "T", iconColor: "#000000" },
             { name: "Telegram", desc: "极速、安全且免费的即时通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger", webUrl: "https://telegram.org/", iconChar: "T", iconColor: "#0088cc" },
+            { name: "X (Twitter)", desc: "全球实时新闻与热点讨论平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.twitter.android", webUrl: "https://x.com/", iconChar: "X", iconColor: "#000000" },
+            { name: "微信", desc: "腾讯官方出品的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm", webUrl: "https://weixin.qq.com/", iconChar: "微", iconColor: "#07c160" },
+            { name: "小红书", desc: "你的生活指南，发现真实、多元的生活方式。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.xingin.xhs", webUrl: "https://www.xiaohongshu.com/", iconChar: "红", iconColor: "#FF2442" },
+
+            // ================= 影音类 =================
             { name: "YouTube", desc: "全球最大的视频分享平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube", webUrl: "https://www.youtube.com/", iconChar: "Y", iconColor: "#FF0000" },
+            { name: "Netflix", desc: "全球顶级的流媒体服务平台，海量电影电视剧。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.netflix.mediaclient", webUrl: "https://www.netflix.com/", iconChar: "N", iconColor: "#E50914" },
+            { name: "Spotify", desc: "全球最大的正版音乐流媒体平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.spotify.music", webUrl: "https://www.spotify.com/", iconChar: "S", iconColor: "#1DB954" },
+            { name: "哔哩哔哩", desc: "国内知名的年轻人文化社区。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili", webUrl: "https://app.bilibili.com/", iconChar: "B", iconColor: "#fb7299" },
+            { name: "Twitch", desc: "全球最大的游戏直播平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=tv.twitch.android.app", webUrl: "https://www.twitch.tv/", iconChar: "T", iconColor: "#9146FF" },
+
+            // ================= 游戏类 ================= (PUBG、Blockman GO 都在这里)
             { name: "Mobile Legends", desc: "东南亚最火的 5v5 MOBA 竞技手游。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
-            { name: "Grab", desc: "马来西亚最常用的打车、外卖和电子支付神器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger", webUrl: "https://www.grab.com/my/", iconChar: "G", iconColor: "#00B14F" }
-            // ... 你的其他应用代码
+            { name: "PUBG MOBILE", desc: "全球知名的战术竞技类射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig", webUrl: "https://www.pubgmobile.com/", iconChar: "P", iconColor: "#F4A460" },
+            { name: "我的世界 (国际服)", desc: "风靡全球的 3D 沙盒建造游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", webUrl: "https://www.minecraft.net/", iconChar: "M", iconColor: "#4CAF50" },
+            { name: "Roblox", desc: "全球最大的 3D 沙盒游戏平台。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client", webUrl: "https://www.roblox.com/", iconChar: "R", iconColor: "#e2231a" },
+            { name: "原神", desc: "米哈游自研的开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", iconChar: "原", iconColor: "#ffc107" },
+            { name: "Free Fire", desc: "节奏极快的生存射击游戏，每局仅需10分钟。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth", webUrl: "https://ff.garena.com/", iconChar: "F", iconColor: "#FF5722" },
+            { name: "Blockman GO", desc: "3D像素风格的沙盒多人在线游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods", webUrl: "https://www.blockmango.com/", iconChar: "B", iconColor: "#00bcd4" },
+
+            // ================= 工具类 =================
+            { name: "Grab", desc: "马来西亚最常用的打车、外卖和电子支付神器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger", webUrl: "https://www.grab.com/my/", iconChar: "G", iconColor: "#00B14F" },
+            { name: "Touch 'n Go eWallet", desc: "马来西亚国民级电子钱包，过路费、停车必备。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=my.com.tngdigital.ewallet", webUrl: "https://www.touchngo.com.my/", iconChar: "T", iconColor: "#0066CC" },
+            { name: "Shopee", desc: "东南亚最受欢迎的在线购物平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.shopee.my", webUrl: "https://shopee.com.my/", iconChar: "S", iconColor: "#EE4D2D" },
+            { name: "Waze", desc: "实时路况导航，帮你避开塞车。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.waze", webUrl: "https://www.waze.com/", iconChar: "W", iconColor: "#00D3FE" },
+            { name: "Google Chrome", desc: "谷歌官方出品的快速、安全的网络浏览器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.android.chrome", webUrl: "https://www.google.com/chrome/", iconChar: "C", iconColor: "#4285F4" }
         ];
 
         const appGrid = document.getElementById('appGrid');
