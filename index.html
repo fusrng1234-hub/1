@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>精选应用推荐</title>
     <style>
-        /* 基础设置与深色背景 */
         :root {
             --bg: #0f1115;
             --card: #1a1d24;
             --text: #ffffff;
             --text-muted: #8b8e96;
-            --accent: #3b82f6;
             --btn-play: linear-gradient(135deg, #34a853, #2c8c46);
             --btn-web: linear-gradient(135deg, #007aff, #0062cc);
         }
@@ -23,8 +21,6 @@
             min-height: 100vh;
             padding-bottom: 50px;
         }
-
-        /* 顶部导航与毛玻璃效果 */
         .header {
             position: sticky;
             top: 0;
@@ -37,8 +33,7 @@
         }
         .header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
         .header p { font-size: 14px; color: var(--text-muted); }
-
-        /* 分类横向滚动 */
+        
         .categories {
             display: flex;
             overflow-x: auto;
@@ -47,7 +42,6 @@
             scrollbar-width: none;
         }
         .categories::-webkit-scrollbar { display: none; }
-        
         .cat-btn {
             padding: 8px 20px;
             border-radius: 20px;
@@ -66,18 +60,16 @@
             border-color: var(--text);
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
-
-        /* 应用列表网格 */
+        
+        /* 升级后的网格布局 */
         .app-grid {
-            padding: 10px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-width: 600px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1300px;
             margin: 0 auto;
         }
-
-        /* 华丽的卡片设计 */
         .app-card {
             background: var(--card);
             border-radius: 22px;
@@ -97,27 +89,22 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             border-color: rgba(255,255,255,0.1);
         }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
         
-        @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 卡片内部结构 */
         .app-header { display: flex; align-items: center; gap: 15px; }
         .app-icon {
             width: 60px; height: 60px;
             border-radius: 16px;
-            background: linear-gradient(135deg, #ff6b6b, #c0392b);
             display: flex; align-items: center; justify-content: center;
             font-size: 28px; font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            overflow: hidden;
+            flex-shrink: 0;
         }
         .app-info { flex: 1; }
         .app-title { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
         .app-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
-
-        /* 精美的按钮组 */
-        .btn-group { display: flex; gap: 12px; }
+        
+        .btn-group { display: flex; gap: 12px; margin-top: auto; }
         .btn {
             flex: 1;
             text-align: center;
@@ -132,15 +119,7 @@
         .btn:active { transform: scale(0.96); }
         .btn-play { background: var(--btn-play); box-shadow: 0 4px 15px rgba(52, 168, 83, 0.3); }
         .btn-web { background: var(--btn-web); box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3); }
-
-        /* 底部说明 */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 12px;
-            color: #555;
-            line-height: 1.6;
-        }
+        .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #555; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -153,8 +132,9 @@
     <div class="categories" id="categories">
         <button class="cat-btn active" data-category="全部">全部</button>
         <button class="cat-btn" data-category="社交">社交</button>
-        <button class="cat-btn" data-category="工具">工具</button>
+        <button class="cat-btn" data-category="影音">影音</button>
         <button class="cat-btn" data-category="游戏">游戏</button>
+        <button class="cat-btn" data-category="工具">工具</button>
     </div>
 
     <div class="app-grid" id="appGrid"></div>
@@ -165,268 +145,72 @@
     </div>
 
     <script>
-        // 你的应用数据
+        // 数据配置区 (保持你之前的数据即可)
         const appsData = [
-            {
-                name: "微信",
-                desc: "腾讯官方出品的跨平台通讯软件，支持语音、视频和文件传输。",
-                category: "社交",
-                playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm",
-                webUrl: "https://weixin.qq.com/",
-                iconChar: "微",
-                iconColor: "#07c160"
-            },
-            {
-                name: "Telegram",
-                desc: "极速、安全且免费的即时通讯软件，注重隐私保护。",
-                category: "社交",
-                playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger",
-                webUrl: "https://telegram.org/",
-                iconChar: "T",
-                iconColor: "#0088cc"
-            },
-            {
-                name: "哔哩哔哩",
-                desc: "国内知名的年轻人文化社区，涵盖动画、番剧、游戏等。",
-                category: "工具",
-                playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili",
-                webUrl: "https://app.bilibili.com/",
-                iconChar: "B",
-                iconColor: "#fb7299"
-            },
-            {
-                name: "原神",
-                desc: "米哈游自研的一款开放世界冒险游戏，探索提瓦特大陆。",
-                category: "游戏",
-                playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact",
-                webUrl: "https://ys.mihoyo.com/",
-                iconChar: "原",
-                iconColor: "#ffc107"
-            },
-    {
-        name: "Blockman GO",
-        desc: "3D像素风格的沙盒多人在线游戏，自由创造你的世界。",
-        category: "游戏",
-        playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods",
-        webUrl: "https://www.blockmango.com/",
-        iconChar: "B",
-        iconColor: "#00bcd4"
-    },
-            {
-name: "Roblox",
-        desc: "全球最大的 3D 沙盒游戏平台，由玩家创造和探索无数种体验。",
-        category: "游戏",
-        playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client",
-        webUrl: "https://www.roblox.com/",
-        iconChar: "R",
-        iconColor: "#e2231a"
-        },
-            {
-    name: "我的世界 (国际服)",
-    desc: "风靡全球的 3D 沙盒建造游戏，探索随机生成的世界。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
-    webUrl: "https://www.minecraft.net/",
-    iconChar: "M",
-    iconColor: "#4CAF50"
-},
-{
-    name: "我的世界 (网易版)",
-    desc: "网易游戏代理的《我的世界》中国版，支持本地联机。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.netease.mc", 
-    webUrl: "https://mc.163.com/",
-    iconChar: "网",
-    iconColor: "#D32F2F"
-},
-            {
-    name: "Instagram",
-    desc: "分享你的生活瞬间，探索全球精彩图文与短视频。",
-    category: "社交",
-    playUrl: "https://play.google.com/store/apps/details?id=com.instagram.android",
-    webUrl: "https://www.instagram.com/",
-    iconChar: "I",
-    iconColor: "#E1306C"
-},
-{
-    name: "Facebook",
-    desc: "全球最大的社交网络平台，与朋友和家人保持联系。",
-    category: "社交",
-    playUrl: "https://play.google.com/store/apps/details?id=com.facebook.katana",
-    webUrl: "https://www.facebook.com/",
-    iconChar: "F",
-    iconColor: "#1877F2"
-},
-{
-    name: "YouTube",
-    desc: "全球最大的视频分享平台，看世界之所看。",
-    category: "影音",
-    playUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube",
-    webUrl: "https://www.youtube.com/",
-    iconChar: "Y",
-    iconColor: "#FF0000"
-},
-            {
-    name: "Grab",
-    desc: "马来西亚最常用的打车、外卖和电子支付神器。",
-    category: "工具",
-    playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger",
-    webUrl: "https://www.grab.com/my/",
-    iconChar: "G",
-    iconColor: "#00B14F"
-},
-{
-    name: "Touch 'n Go eWallet",
-    desc: "马来西亚国民级电子钱包，过路费、停车、付款必备。",
-    category: "工具",
-    playUrl: "https://play.google.com/store/apps/details?id=my.com.tngdigital.ewallet",
-    webUrl: "https://www.touchngo.com.my/",
-    iconChar: "T",
-    iconColor: "#0066CC"
-},
-{
-    name: "Shopee",
-    desc: "东南亚最受欢迎的在线购物平台，优惠多多。",
-    category: "工具",
-    playUrl: "https://play.google.com/store/apps/details?id=com.shopee.my",
-    webUrl: "https://shopee.com.my/",
-    iconChar: "S",
-    iconColor: "#EE4D2D"
-},
-{
-    name: "Waze",
-    desc: "实时路况导航，帮你避开塞车，大马司机最爱。",
-    category: "工具",
-    playUrl: "https://play.google.com/store/apps/details?id=com.waze",
-    webUrl: "https://www.waze.com/",
-    iconChar: "W",
-    iconColor: "#00D3FE"
-},
-            {
-    name: "Mobile Legends",
-    desc: "东南亚最火的 5v5 MOBA 竞技手游，随时开黑。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends",
-    webUrl: "https://m.mobilelegends.com/",
-    iconChar: "M",
-    iconColor: "#1A237E"
-},
-{
-    name: "崩坏：星穹铁道",
-    desc: "米哈游出品的银河冒险策略游戏。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea",
-    webUrl: "https://hsr.hoyoverse.com/",
-    iconChar: "星",
-    iconColor: "#4A148C"
-},
-{
-    name: "Free Fire",
-    desc: "节奏极快的生存射击游戏，每局仅需10分钟。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth",
-    webUrl: "https://ff.garena.com/",
-    iconChar: "F",
-    iconColor: "#FF5722"
-},
-            {
-    name: "Snapchat",
-    desc: "阅后即焚的趣味社交软件，年轻人都在玩。",
-    category: "社交",
-    playUrl: "https://play.google.com/store/apps/details?id=com.snapchat.android",
-    webUrl: "https://www.snapchat.com/",
-    iconChar: "S",
-    iconColor: "#FFFC00"
-},
-{
-    name: "Threads",
-    desc: "Meta 出品的文字社交平台，与 IG 账号互通。",
-    category: "社交",
-    playUrl: "https://play.google.com/store/apps/details?id=com.instagram.barcelona",
-    webUrl: "https://www.threads.net/",
-    iconChar: "T",
-    iconColor: "#000000"
-},
-{
-    name: "Twitch",
-    desc: "全球最大的游戏直播平台，看大神打机。",
-    category: "影音",
-    playUrl: "https://play.google.com/store/apps/details?id=tv.twitch.android.app",
-    webUrl: "https://www.twitch.tv/",
-    iconChar: "T",
-    iconColor: "#9146FF"
-},
-{
-    name: "爱奇艺 (iQIYI)",
-    desc: "海量高清正版影视剧、综艺和动漫。",
-    category: "影音",
-    playUrl: "https://play.google.com/store/apps/details?id=com.iqiyi.i18n",
-    webUrl: "https://www.iq.com/",
-    iconChar: "爱",
-    iconColor: "#00BE06"
-},
-            {
-    name: "PUBG MOBILE",
-    desc: "全球知名的战术竞技类射击游戏，体验绝地求生。",
-    category: "游戏",
-    playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig",
-    webUrl: "https://www.pubgmobile.com/",
-    iconChar: "P",
-    iconColor: "#F4A460"
-},
+            { name: "WhatsApp", desc: "简单、可靠、安全的免费即时通讯应用。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.whatsapp", webUrl: "https://www.whatsapp.com/", iconChar: "W", iconColor: "#25D366" },
+            { name: "Instagram", desc: "分享你的生活瞬间，探索全球精彩图文。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.android", webUrl: "https://www.instagram.com/", iconChar: "I", iconColor: "#E1306C" },
+            { name: "Facebook", desc: "全球最大的社交网络平台，与朋友保持联系。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.facebook.katana", webUrl: "https://www.facebook.com/", iconChar: "F", iconColor: "#1877F2" },
+            { name: "TikTok", desc: "风靡全球的短视频平台，发现无限创意。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically", webUrl: "https://www.tiktok.com/", iconChar: "T", iconColor: "#000000" },
+            { name: "Telegram", desc: "极速、安全且免费的即时通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger", webUrl: "https://telegram.org/", iconChar: "T", iconColor: "#0088cc" },
+            { name: "YouTube", desc: "全球最大的视频分享平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube", webUrl: "https://www.youtube.com/", iconChar: "Y", iconColor: "#FF0000" },
+            { name: "Mobile Legends", desc: "东南亚最火的 5v5 MOBA 竞技手游。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
+            { name: "Grab", desc: "马来西亚最常用的打车、外卖和电子支付神器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger", webUrl: "https://www.grab.com/my/", iconChar: "G", iconColor: "#00B14F" }
+            // ... 你的其他应用代码
         ];
 
         const appGrid = document.getElementById('appGrid');
         const catBtns = document.querySelectorAll('.cat-btn');
 
-        function renderApps(category = '全部') {
+        function renderApps(category) {
+            if (!category) category = '全部';
             appGrid.innerHTML = '';
-            
-            // 过滤数据
             const list = appsData.filter(app => category === '全部' || app.category === category);
 
             if(list.length === 0) {
-                appGrid.innerHTML = '<div style="text-align:center; color:#555; padding:50px 0; font-size:15px;">这里空空如也~</div>';
+                appGrid.innerHTML = '<div style="text-align:center; color:#555; padding:50px 0; font-size:15px; grid-column: 1/-1;">这里空空如也~</div>';
                 return;
             }
 
-            // 渲染卡片
             list.forEach((app, index) => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
-                // 添加个错开动画的延迟
-                card.style.animationDelay = `${index * 0.08}s`;
+                card.style.animationDelay = (index * 0.05) + 's';
                 
-                card.innerHTML = `
-                    <div class="app-header">
-                        <div class="app-icon" style="background: ${app.iconColor}; box-shadow: 0 5px 15px ${app.iconColor}40;">
-                            ${app.iconChar}
-                        </div>
-                        <div class="app-info">
-                            <h2 class="app-title">${app.name}</h2>
-                            <p class="app-desc">${app.desc}</p>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <a href="${app.playUrl}" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>
-                        <a href="${app.webUrl}" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>
-                    </div>
-                `;
+                let iconHTML = app.iconChar;
+                if(app.iconUrl) {
+                    iconHTML = '<img src="' + app.iconUrl + '" style="width: 100%; height: 100%; object-fit: cover;">';
+                }
+                
+                let iconStyle = '';
+                if(!app.iconUrl) {
+                    iconStyle = 'background: ' + app.iconColor + '; box-shadow: 0 5px 15px ' + app.iconColor + '40;';
+                }
+
+                card.innerHTML = 
+                    '<div class="app-header">' +
+                        '<div class="app-icon" style="' + iconStyle + '">' + iconHTML + '</div>' +
+                        '<div class="app-info">' +
+                            '<h2 class="app-title">' + app.name + '</h2>' +
+                            '<p class="app-desc">' + app.desc + '</p>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="btn-group">' +
+                        '<a href="' + app.playUrl + '" class="btn btn-play" target="_blank" rel="noopener">Google Play</a>' +
+                        '<a href="' + app.webUrl + '" class="btn btn-web" target="_blank" rel="noopener">官网下载</a>' +
+                    '</div>';
                 appGrid.appendChild(card);
             });
         }
 
-        // 分类点击事件
         catBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 catBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderApps(btn.dataset.category);
+                renderApps(btn.getAttribute('data-category'));
             });
         });
 
-        // 初始化渲染
         renderApps('全部');
     </script>
 </body>
-    </html>
+</html>
