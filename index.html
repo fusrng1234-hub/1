@@ -3,440 +3,475 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1018">
-<meta name="description" content="极客应用库：发现实用应用、开发工具与数字生活软件。">
-<meta name="color-scheme" content="dark">
-<title>极客应用库 · 探索应用</title>
+<meta name="theme-color" content="#090e16">
+<meta name="description" content="极客应用库：精选开发、工具、设计、影音与效率应用。">
+<title>极客应用库 · 探索实用应用</title>
 <style>
-:root{--bg:#090e16;--panel:#111a27;--card:#151f2e;--muted:#8d9bad;--white:#f4f8ff;--line:rgba(255,255,255,.08);--blue:#38a5ff;--green:#38e0ad;--purple:#a78bfa}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans SC",sans-serif;background:radial-gradient(ellipse at 80% -10%,rgba(35,117,160,.2),transparent 38%),var(--bg);color:var(--white);min-height:100vh;padding-bottom:100px}
-button,input{font:inherit}
-a{color:inherit}
-.topbar{position:sticky;top:0;z-index:50;padding:calc(12px + env(safe-area-inset-top)) 17px 13px;background:rgba(9,14,22,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.brand-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:linear-gradient(140deg,#1f9cff,#25e0b0 58%,#9774ff);box-shadow:0 5px 24px rgba(42,185,219,.22)}
-.brand h1{font-size:20px;letter-spacing:.3px;font-weight:850}
-.brand p{font-size:11px;color:var(--muted);margin-top:2px}
-.header-tag{font-size:11px;color:#a8f4dc;border:1px solid rgba(56,224,173,.25);background:rgba(56,224,173,.08);padding:6px 9px;border-radius:20px}
-.search-wrap{position:relative}
-.search-wrap span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#8fa2b8}
-.search-box{width:100%;height:46px;padding:0 15px 0 42px;border-radius:15px;background:#151f2c;border:1px solid var(--line);color:white;outline:none;font-size:14px}
-.search-box:focus{border-color:rgba(56,165,255,.7);box-shadow:0 0 0 3px rgba(56,165,255,.1)}
-.search-box::placeholder{color:#748397}
-main{max-width:1100px;margin:auto}
-.hero{margin:19px 16px 22px;padding:23px 21px;min-height:160px;border:1px solid rgba(93,191,255,.18);border-radius:23px;overflow:hidden;position:relative;background:radial-gradient(circle at 85% 20%,rgba(73,148,255,.34),transparent 28%),radial-gradient(circle at 70% 100%,rgba(49,223,176,.18),transparent 34%),linear-gradient(125deg,#172c45,#172039 60%,#211d3c)}
-.hero:after{content:"✧";position:absolute;right:24px;top:10px;font-size:104px;color:rgba(178,218,255,.15);transform:rotate(12deg)}
-.hero-kicker{font-size:11px;letter-spacing:2px;color:#8fe8d0;font-weight:700}
-.hero h2{font-size:25px;line-height:1.25;margin:10px 0 7px;max-width:75%}
-.hero p{font-size:12px;color:#b7c7d9;max-width:72%;line-height:1.6}
-.hero-link{display:inline-flex;margin-top:15px;text-decoration:none;font-size:12px;font-weight:750;padding:9px 15px;border-radius:11px;color:#07151c;background:linear-gradient(100deg,#54e4bb,#65baff)}
-.section{padding:0 16px;margin:26px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:13px}
-.section-head h2{font-size:18px;font-weight:800}
-.section-head p{font-size:11px;color:var(--muted);margin-top:4px}
-.section-more{border:0;background:none;color:#70c9ff;font-size:12px}
-.hscroll{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,78%);gap:11px;overflow-x:auto;padding:1px 1px 8px;scrollbar-width:none}
-.hscroll::-webkit-scrollbar,.categories::-webkit-scrollbar{display:none}
-.feature-card{background:linear-gradient(140deg,#192a3b,#172131);border:1px solid var(--line);border-radius:18px;padding:15px;min-height:125px}
-.feature-top{display:flex;gap:12px;align-items:center}
-.app-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:white;font-size:19px;font-weight:850;flex-shrink:0;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,.18)}
-.app-icon img{width:100%;height:100%;object-fit:cover}
-.feature-card h3{font-size:15px;margin-bottom:4px}
-.feature-card p{font-size:11px;color:var(--muted);line-height:1.45}
-.feature-actions{display:flex;gap:7px;margin-top:13px}
-.pill-link{font-size:11px;text-decoration:none;padding:7px 11px;border-radius:9px;background:linear-gradient(110deg,#237fdb,#27bca5);font-weight:700}
-.pill-link.secondary{background:#27364a;color:#c8d8e8}
-.rank-tabs{display:flex;gap:8px;margin-bottom:12px}
-.rank-tab{border:1px solid var(--line);background:#131d2a;color:#9aabbd;padding:8px 13px;border-radius:20px;font-size:12px}
-.rank-tab.active{color:#06151b;border:0;background:linear-gradient(100deg,#4be0b2,#63b8ff);font-weight:800}
-.rank-list{background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden}
-.rank-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--line)}
-.rank-row:last-child{border-bottom:0}
-.rank-no{width:23px;text-align:center;font-size:15px;font-weight:900;color:#91a2b5}
-.rank-no.top{color:#ffc96a}
-.rank-name{flex:1;font-size:13px;font-weight:700}
-.rank-category{font-size:10px;color:var(--muted)}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:0 16px 7px;scrollbar-width:none}
-.cat-btn{white-space:nowrap;border:1px solid var(--line);background:#141e2b;color:#9eafc1;padding:9px 15px;border-radius:22px;font-size:12px;font-weight:700}
-.cat-btn.active{background:linear-gradient(100deg,#39dcae,#5caeff);color:#07151b;border-color:transparent}
-.app-grid{padding:0 16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.app-card{min-width:0;background:linear-gradient(145deg,#172231,#121b28);border:1px solid var(--line);border-radius:17px;padding:13px;display:flex;flex-direction:column;gap:11px;animation:rise .25s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.app-header{display:flex;align-items:center;gap:10px;min-width:0}
-.app-card .app-icon{width:43px;height:43px;border-radius:13px;font-size:16px}
-.app-info{min-width:0;flex:1}
-.app-title{font-size:13px;font-weight:800;overflow-wrap:anywhere;line-height:1.3}
-.app-desc{font-size:10px;color:var(--muted);line-height:1.45;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.btn-group{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
-.btn{flex:1 1 42%;min-width:0;text-align:center;text-decoration:none;padding:8px 5px;border-radius:9px;font-size:10px;font-weight:750;color:white}
-.btn-play{background:linear-gradient(120deg,#249d67,#28bd9b)}
-.btn-web{background:linear-gradient(120deg,#167edc,#2766c8)}
-.btn-pc{background:linear-gradient(120deg,#8052ce,#a34bb9)}
-.empty{grid-column:1/-1;text-align:center;padding:45px 10px;color:var(--muted);font-size:13px}
-.loading-text{text-align:center;padding:18px;color:#718196;font-size:11px;display:none}
-.footer{text-align:center;padding:28px 18px 15px;color:#718196;font-size:10px;line-height:1.8}
-.bottom-nav{position:fixed;z-index:60;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);padding:9px 7px calc(9px + env(safe-area-inset-bottom));background:rgba(13,20,30,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line)}
-.nav-item{border:0;background:none;color:#8292a5;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10px;text-decoration:none}
-.nav-item b{font-size:18px;font-weight:500;line-height:1.2}
-.nav-item.active{color:#63e2bd}
-@media(min-width:700px){.hero{margin:25px 22px}.section{padding:0 22px}.categories{padding-left:22px}.app-grid{padding:0 22px;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.hscroll{grid-auto-columns:260px}.topbar{padding-left:max(22px,calc((100% - 1056px)/2));padding-right:max(22px,calc((100% - 1056px)/2))}}
-@media(min-width:1000px){.app-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:360px){.app-grid{gap:8px;padding:0 11px}.app-card{padding:10px}.app-title{font-size:12px}.btn{font-size:9px}.section{padding:0 11px}.hero{margin-left:11px;margin-right:11px}}
-
-.toolbar{display:flex;align-items:center;gap:8px;padding:0 16px 12px}
-.sort-label{font-size:11px;color:var(--muted)}
-.sort-select,.filter-fav{height:34px;border:1px solid var(--line);border-radius:10px;background:#151f2c;color:#dce8f5;padding:0 10px;font-size:11px}
-.filter-fav{margin-left:auto;color:#8fe8d0}
-.filter-fav.active{background:linear-gradient(100deg,#39dcae,#5caeff);color:#07151b;border-color:transparent;font-weight:800}
-.card-open{border:0;background:none;color:#76caff;text-align:left;font-size:11px;font-weight:750;padding:2px 0}
-.card-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.fav-btn{border:1px solid var(--line);background:#1b2939;color:#aebed0;border-radius:9px;padding:6px 9px;font-size:12px}
-.fav-btn.saved{color:#ff91b3;border-color:rgba(255,145,179,.35);background:rgba(255,90,140,.1)}
-.modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.72);display:none;align-items:flex-end;justify-content:center;padding:14px}
-.modal-backdrop.show{display:flex}
-.detail-modal{position:relative;width:min(100%,560px);max-height:86vh;overflow:auto;background:#121d2b;border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:22px 18px 24px;box-shadow:0 20px 70px rgba(0,0,0,.5)}
-.modal-close{position:absolute;right:13px;top:10px;width:34px;height:34px;border:0;border-radius:50%;background:#26364a;color:white;font-size:23px}
-.detail-head{display:flex;gap:13px;align-items:center;padding-right:35px;margin-bottom:15px}
-.detail-head .app-icon{width:58px;height:58px}
-.detail-modal h2{font-size:20px;margin-bottom:5px}
-.detail-meta{font-size:11px;color:#9aadc2}
-.detail-description{font-size:13px;line-height:1.7;color:#d0dbe8;margin:16px 0}
-.detail-links{display:flex;flex-wrap:wrap;gap:8px}
-.detail-links .btn{flex:1 1 42%;font-size:12px;padding:11px}
-.detail-note{font-size:10px;color:#8294a9;line-height:1.6;margin-top:16px}
-@media(min-width:700px){.modal-backdrop{align-items:center}.app-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-
+:root{color-scheme:dark;--bg:#080d16;--panel:#111b2a;--card:#142033;--line:#26354a;--muted:#91a2b8;--text:#f3f7ff;--blue:#55aaff;--green:#43e0b2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#18334b 0,transparent 42%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:88px}
+button,input{font:inherit}.top{position:sticky;top:0;z-index:5;background:#080d16eF;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px max(16px,calc((100% - 1100px)/2))}
+.brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,#269bff,#28e0b2 60%,#9a72ff);color:#06121b;font-weight:900}.brand h1{font-size:18px;margin:0}.brand small{color:var(--muted)}
+.search{width:100%;background:#121e2e;border:1px solid var(--line);border-radius:13px;padding:13px 15px;color:white;outline:none}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #55aaff20}
+main{max-width:1100px;margin:auto;padding:18px 15px}.hero{padding:24px 20px;border:1px solid #31516a;border-radius:20px;background:linear-gradient(120deg,#123b4a,#182849 60%,#30244a);margin-bottom:18px}.hero .eyebrow{color:#8cebd3;font-size:12px;letter-spacing:2px}.hero h2{font-size:25px;margin:8px 0}.hero p{margin:0;color:#c3d4e7;font-size:13px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.toolbar select,.toolbar button{background:#142033;color:#eaf2ff;border:1px solid var(--line);border-radius:10px;padding:9px 12px}.toolbar button.active{background:#1c5b62;border-color:#43e0b2;color:#fff}
+.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 13px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.cat{white-space:nowrap;border:1px solid var(--line);background:#111b2a;color:#b6c5d8;padding:8px 14px;border-radius:20px}.cat.active{background:linear-gradient(90deg,#39dcae,#5caeff);color:#07131a;border:0;font-weight:700}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;margin:5px 2px 12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:linear-gradient(145deg,#172438,#101a29);border:1px solid var(--line);border-radius:16px;padding:13px;min-width:0}.cardhead{display:flex;gap:10px;align-items:center}.appicon{width:43px;height:43px;flex:0 0 43px;border-radius:12px;display:grid;place-items:center;color:white;font-weight:800;font-size:14px;box-shadow:inset 0 1px #ffffff30;position:relative;overflow:hidden}.appicon img{position:absolute;width:29px;height:29px;object-fit:contain;border-radius:7px;background:#fff;padding:2px}.appname{font-weight:750;font-size:14px;overflow-wrap:anywhere}.tag{font-size:10px;color:#8cebd3;margin-top:3px}.desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px;margin:10px 0}.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.actions a,.actions button{width:100%;min-width:0;text-align:center;text-decoration:none;border:0;border-radius:8px;padding:9px 4px;font-size:11px;color:white;background:#176fc0;white-space:nowrap}.actions button{background:#27374d}.actions .play{background:#16834b}.actions .fav{font-size:15px}.empty{grid-column:1/-1;text-align:center;padding:48px 10px;color:var(--muted);background:#111b2a;border-radius:15px}
+.more{display:block;margin:18px auto;padding:11px 24px;border:0;border-radius:22px;background:linear-gradient(90deg,#39dcae,#5caeff);color:#07131a;font-weight:800}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:6;display:grid;grid-template-columns:repeat(4,1fr);padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:#090f1bef;backdrop-filter:blur(16px);border-top:1px solid var(--line)}.nav{border:0;background:none;color:#8294aa;display:grid;justify-items:center;gap:3px;font-size:11px}.nav b{font-size:18px}.nav.active{color:var(--green)}
+dialog{width:min(92vw,480px);border:1px solid #3a526d;border-radius:18px;background:#111d2d;color:var(--text);padding:20px}dialog::backdrop{background:#000b}.detailtop{display:flex;gap:12px;align-items:center}.detailtop .appicon{width:54px;height:54px;flex-basis:54px}.detaildesc{color:#b8c7d9;line-height:1.7;font-size:14px;margin:18px 0}.detailactions{display:flex;gap:9px}.detailactions a,.close{flex:1;text-align:center;padding:11px;border:0;border-radius:10px;text-decoration:none;color:white;background:#176fc0}.close{background:#29394f}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:32px}.hero h2{font-size:30px}}@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:360px){.grid{gap:8px}.card{padding:10px}.appicon{width:37px;height:37px;flex-basis:37px}.appname{font-size:13px}}
 </style>
 </head>
 <body>
-<header class="topbar" id="top">
-  <div class="brand-row">
-    <div class="brand"><div class="logo">✦</div><div><h1>极客应用库</h1><p>发现好应用 · 探索新工具</p></div></div>
-    <span class="header-tag">GEEK STORE</span>
-  </div>
-  <div class="search-wrap"><span>⌕</span><input id="searchInput" class="search-box" type="search" placeholder="搜索应用、游戏、工具..." autocomplete="off"></div>
-</header>
-
+<header class="top"><div class="brand"><div class="logo">✦</div><div><h1>极客应用库</h1><small>精选应用 · 官方来源优先</small></div></div><input id="search" class="search" type="search" placeholder="🔍 搜索应用名称、介绍或分类…" autocomplete="off"></header>
 <main>
-  <section class="hero">
-    <div class="hero-kicker">GEEK APP DISCOVERY</div>
-    <h2>探索 · 更大的可能</h2>
-    <p>精选实用应用与数字工具，让每一次发现都更有价值。</p>
-    <a class="hero-link" href="#allApps">立即探索　→</a>
-  </section>
-
-  <section class="section" id="popularSection">
-    <div class="section-head"><div><h2>🔥 热门推荐</h2><p>值得加入收藏的精选应用</p></div><button class="section-more" data-jump="allApps">查看全部 ›</button></div>
-    <div class="hscroll" id="featuredApps"></div>
-  </section>
-
-  <section class="section" id="newSection">
-    <div class="section-head"><div><h2>✨ 最新上架</h2><p>应用库中的新鲜面孔</p></div><button class="section-more" data-jump="allApps">更多应用 ›</button></div>
-    <div class="hscroll" id="latestApps"></div>
-  </section>
-
-  <section class="section" id="rankingSection">
-    <div class="section-head"><div><h2>🏆 应用排行榜</h2><p>按应用库推荐顺序展示</p></div></div>
-    <div class="rank-tabs"><button class="rank-tab active" data-rank="popular">热门榜</button><button class="rank-tab" data-rank="rising">飙升榜</button><button class="rank-tab" data-rank="new">新锐榜</button></div>
-    <div class="rank-list" id="rankList"></div>
-  </section>
-
-  <section class="section" id="allApps">
-    <div class="section-head"><div><h2>全部应用</h2><p id="resultCount">浏览应用库</p></div></div>
-  </section>
-  <nav class="categories" id="categories">
-    <button class="cat-btn active" data-category="全部">全部</button>
-    <button class="cat-btn" data-category="写代码">写代码</button>
-    <button class="cat-btn" data-category="玩机">玩机</button>
-    <button class="cat-btn" data-category="社交">社交</button>
-    <button class="cat-btn" data-category="工具">工具</button>
-    <button class="cat-btn" data-category="影音">影音</button>
-    <button class="cat-btn" data-category="游戏">游戏</button>
-  </nav>
-  <div class="toolbar">
-    <label class="sort-label" for="sortSelect">排序</label>
-    <select id="sortSelect" class="sort-select">
-      <option value="default">默认推荐</option>
-      <option value="name">名称 A–Z</option>
-      <option value="category">按分类</option>
-    </select>
-    <button id="favoritesOnly" class="filter-fav" type="button">♡ 只看收藏</button>
-  </div>
-  <div class="app-grid" id="appGrid"></div>
-  <div class="loading-text" id="loadingText">正在加载更多应用…</div>
-  <footer class="footer">本站提供应用官方页面及下载入口，不托管安装包。<br>应用版权归各自开发者所有，请留意应用来源与权限。</footer>
+<section class="hero"><div class="eyebrow">GEEK APP LIBRARY</div><h2>探索 · 更大的可能</h2><p>游戏、影音、AI、开发与日常工具，分类查找更方便。持续扩充精选目录。支持 Android 的 AI 应用卡片会显示绿色「Play 下载」按钮。</p></section>
+<div class="toolbar"><button id="allBtn" class="active">全部应用</button><button id="favBtn">♥ 我的收藏</button><select id="sort"><option value="default">默认排序</option><option value="name">名称 A–Z</option><option value="cat">按分类</option></select></div>
+<div id="categories" class="categories"></div>
+<div class="meta"><span id="resultCount">正在载入应用…</span><span id="favCount"></span></div>
+<section id="grid" class="grid" aria-live="polite"></section>
+<button id="more" class="more" hidden>加载更多</button>
 </main>
-
-<nav class="bottom-nav" aria-label="底部导航">
-  <a class="nav-item active" href="#top"><b>⌂</b><span>首页</span></a>
-  <a class="nav-item" href="#categories"><b>▦</b><span>分类</span></a>
-  <a class="nav-item" href="#rankingSection"><b>♛</b><span>排行</span></a>
-  <a class="nav-item" href="#allApps"><b>⇩</b><span>应用</span></a>
-  <a class="nav-item" href="#allApps" id="favoritesNav"><b>♡</b><span>收藏</span></a>
-</nav>
-
-<div class="modal-backdrop" id="appModal" aria-hidden="true">
-  <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
-    <div id="detailContent"></div>
-  </section>
-</div>
-
+<nav class="bottom"><button class="nav active" data-nav="home"><b>⌂</b>首页</button><button class="nav" data-nav="category"><b>▦</b>分类</button><button class="nav" data-nav="favorites"><b>♥</b>收藏</button><button class="nav" data-nav="about"><b>ⓘ</b>关于</button></nav>
+<dialog id="detail"><div id="detailBody"></div></dialog>
 <script>
-const appsData = [
-            // ================= 写代码 =================
-            { name: "Visual Studio Code", desc: "微软轻量级跨平台代码编辑器。", category: "写代码", playUrl: "", webUrl: "https://code.visualstudio.com/", pcUrl: "https://code.visualstudio.com/Download", iconChar: "VS", iconColor: "#007ACC" },
-            { name: "GitHub", desc: "全球最大的代码托管与开源社区。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.github.android", webUrl: "https://github.com/", pcUrl: "https://desktop.github.com/", iconChar: "GH", iconColor: "#181717" },
-            { name: "Python", desc: "广受欢迎的通用编程语言环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.python.org/", pcUrl: "https://www.python.org/downloads/", iconChar: "Py", iconColor: "#3776AB" },
-            { name: "Node.js", desc: "基于 Chrome V8 引擎的 JS 运行环境。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://nodejs.org/", pcUrl: "https://nodejs.org/en/download/", iconChar: "JS", iconColor: "#339933" },
-            { name: "Postman", desc: "强大的 API 接口测试与开发工具。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.postmanlabs.mobile", webUrl: "https://www.postman.com/", pcUrl: "https://www.postman.com/downloads/", iconChar: "PM", iconColor: "#FF6C37" },
-            { name: "Docker", desc: "开源的应用容器引擎，一键部署。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.docker.com/", pcUrl: "https://www.docker.com/products/docker-desktop/", iconChar: "D", iconColor: "#2496ED" },
-            { name: "IntelliJ IDEA", desc: "Java 语言开发效率神器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.jetbrains.android", webUrl: "https://www.jetbrains.com/idea/", pcUrl: "https://www.jetbrains.com/idea/download/", iconChar: "IJ", iconColor: "#000000" },
-            { name: "Sublime Text", desc: "极其轻量、丝滑的文本编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.sublimetext.com/", pcUrl: "https://www.sublimetext.com/download", iconChar: "ST", iconColor: "#FF9800" },
-            { name: "Git", desc: "分布式版本控制系统，程序员必学。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://git-scm.com/", pcUrl: "https://git-scm.com/downloads", iconChar: "Git", iconColor: "#F05032" },
-            { name: "Notepad++", desc: "Windows 平台强大的代码编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://notepad-plus-plus.org/", pcUrl: "https://notepad-plus-plus.org/downloads/", iconChar: "N++", iconColor: "#90C143" },
-            { name: "Vim", desc: "Linux 平台神级命令行编辑器。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.vim.org/", pcUrl: "https://www.vim.org/download.php", iconChar: "V", iconColor: "#019733" },
-            { name: "Android Studio", desc: "谷歌官方安卓应用开发集成环境。", category: "写代码", playUrl: "", webUrl: "https://developer.android.com/studio", pcUrl: "https://developer.android.com/studio", iconChar: "AS", iconColor: "#3DDC84" },
-            { name: "Xcode", desc: "苹果官方 iOS/macOS 开发环境 (仅 Mac)。", category: "写代码", playUrl: "https://developer.apple.com/xcode/", webUrl: "https://developer.apple.com/xcode/", iconChar: "X", iconColor: "#147EFB" },
-            { name: "MySQL", desc: "全球最流行的开源关系型数据库。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.mysql.com/", pcUrl: "https://dev.mysql.com/downloads/", iconChar: "My", iconColor: "#4479A1" },
-            { name: "MongoDB", desc: "流行的 NoSQL 文档型数据库。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://www.mongodb.com/", pcUrl: "https://www.mongodb.com/try/download/community", iconChar: "Mo", iconColor: "#47A248" },
-            { name: "Redis", desc: "高性能的内存键值数据库。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://redis.io/", pcUrl: "https://redis.io/download/", iconChar: "R", iconColor: "#DC382D" },
-            { name: "Figma", desc: "强大的在线 UI/UX 协作设计工具。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.figma.mirror", webUrl: "https://www.figma.com/", pcUrl: "https://www.figma.com/downloads/", iconChar: "F", iconColor: "#F24E1E" },
-            { name: "Termius", desc: "高颜值的跨平台 SSH 客户端。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.server.auditor.ssh.client", webUrl: "https://termius.com/", pcUrl: "https://termius.com/download", iconChar: "TE", iconColor: "#1A73E8" },
-            { name: "DBeaver", desc: "通用数据库管理工具，支持所有主流库。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.termux", webUrl: "https://dbeaver.io/", pcUrl: "https://dbeaver.io/download/", iconChar: "DB", iconColor: "#382923" },
-            { name: "Charles", desc: "强大的网络抓包与调试代理工具。", category: "写代码", playUrl: "https://play.google.com/store/apps/details?id=com.xk72.charles", webUrl: "https://www.charlesproxy.com/", pcUrl: "https://www.charlesproxy.com/download/", iconChar: "C", iconColor: "#0072C6" },
+'use strict';
+const apps = [{"name": "VS Code", "desc": "微软跨平台轻量代码编辑器", "cat": "开发", "color": "#007ACC", "web": "https://code.visualstudio.com", "pc": "https://code.visualstudio.com/Download"}, {"name": "GitHub", "desc": "全球最大代码托管与开源社区", "cat": "开发", "color": "#181717", "web": "https://github.com", "pc": "https://desktop.github.com"}, {"name": "Python", "desc": "简洁强大的通用编程语言", "cat": "开发", "color": "#3776AB", "web": "https://python.org", "pc": "https://python.org/downloads/"}, {"name": "Node.js", "desc": "Chrome V8驱动的JS运行时", "cat": "开发", "color": "#339933", "web": "https://nodejs.org", "pc": "https://nodejs.org/en/download/"}, {"name": "Docker", "desc": "容器化应用一键部署工具", "cat": "开发", "color": "#2496ED", "web": "https://docker.com", "pc": "https://docker.com/products/docker-desktop/"}, {"name": "Git", "desc": "分布式版本控制必备工具", "cat": "开发", "color": "#F05032", "web": "https://git-scm.com", "pc": "https://git-scm.com/downloads"}, {"name": "Postman", "desc": "API接口测试与文档工具", "cat": "开发", "color": "#FF6C37", "web": "https://postman.com", "pc": "https://postman.com/downloads/"}, {"name": "MySQL", "desc": "最流行开源关系数据库", "cat": "开发", "color": "#4479A1", "web": "https://mysql.com", "pc": "https://dev.mysql.com/downloads/"}, {"name": "MongoDB", "desc": "灵活的NoSQL文档数据库", "cat": "开发", "color": "#47A248", "web": "https://mongodb.com", "pc": "https://mongodb.com/try/download/community"}, {"name": "Redis", "desc": "高性能内存缓存数据库", "cat": "开发", "color": "#DC382D", "web": "https://redis.io", "pc": "https://redis.io/download/"}, {"name": "IntelliJ IDEA", "desc": "Java开发IDE效率之选", "cat": "开发", "color": "#000000", "web": "https://jetbrains.com/idea/", "pc": "https://jetbrains.com/idea/download/"}, {"name": "PyCharm", "desc": "专业Python开发IDE", "cat": "开发", "color": "#21D789", "web": "https://jetbrains.com/pycharm/", "pc": "https://jetbrains.com/pycharm/download/"}, {"name": "WebStorm", "desc": "前端与Node.js开发IDE", "cat": "开发", "color": "#2D9E6B", "web": "https://jetbrains.com/webstorm/", "pc": "https://jetbrains.com/webstorm/download/"}, {"name": "GoLand", "desc": "Go语言专业IDE", "cat": "开发", "color": "#00ADD8", "web": "https://jetbrains.com/go/", "pc": "https://jetbrains.com/go/download/"}, {"name": "CLion", "desc": "C/C++跨平台IDE", "cat": "开发", "color": "#9E2D4B", "web": "https://jetbrains.com/clion/", "pc": "https://jetbrains.com/clion/download/"}, {"name": "DataGrip", "desc": "多数据库管理工具", "cat": "开发", "color": "#9E8B2D", "web": "https://jetbrains.com/datagrip/", "pc": "https://jetbrains.com/datagrip/download/"}, {"name": "Sublime Text", "desc": "轻量高速文本编辑器", "cat": "开发", "color": "#FF9800", "web": "https://sublimetext.com", "pc": "https://sublimetext.com/download"}, {"name": "Vim", "desc": "经典命令行编辑器", "cat": "开发", "color": "#019733", "web": "https://vim.org", "pc": "https://vim.org/download.php"}, {"name": "Neovim", "desc": "现代化可扩展Vim", "cat": "开发", "color": "#57A143", "web": "https://neovim.io", "pc": "https://github.com/neovim/neovim/releases"}, {"name": "Zed", "desc": "高性能协作代码编辑器", "cat": "开发", "color": "#084CCF", "web": "https://zed.dev", "pc": "https://zed.dev/download"}, {"name": "Cursor", "desc": "AI辅助代码编辑器", "cat": "开发", "color": "#1c1c1c", "web": "https://cursor.com", "pc": "https://cursor.com/downloads"}, {"name": "VS", "desc": "Visual Studio全能IDE", "cat": "开发", "color": "#5C2D91", "web": "https://visualstudio.microsoft.com", "pc": "https://visualstudio.microsoft.com/downloads/"}, {"name": "Android Studio", "desc": "谷歌安卓开发IDE", "cat": "开发", "color": "#3DDC84", "web": "https://developer.android.com/studio", "pc": "https://developer.android.com/studio"}, {"name": "Xcode", "desc": "苹果官方开发工具", "cat": "开发", "color": "#147EFB", "web": "https://developer.apple.com/xcode/", "pc": "https://developer.apple.com/xcode/"}, {"name": "PostgreSQL", "desc": "高级开源关系数据库", "cat": "开发", "color": "#336791", "web": "https://postgresql.org", "pc": "https://postgresql.org/download/"}, {"name": "SQLite", "desc": "嵌入式轻量数据库", "cat": "开发", "color": "#003B57", "web": "https://sqlite.org", "pc": "https://sqlite.org/download.html"}, {"name": "DBeaver", "desc": "通用数据库管理客户端", "cat": "开发", "color": "#382923", "web": "https://dbeaver.io", "pc": "https://dbeaver.io/download/"}, {"name": "Wireshark", "desc": "网络协议抓包分析工具", "cat": "开发", "color": "#1679A7", "web": "https://wireshark.org", "pc": "https://wireshark.org/download.html"}, {"name": "Charles", "desc": "HTTP/HTTPS抓包代理", "cat": "开发", "color": "#0072C6", "web": "https://charlesproxy.com", "pc": "https://charlesproxy.com/download/"}, {"name": "Insomnia", "desc": "优雅的API调试工具", "cat": "开发", "color": "#4000BF", "web": "https://insomnia.rest", "pc": "https://insomnia.rest/download"}, {"name": "Termius", "desc": "跨平台SSH客户端", "cat": "开发", "color": "#1A73E8", "web": "https://termius.com", "pc": "https://termius.com/download"}, {"name": "Figma", "desc": "UI/UX在线设计协作", "cat": "设计", "color": "#F24E1E", "web": "https://figma.com", "pc": "https://figma.com/downloads/"}, {"name": "TypeScript", "desc": "带类型的JavaScript超集", "cat": "开发", "color": "#3178C6", "web": "https://typescriptlang.org", "pc": "https://typescriptlang.org"}, {"name": "Rust", "desc": "安全高效系统编程语言", "cat": "开发", "color": "#B7410E", "web": "https://rust-lang.org", "pc": "https://rust-lang.org/tools/install"}, {"name": "Go", "desc": "Google并发编程语言", "cat": "开发", "color": "#00ADD8", "web": "https://go.dev", "pc": "https://go.dev/dl/"}, {"name": "PHP", "desc": "服务端网页开发语言", "cat": "开发", "color": "#777BB4", "web": "https://php.net", "pc": "https://php.net/downloads"}, {"name": "Ruby", "desc": "优雅动态编程语言", "cat": "开发", "color": "#CC342D", "web": "https://ruby-lang.org", "pc": "https://ruby-lang.org/en/downloads/"}, {"name": "Deno", "desc": "安全JS/TS运行时", "cat": "开发", "color": "#000000", "web": "https://deno.land", "pc": "https://deno.land"}, {"name": "Bun", "desc": "极速JavaScript运行时", "cat": "开发", "color": "#FBF0DF", "web": "https://bun.sh", "pc": "https://bun.sh"}, {"name": "Nginx", "desc": "高性能Web服务器", "cat": "开发", "color": "#009639", "web": "https://nginx.org", "pc": "https://nginx.org/en/download.html"}, {"name": "Apache", "desc": "经典Web服务器软件", "cat": "开发", "color": "#D22128", "web": "https://apache.org", "pc": "https://apache.org"}, {"name": "Vite", "desc": "下一代前端构建工具", "cat": "开发", "color": "#646CFF", "web": "https://vitejs.dev", "pc": "https://vitejs.dev"}, {"name": "Next.js", "desc": "React全栈开发框架", "cat": "开发", "color": "#000000", "web": "https://nextjs.org", "pc": "https://nextjs.org"}, {"name": "Nuxt", "desc": "Vue全栈开发框架", "cat": "开发", "color": "#00DC82", "web": "https://nuxt.com", "pc": "https://nuxt.com"}, {"name": "Tailwind CSS", "desc": "实用优先CSS框架", "cat": "开发", "color": "#06B6D4", "web": "https://tailwindcss.com", "pc": "https://tailwindcss.com"}, {"name": "React", "desc": "声明式UI构建库", "cat": "开发", "color": "#61DAFB", "web": "https://react.dev", "pc": "https://react.dev"}, {"name": "Vue", "desc": "渐进式JavaScript框架", "cat": "开发", "color": "#4FC08D", "web": "https://vuejs.org", "pc": "https://vuejs.org"}, {"name": "Angular", "desc": "企业级前端框架", "cat": "开发", "color": "#DD0031", "web": "https://angular.io", "pc": "https://angular.io"}, {"name": "Svelte", "desc": "编译型前端框架", "cat": "开发", "color": "#FF3E00", "web": "https://svelte.dev", "pc": "https://svelte.dev"}, {"name": "Flutter", "desc": "跨平台UI开发框架", "cat": "开发", "color": "#02569B", "web": "https://flutter.dev", "pc": "https://docs.flutter.dev/get-started/install"}, {"name": "React Native", "desc": "原生移动应用开发", "cat": "开发", "color": "#61DAFB", "web": "https://reactnative.dev", "pc": "https://reactnative.dev"}, {"name": "Laravel", "desc": "优雅PHP Web框架", "cat": "开发", "color": "#FF2D20", "web": "https://laravel.com", "pc": "https://laravel.com"}, {"name": "Django", "desc": "Python Web开发框架", "cat": "开发", "color": "#0C4B33", "web": "https://djangoproject.com", "pc": "https://www.djangoproject.com/download/"}, {"name": "Spring Boot", "desc": "Java应用开发框架", "cat": "开发", "color": "#6DB33F", "web": "https://spring.io/projects/spring-boot", "pc": "https://spring.io/projects/spring-boot"}, {"name": "Express", "desc": "极简Web应用框架", "cat": "开发", "color": "000000", "web": "https://expressjs.com", "pc": "https://expressjs.com"}, {"name": "FastAPI", "desc": "高性能Python API框架", "cat": "开发", "color": "#009688", "web": "https://fastapi.tiangolo.com", "pc": "https://fastapi.tiangolo.com"}, {"name": "TensorFlow", "desc": "谷歌机器学习框架", "cat": "AI", "color": "#FF6F00", "web": "https://tensorflow.org", "pc": "https://tensorflow.org"}, {"name": "PyTorch", "desc": "Facebook深度学习框架", "cat": "AI", "color": "#EE4C2C", "web": "https://pytorch.org", "pc": "https://pytorch.org"}, {"name": "Jupyter", "desc": "交互式数据分析笔记本", "cat": "开发", "color": "#F37626", "web": "https://jupyter.org", "pc": "https://jupyter.org/install"}, {"name": "Anaconda", "desc": "Python数据科学环境", "cat": "开发", "color": "#44A833", "web": "https://anaconda.com", "pc": "https://anaconda.com/download"}, {"name": "Pandas", "desc": "Python数据分析库", "cat": "开发", "color": "#150458", "web": "https://pandas.pydata.org", "pc": "https://pandas.pydata.org"}, {"name": "NumPy", "desc": "Python科学计算基础库", "cat": "开发", "color": "#013243", "web": "https://numpy.org", "pc": "https://numpy.org"}, {"name": "Scikit-learn", "desc": "Python机器学习库", "cat": "AI", "color": "#F7931E", "web": "https://scikit-learn.org", "pc": "https://scikit-learn.org"}, {"name": "Docker Compose", "desc": "多容器编排工具", "cat": "开发", "color": "#2496ED", "web": "https://docs.docker.com/compose/", "pc": "https://docs.docker.com/compose/"}, {"name": "Kubernetes", "desc": "容器编排管理系统", "cat": "开发", "color": "#326CE5", "web": "https://kubernetes.io", "pc": "https://kubernetes.io"}, {"name": "Terraform", "desc": "基础设施即代码", "cat": "开发", "color": "#7B42BC", "web": "https://terraform.io", "pc": "https://terraform.io"}, {"name": "Jenkins", "desc": "持续集成自动化服务", "cat": "开发", "color": "#D24939", "web": "https://jenkins.io", "pc": "https://jenkins.io"}, {"name": "GitHub Actions", "desc": "自动化工作流", "cat": "开发", "color": "#2088FF", "web": "https://github.com/features/actions", "pc": "https://github.com/features/actions"}, {"name": "GitLab CI", "desc": "CI/CD流水线工具", "cat": "开发", "color": "#FC6D26", "web": "https://docs.gitlab.com/ee/ci/", "pc": "https://docs.gitlab.com/ee/ci/"}, {"name": "NPM", "desc": "JavaScript包管理器", "cat": "开发", "color": "#CB3837", "web": "https://npmjs.com", "pc": "https://npmjs.com"}, {"name": "Yarn", "desc": "快速可靠包管理器", "cat": "开发", "color": "#2C8EBB", "web": "https://yarnpkg.com", "pc": "https://yarnpkg.com"}, {"name": "PNPM", "desc": "高效节省磁盘包管理", "cat": "开发", "color": "#F69220", "web": "https://pnpm.io", "pc": "https://pnpm.io"}, {"name": "Pip", "desc": "Python包管理工具", "cat": "开发", "color": "#3776AB", "web": "https://pypi.org/project/pip/", "pc": "https://pypi.org/project/pip/"}, {"name": "Homebrew", "desc": "macOS包管理器", "cat": "系统", "color": "FBB040", "web": "https://brew.sh", "pc": "https://brew.sh"}, {"name": "Chocolatey", "desc": "Windows包管理器", "cat": "系统", "color": "#85B642", "web": "https://chocolatey.org", "pc": "https://chocolatey.org"}, {"name": "Termux", "desc": "安卓终端模拟器", "cat": "工具", "color": "#000000", "web": "https://termux.dev", "pc": "https://termux.dev"}, {"name": "F-Droid", "desc": "安卓开源应用商店", "cat": "工具", "color": "#00AF54", "web": "https://f-droid.org", "pc": "https://f-droid.org"}, {"name": "Flathub", "desc": "Linux Flatpak应用商店", "cat": "工具", "color": "#4A90D9", "web": "https://flathub.org", "pc": "https://flathub.org"}, {"name": "Snap Store", "desc": "Ubuntu软件包商店", "cat": "工具", "color": "#82589F", "web": "https://snapcraft.io/store", "pc": "https://snapcraft.io/store"}, {"name": "Vercel", "desc": "前端一键部署平台", "cat": "开发", "color": "#000000", "web": "https://vercel.com", "pc": "https://vercel.com"}, {"name": "Netlify", "desc": "现代Web项目托管", "cat": "开发", "color": "#00C7B7", "web": "https://netlify.com", "pc": "https://netlify.com"}, {"name": "Cloudflare", "desc": "网站加速与安全防护", "cat": "工具", "color": "#F38020", "web": "https://cloudflare.com", "pc": "https://cloudflare.com"}, {"name": "Supabase", "desc": "开源Firebase替代", "cat": "开发", "color": "#3ECF8E", "web": "https://supabase.com", "pc": "https://supabase.com"}, {"name": "Prisma", "desc": "现代化ORM数据库工具", "cat": "开发", "color": "#2D3748", "web": "https://prisma.io", "pc": "https://prisma.io"}, {"name": "GraphQL", "desc": "API查询语言标准", "cat": "开发", "color": "#E10098", "web": "https://graphql.org", "pc": "https://graphql.org"}, {"name": "gRPC", "desc": "高性能远程过程调用", "cat": "开发", "color": "#244c5a", "web": "https://grpc.io", "pc": "https://grpc.io"}, {"name": "OpenAPI", "desc": "RESTful API描述标准", "cat": "开发", "color": "#6BA539", "web": "https://openapi.org", "pc": "https://openapi.org"}, {"name": "Swagger", "desc": "API文档与测试工具", "cat": "开发", "color": "#85EA2D", "web": "https://swagger.io", "pc": "https://swagger.io"}, {"name": "Markdown", "desc": "轻量标记语言规范", "cat": "工具", "color": "#083FA6", "web": "https://commonmark.org", "pc": "https://commonmark.org"}, {"name": "Notion", "desc": "现代工作空间与笔记", "cat": "效率", "color": "#000000", "web": "https://notion.so", "pc": "https://notion.so/download"}, {"name": "Obsidian", "desc": "本地优先知识笔记", "cat": "效率", "color": "#7C3AED", "web": "https://obsidian.md", "pc": "https://obsidian.md/download"}, {"name": "Logseq", "desc": "大纲式知识管理", "cat": "效率", "color": "#363364", "web": "https://logseq.com", "pc": "https://logseq.com/download"}, {"name": "Joplin", "desc": "开源跨平台笔记", "cat": "效率", "color": "#0070F3", "web": "https://joplinapp.org", "pc": "https://joplinapp.org/download"}, {"name": "Zotero", "desc": "文献收集管理工具", "cat": "学习", "color": "#CB7237", "web": "https://zotero.org", "pc": "https://zotero.org/download"}, {"name": "Mendeley", "desc": "学术文献管理平台", "cat": "学习", "color": "#8D212B", "web": "https://mendeley.com", "pc": "https://mendeley.com"}, {"name": "TiddlyWiki", "desc": "非线性个人维基", "cat": "效率", "color": "#366077", "web": "https://tiddlywiki.com", "pc": "https://tiddlywiki.com"}, {"name": "VS Codium", "desc": "Telemetry-free VS Code", "cat": "开发", "color": "#21C2C7", "web": "https://vscodium.com", "pc": "https://vscodium.com"}, {"name": "Eclipse", "desc": "经典开源Java IDE", "cat": "开发", "color": "#2C2255", "web": "https://eclipse.org", "pc": "https://eclipse.org/downloads/"}, {"name": "NetBeans", "desc": "Java/PHP集成开发环境", "cat": "开发", "color": "#0051BD", "web": "https://netbeans.apache.org", "pc": "https://netbeans.apache.org/front/main/download/"}, {"name": "Emacs", "desc": "可扩展编辑器之神", "cat": "开发", "color": "#7F5AB6", "web": "https://gnu.org/software/emacs/", "pc": "https://gnu.org/software/emacs/download.html"}, {"name": "GitKraken", "desc": "可视化Git客户端", "cat": "开发", "color": "#179287", "web": "https://gitkraken.com", "pc": "https://gitkraken.com/download"}, {"name": "Sourcetree", "desc": "Atlassian Git客户端", "cat": "开发", "color": "#0052CC", "web": "https://sourcetreeapp.com", "pc": "https://sourcetreeapp.com"}, {"name": "GitHub Desktop", "desc": "官方Git图形客户端", "cat": "开发", "color": "#1F88E5", "web": "https://desktop.github.com", "pc": "https://desktop.github.com"}, {"name": "Adoptium", "desc": "Eclipse Temurin JDK", "cat": "开发", "color": "#FF6C37", "web": "https://adoptium.net", "pc": "https://adoptium.net/temurin/releases/"}, {"name": "Kotlin", "desc": "现代JVM编程语言", "cat": "开发", "color": "#7F52FF", "web": "https://kotlinlang.org", "pc": "https://kotlinlang.org"}, {"name": "Swift", "desc": "Apple编程语言", "cat": "开发", "color": "#F05138", "web": "https://swift.org", "pc": "https://swift.org/install/"}, {"name": "Objective-C", "desc": "Apple传统编程语言", "cat": "开发", "color": "#339933", "web": "https://apple.com", "pc": "https://apple.com"}, {"name": "C++", "desc": "高性能系统编程语言", "cat": "开发", "color": "#00599C", "web": "https://isocpp.org", "pc": "https://isocpp.org"}, {"name": "C#", "desc": "微软面向对象编程语言", "cat": "开发", "color": "#512BD4", "web": "https://learn.microsoft.com/csharp", "pc": "https://dotnet.microsoft.com"}, {"name": "R", "desc": "统计分析与绘图语言", "cat": "开发", "color": "#1A73E8", "web": "https://r-project.org", "pc": "https://cran.r-project.org/bin/"}, {"name": "Lua", "desc": "轻量嵌入式脚本语言", "cat": "开发", "color": "#000080", "web": "https://lua.org", "pc": "https://lua.org/download.html"}, {"name": "Perl", "desc": "经典文本处理语言", "cat": "开发", "color": "#394576", "web": "https://perl.org", "pc": "https://perl.org/get.html"}, {"name": "Haskell", "desc": "纯函数式编程语言", "cat": "开发", "color": "#5E5086", "web": "https://haskell.org", "pc": "https://haskell.org/ghc/"}, {"name": "Scala", "desc": "面向对象函数式语言", "cat": "开发", "color": "#DC322F", "web": "https://scala-lang.org", "pc": "https://scala-lang.org/download/"}, {"name": "Clojure", "desc": "JVM函数式语言", "cat": "开发", "color": "#5881D8", "web": "https://clojure.org", "pc": "https://clojure.org/community/downloads"}, {"name": "Erlang", "desc": "高并发电信级语言", "cat": "开发", "color": "#930000", "web": "https://erlang.org", "pc": "https://erlang.org/download.html"}, {"name": "Elixir", "desc": "优雅的Erlang语法", "cat": "开发", "color": "#6E4A7E", "web": "https://elixir-lang.org", "pc": "https://elixir-lang.org/install.html"}, {"name": "Crystal", "desc": "Ruby语法静态编译", "cat": "开发", "color": "#000000", "web": "https://crystal-lang.org", "pc": "https://crystal-lang.org/install/"}, {"name": "Zig", "desc": "替代C的系统语言", "cat": "开发", "color": "#F7A41D", "web": "https://ziglang.org", "pc": "https://ziglang.org/download/"}, {"name": "Odin", "desc": "数据导向编程语言", "cat": "开发", "color": "#333399", "web": "https://odin-lang.org", "pc": "https://odin-lang.org"}, {"name": "J", "desc": "数组编程语言", "cat": "开发", "color": "#FF0000", "web": "https://jsoftware.com", "pc": "https://jsoftware.com"}, {"name": "Forth", "desc": "栈式编程语言", "cat": "开发", "color": "#0000FF", "web": "https://forth-standard.org", "pc": "https://forth-standard.org"}, {"name": "COBOL", "desc": "商业数据处理语言", "cat": "开发", "color": "#0047AB", "web": "https://ibm.com/COBOL", "pc": "https://ibm.com"}, {"name": "Fortran", "desc": "科学计算编程语言", "cat": "开发", "color": "#734F96", "web": "https://fortran-lang.org", "pc": "https://fortran-lang.org"}, {"name": "Lisp", "desc": "历史悠久符号语言", "cat": "开发", "color": "#008000", "web": "https://lisp-lang.org", "pc": "https://lisp-lang.org"}, {"name": "Assembly", "desc": "处理器指令助记符", "cat": "开发", "color": "#8B4513", "web": "https://assemblylanguage.com", "pc": "https://assemblylanguage.com"}, {"name": "Bash", "desc": "Unix Shell脚本", "cat": "开发", "color": "#4EAA25", "web": "https://gnu.org/software/bash/", "pc": "https://gnu.org/software/bash/"}, {"name": "Fish", "desc": "友好交互式Shell", "cat": "工具", "color": "#4EA649", "web": "https://fishshell.com", "pc": "https://fishshell.com"}, {"name": "Zsh", "desc": "强大Shell扩展", "cat": "工具", "color": "#EF7326", "web": "https://zsh.org", "pc": "https://zsh.org"}, {"name": "Oh My Zsh", "desc": "Zsh配置框架", "cat": "工具", "color": "#EF2D5E", "web": "https://ohmyz.sh", "pc": "https://ohmyz.sh"}, {"name": "PowerShell", "desc": "Windows自动化Shell", "cat": "工具", "color": "#5391FE", "web": "https://learn.microsoft.com/powershell", "pc": "https://learn.microsoft.com/powershell"}, {"name": "CMD", "desc": "Windows命令提示符", "cat": "工具", "color": "#000000", "web": "https://microsoft.com", "pc": "https://microsoft.com"}, {"name": "PuTTY", "desc": "经典SSH/Telnet客户端", "cat": "工具", "color": "#000080", "web": "https://putty.org", "pc": "https://putty.org"}, {"name": "WinSCP", "desc": "Windows SFTP文件传输", "cat": "工具", "color": "#CF3721", "web": "https://winscp.net", "pc": "https://winscp.net"}, {"name": "FileZilla", "desc": "跨平台FTP/SFTP客户端", "cat": "工具", "color": "#BF0000", "web": "https://filezilla-project.org", "pc": "https://filezilla-project.org"}, {"name": "Cyberduck", "desc": "macOS文件传输客户端", "cat": "工具", "color": "#0070C0", "web": "https://cyberduck.io", "pc": "https://cyberduck.io"}, {"name": "Rclone", "desc": "云存储同步命令行", "cat": "工具", "color": "#54CA50", "web": "https://rclone.org", "pc": "https://rclone.org/downloads/"}, {"name": "Syncthing", "desc": "P2P文件同步工具", "cat": "工具", "color": "#008FD6", "web": "https://syncthing.net", "pc": "https://syncthing.net/downloads/"}, {"name": "Nextcloud", "desc": "自建私有云存储", "cat": "工具", "color": "#0082C9", "web": "https://nextcloud.com", "pc": "https://nextcloud.com/install/"}, {"name": "ownCloud", "desc": "自建云存储平台", "cat": "工具", "color": "#1CAFFF", "web": "https://owncloud.com", "pc": "https://owncloud.com/download/"}, {"name": "Bitwarden", "desc": "跨平台密码管理器", "cat": "工具", "color": "#175DDC", "web": "https://bitwarden.com", "pc": "https://bitwarden.com/download/"}, {"name": "KeePassXC", "desc": "开源本地密码库", "cat": "工具", "color": "#3467C5", "web": "https://keepassxc.org", "pc": "https://keepassxc.org/download/"}, {"name": "1Password", "desc": "简洁安全密码管理", "cat": "工具", "color": "#0094F5", "web": "https://1password.com", "pc": "https://1password.com/downloads/"}, {"name": "Authy", "desc": "两步验证TOTP", "cat": "工具", "color": "#EC1C24", "web": "https://authy.com", "pc": "https://authy.com"}, {"name": "Aegis", "desc": "隐私优先验证器", "cat": "工具", "color": "#000000", "web": "https://getaegis.app", "pc": "https://getaegis.app"}, {"name": "KeePassDX", "desc": "安卓本地密码库", "cat": "工具", "color": "#0066CC", "web": "https://keepassdx.com", "pc": "https://keepassdx.com"}, {"name": "VeraCrypt", "desc": "磁盘加密工具", "cat": "工具", "color": "#336791", "web": "https://veracrypt.fr", "pc": "https://veracrypt.fr/en/Downloads.html"}, {"name": "7-Zip", "desc": "高压缩比解压工具", "cat": "工具", "color": "#375094", "web": "https://7-zip.org", "pc": "https://7-zip.org/download.html"}, {"name": "PeaZip", "desc": "开源压缩解压软件", "cat": "工具", "color": "#729FCF", "web": "https://peazip.org", "pc": "https://peazip.org"}, {"name": "Bandizip", "desc": "简洁高效压缩工具", "cat": "工具", "color": "#2196F3", "web": "https://bandisoft.com/bandizip", "pc": "https://bandisoft.com/bandizip"}, {"name": "WinRAR", "desc": "经典RAR压缩软件", "cat": "工具", "color": "#0072CF", "web": "https://win-rar.com", "pc": "https://win-rar.com/download.html"}, {"name": "Everything", "desc": "Windows文件秒搜工具", "cat": "工具", "color": "#E42825", "web": "https://voidtools.com", "pc": "https://voidtools.com/downloads/"}, {"name": "Listary", "desc": "高效文件搜索工具", "cat": "工具", "color": "#FF7800", "web": "https://listary.com", "pc": "https://listary.com"}, {"name": "FSearch", "desc": "Linux快速文件搜索", "cat": "工具", "color": "#4285F4", "web": "https://cboxdoerfer.github.io/fsearch/", "pc": "https://github.com/cboxdoerfer/fsearch/releases"}, {"name": "Recuva", "desc": "文件恢复工具", "cat": "工具", "color": "#2E87DE", "web": "https://ccleaner.com/recuva", "pc": "https://ccleaner.com/recuva"}, {"name": "TestDisk", "desc": "磁盘分区恢复", "cat": "工具", "color": "#709633", "web": "https://cgsecurity.org/testdisk/", "pc": "https://cgsecurity.org/testdisk/"}, {"name": "BalenaEtcher", "desc": "镜像写入U盘工具", "cat": "工具", "color": "#009688", "web": "https://etcher.balena.io", "pc": "https://etcher.balena.io/#download-etcher"}, {"name": "Rufus", "desc": "制作系统启动盘", "cat": "工具", "color": "#CC3333", "web": "https://rufus.ie", "pc": "https://rufus.ie/"}, {"name": "Ventoy", "desc": "多系统启动盘制作", "cat": "工具", "color": "#66CC33", "web": "https://ventoy.net", "pc": "https://ventoy.net/en/doc_start.html"}, {"name": "VirtualBox", "desc": "开源虚拟机软件", "cat": "工具", "color": "#18437F", "web": "https://virtualbox.org", "pc": "https://virtualbox.org/wiki/Downloads"}, {"name": "QEMU", "desc": "通用机器模拟器", "cat": "工具", "color": "#FF6600", "web": "https://qemu.org", "pc": "https://qemu.org/download/"}, {"name": "VMware Workstation", "desc": "商业虚拟机软件", "cat": "工具", "color": "#607078", "web": "https://vmware.com", "pc": "https://vmware.com/products/workstation-pro.html"}, {"name": "KVM", "desc": "Linux内核虚拟化", "cat": "工具", "color": "#E64A19", "web": "https://linux-kvm.org", "pc": "https://linux-kvm.org"}, {"name": "GNOME Boxes", "desc": "简易虚拟机管理", "cat": "工具", "color": "#4AA373", "web": "https://wiki.gnome.org/Boxes", "pc": "https://wiki.gnome.org/Boxes"}, {"name": "TeamViewer", "desc": "远程控制与协助", "cat": "工具", "color": "#0875A7", "web": "https://teamviewer.com", "pc": "https://teamviewer.com/en/download/"}, {"name": "AnyDesk", "desc": "轻量高速远程桌面", "cat": "工具", "color": "#EC1824", "web": "https://anydesk.com", "pc": "https://anydesk.com/download"}, {"name": "RustDesk", "desc": "自建远程桌面", "cat": "工具", "color": "#E24329", "web": "https://rustdesk.com", "pc": "https://rustdesk.com/download/"}, {"name": "RealVNC", "desc": "VNC远程控制软件", "cat": "工具", "color": "#FF6C37", "web": "https://realvnc.com", "pc": "https://realvnc.com/en/connect/download/viewer/"}, {"name": "NoMachine", "desc": "高性能远程桌面", "cat": "工具", "color": "#007BC7", "web": "https://nomachine.com", "pc": "https://nomachine.com/download.html"}, {"name": "OpenVPN", "desc": "开源VPN方案", "cat": "工具", "color": "#EA7E26", "web": "https://openvpn.net", "pc": "https://openvpn.net/community-downloads/"}, {"name": "WireGuard", "desc": "现代快速VPN协议", "cat": "工具", "color": "#8855CC", "web": "https://wireguard.com", "pc": "https://wireguard.com"}, {"name": "Tailscale", "desc": "零配置虚拟组网", "cat": "工具", "color": "#248FED", "web": "https://tailscale.com", "pc": "https://tailscale.com/download"}, {"name": "ZeroTier", "desc": "P2P虚拟局域网", "cat": "工具", "color": "#3380FF", "web": "https://zerotier.com", "pc": "https://zerotier.com/download.shtml"}, {"name": "Pi-hole", "desc": "全网广告过滤DNS", "cat": "工具", "color": "#F60D3E", "web": "https://pi-hole.net", "pc": "https://pi-hole.net"}, {"name": "AdGuard", "desc": "广告拦截与隐私保护", "cat": "工具", "color": "#6859EA", "web": "https://adguard.com", "pc": "https://adguard.com/en/download.html"}, {"name": "uBlock Origin", "desc": "高效广告拦截扩展", "cat": "工具", "color": "#800000", "web": "https://github.com/gorhill/uBlock", "pc": "https://github.com/gorhill/uBlock"}, {"name": "Brave", "desc": "隐私优先浏览器", "cat": "工具", "color": "#FB542B", "web": "https://brave.com", "pc": "https://brave.com/download/"}, {"name": "Firefox", "desc": "开源网络浏览器", "cat": "工具", "color": "#FF7139", "web": "https://firefox.com", "pc": "https://firefox.com/download"}, {"name": "Thorium", "desc": "性能优化Chromium", "cat": "工具", "color": "#0084FF", "web": "https://thorium.rocks", "pc": "https://thorium.rocks"}, {"name": "LibreWolf", "desc": "隐私强化Firefox", "cat": "工具", "color": "#F55D32", "web": "https://librewolf.net", "pc": "https://librewolf.net"}, {"name": "Vivaldi", "desc": "高度可定制浏览器", "cat": "工具", "color": "#EF3939", "web": "https://vivaldi.com", "pc": "https://vivaldi.com/download/"}, {"name": "Tor Browser", "desc": "匿名保护浏览器", "cat": "工具", "color": "#7B4498", "web": "https://torproject.org", "pc": "https://torproject.org/download"}, {"name": "Chromium", "desc": "Chrome开源核心", "cat": "工具", "color": "#4285F4", "web": "https://chromium.org", "pc": "https://chromium.org"}, {"name": "Waterfox", "desc": "高性能Firefox衍生", "cat": "工具", "color": "#0060DF", "web": "https://waterfox.net", "pc": "https://waterfox.net/download"}, {"name": "Pale Moon", "desc": "独立Firefox分支", "cat": "工具", "color": "#FF6600", "web": "https://palemoon.org", "pc": "https://palemoon.org"}, {"name": "Midori", "desc": "轻量开源浏览器", "cat": "工具", "color": "#00AAFF", "web": "https://midori-browser.org", "pc": "https://midori-browser.org/download/"}, {"name": "qBittorrent", "desc": "开源BT下载客户端", "cat": "工具", "color": "#2B64F3", "web": "https://qbittorrent.org", "pc": "https://qbittorrent.org/download.html"}, {"name": "Transmission", "desc": "简洁BitTorrent客户端", "cat": "工具", "color": "#4B8400", "web": "https://transmissionbt.com", "pc": "https://transmissionbt.com/download/"}, {"name": "Deluge", "desc": "轻量BT客户端", "cat": "工具", "color": "#20448C", "web": "https://deluge-torrent.org", "pc": "https://deluge-torrent.org/downloads"}, {"name": "aria2", "desc": "多协议命令行下载", "cat": "工具", "color": "#009933", "web": "https://aria2.github.io", "pc": "https://aria2.github.io"}, {"name": "Motrix", "desc": "现代下载管理器", "cat": "工具", "color": "#722ED1", "web": "https://motrix.app", "pc": "https://motrix.app/download"}, {"name": "Free Download Manager", "desc": "跨平台下载加速", "cat": "工具", "color": "#D65A31", "web": "https://freedownloadmanager.org", "pc": "https://freedownloadmanager.org/download.html"}, {"name": "Internet Download Manager", "desc": "经典下载加速器", "cat": "工具", "color": "#0066CC", "web": "https://internetdownloadmanager.com", "pc": "https://internetdownloadmanager.com/download.html"}, {"name": "yt-dlp", "desc": "视频音频下载工具", "cat": "工具", "color": "#0077BE", "web": "https://github.com/yt-dlp/yt-dlp", "pc": "https://github.com/yt-dlp/yt-dlp/releases"}, {"name": "FFmpeg", "desc": "音视频处理神器", "cat": "影音", "color": "#007808", "web": "https://ffmpeg.org", "pc": "https://ffmpeg.org/download.html"}, {"name": "HandBrake", "desc": "视频转码压缩工具", "cat": "影音", "color": "#54B6E5", "web": "https://handbrake.fr", "pc": "https://handbrake.fr/downloads.php"}, {"name": "VLC", "desc": "万能媒体播放器", "cat": "影音", "color": "#FF6C00", "web": "https://videolan.org/vlc", "pc": "https://videolan.org/vlc/#download"}, {"name": "MPV", "desc": "极简高性能播放器", "cat": "影音", "color": "#B9B9B9", "web": "https://mpv.io", "pc": "https://mpv.io/installation/"}, {"name": "MPC-HC", "desc": "轻量Windows播放器", "cat": "影音", "color": "#006699", "web": "https://mpc-hc.org", "pc": "https://mpc-hc.org/downloads/"}, {"name": "PotPlayer", "desc": "全能视频播放器", "cat": "影音", "color": "#46B5E9", "web": "https://potplayer.daum.net", "pc": "https://potplayer.daum.net"}, {"name": "IINA", "desc": "macOS现代播放器", "cat": "影音", "color": "#007AFF", "web": "https://iina.io", "pc": "https://iina.io"}, {"name": "Subtitle Edit", "desc": "视频字幕编辑工具", "cat": "影音", "color": "#2E86AB", "web": "https://nikse.dk/SubtitleEdit", "pc": "https://nikse.dk/SubtitleEdit/download"}, {"name": "Aegisub", "desc": "高级字幕编辑器", "cat": "影音", "color": "#FFD602", "web": "https://github.com/Aegisub/Aegisub", "pc": "https://github.com/Aegisub/Aegisub/releases"}, {"name": "LosslessCut", "desc": "无损音视频剪辑", "cat": "影音", "color": "#FF7F50", "web": "https://losslesscut.com", "pc": "https://github.com/mifi/lossless-cut/releases"}, {"name": "OBS Studio", "desc": "直播录屏推流软件", "cat": "影音", "color": "#303030", "web": "https://obsproject.com", "pc": "https://obsproject.com/download"}, {"name": "SimpleScreenRecorder", "desc": "Linux录屏工具", "cat": "影音", "color": "#2980B9", "web": "https://maartenfokkinga.net/ssr/", "pc": "https://maartenfokkinga.net/ssr/"}, {"name": "ShareX", "desc": "截图录屏GIF工具", "cat": "影音", "color": "#17A09B", "web": "https://getsharex.com", "pc": "https://getsharex.com/downloads/"}, {"name": "Flameshot", "desc": "现代截图标注工具", "cat": "影音", "color": "#F44336", "web": "https://flameshot.org", "pc": "https://flameshot.org/#download"}, {"name": "GIMP", "desc": "开源图像编辑软件", "cat": "设计", "color": "#5C55C7", "web": "https://gimp.org", "pc": "https://gimp.org/downloads/"}, {"name": "Inkscape", "desc": "矢量图形绘制软件", "cat": "设计", "color": "#000000", "web": "https://inkscape.org", "pc": "https://inkscape.org/release/"}, {"name": "Krita", "desc": "专业数字绘画软件", "cat": "设计", "color": "#3B9AB9", "web": "https://krita.org", "pc": "https://krita.org/en/download/krita-desktop/"}];
 
-            // ================= 玩机 =================
-            { name: "Magisk", desc: "强大的 Android 底层修改工具 (需刷入)。", category: "玩机", playUrl: "https://github.com/topjohnwu/Magisk", webUrl: "https://github.com/topjohnwu/Magisk", iconChar: "M", iconColor: "#00BCD4" },
-            { name: "MT 管理器", desc: "安卓平台强大的文件管理与逆向工具。", category: "玩机", playUrl: "https://mt2.cn/", webUrl: "https://mt2.cn/", iconChar: "MT", iconColor: "#F44336" },
-            { name: "Termux", desc: "安卓上的 Linux 终端模拟器，极客最爱。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.termux/", webUrl: "https://termux.dev/", iconChar: "TX", iconColor: "#333333" },
-            { name: "F-Droid", desc: "开源 Android 应用商店，拒绝流氓软件。", category: "玩机", playUrl: "https://f-droid.org/", webUrl: "https://f-droid.org/", iconChar: "FD", iconColor: "#1976D2" },
-            { name: "Aurora Store", desc: "开源的第三方 Google Play 客户端。", category: "玩机", playUrl: "https://f-droid.org/en/packages/com.aurora.store/", webUrl: "https://auroraoss.com/", iconChar: "A", iconColor: "#4CAF50" },
-            { name: "ADB & Fastboot", desc: "安卓官方调试桥，刷机玩机必备工具。", category: "玩机", playUrl: "https://developer.android.com/tools/releases/platform-tools", webUrl: "https://developer.android.com/studio/releases/platform-tools", pcUrl: "https://dl.google.com/android/repository/platform-tools-latest-windows.zip", iconChar: "ADB", iconColor: "#3DDC84" },
-            { name: "Tasker", desc: "安卓自动化神器，触发各种高级指令。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm", webUrl: "https://tasker.joaoapps.com/", iconChar: "T", iconColor: "#FF5722" },
-            { name: "Winlator", desc: "在安卓手机上模拟运行 Windows PC 游戏。", category: "玩机", playUrl: "https://github.com/brunodev85/winlator", webUrl: "https://github.com/brunodev85/winlator", iconChar: "W", iconColor: "#1A73E8" },
-            { name: "LSPosed", desc: "基于 Riru 的模块化 Xposed 框架。", category: "玩机", playUrl: "https://github.com/LSPosed/LSPosed", webUrl: "https://github.com/LSPosed/LSPosed", iconChar: "L", iconColor: "#E91E63" },
-            { name: "Shizuku", desc: "授权应用直接使用系统 API 的神器。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=moe.shizuku.privileged.api", webUrl: "https://shizuku.rikka.app/", iconChar: "S", iconColor: "#2196F3" },
-            { name: "黑阈 (Brevent)", desc: "无需 Root 即可压制流氓软件后台。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=me.piebridge.brevent", webUrl: "https://brevent.sh/", iconChar: "黑", iconColor: "#212121" },
-            { name: "冰箱 (Ice Box)", desc: "冻结不需要的应用，释放手机内存。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=com.catchingnow.icebox", webUrl: "https://play.google.com/store/apps/details?id=com.catchingnow.icebox", iconChar: "冰", iconColor: "#00BCD4" },
-            { name: "Xposed", desc: "经典的 Android 系统修改框架。", category: "玩机", playUrl: "https://repo.xposed.info/", webUrl: "https://repo.xposed.info/", iconChar: "X", iconColor: "#FF9800" },
-            { name: "APKPure", desc: "知名的第三方 APK 下载商店。", category: "玩机", playUrl: "https://apkpure.com/apkpure-app.html", webUrl: "https://apkpure.com/", iconChar: "A", iconColor: "#00A1E0" },
-            { name: "ApkMirror", desc: "全球最纯粹的原版 APK 提取网站。", category: "玩机", playUrl: "https://www.apkmirror.com/apk/apkmirror/", webUrl: "https://www.apkmirror.com/", iconChar: "A", iconColor: "#4CAF50" },
-            { name: "SD Maid", desc: "安卓老牌系统清理与文件管理工具。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=eu.thedarken.sdm", webUrl: "https://sdmaid.darken.eu/", iconChar: "SD", iconColor: "#607D8B" },
-            { name: "Scene", desc: "专业级安卓性能监控与调度工具。", category: "玩机", playUrl: "https://vtools.omarea.com/", webUrl: "https://vtools.omarea.com/", iconChar: "S", iconColor: "#FF5722" },
-            { name: "搞机助手", desc: "集成多种刷机、ADB 快捷功能。", category: "玩机", playUrl: "https://www.coolapk.com/apk/com.gjzs", webUrl: "https://www.coolapk.com/", iconChar: "搞", iconColor: "#03A9F4" },
-            { name: "App Cloner", desc: "强大的应用分身与修改工具。", category: "玩机", playUrl: "https://appcloner.app/", webUrl: "https://appcloner.app/", iconChar: "AC", iconColor: "#9C27B0" },
-            { name: "Titanium Backup", desc: "老牌 Root 备份与恢复神器。", category: "玩机", playUrl: "https://play.google.com/store/apps/details?id=com.keramidas.TitaniumBackup", webUrl: "https://www.titaniumtrack.com/", iconChar: "TB", iconColor: "#F44336" },
+// 精选补充：把游戏与影音独立列出，避免只依赖英文关键词误分类。
+const curatedApps = [
+ {name:'Steam',desc:'PC 游戏平台与游戏库管理客户端',cat:'游戏',color:'#171a21',web:'https://store.steampowered.com',pc:'https://store.steampowered.com/about/'},
+ {name:'Epic Games Store',desc:'PC 游戏商店与游戏启动平台',cat:'游戏',color:'#2f2f2f',web:'https://store.epicgames.com',pc:'https://store.epicgames.com/download'},
+ {name:'GOG GALAXY',desc:'整合游戏库与管理游戏的客户端',cat:'游戏',color:'#86328a',web:'https://www.gog.com/galaxy',pc:'https://www.gog.com/galaxy'},
+ {name:'itch.io',desc:'独立游戏商店与创作者平台',cat:'游戏',color:'#fa5c5c',web:'https://itch.io',pc:'https://itch.io/app'},
+ {name:'Lutris',desc:'Linux 游戏库与启动管理器',cat:'游戏',color:'#ef6b2e',web:'https://lutris.net',pc:'https://lutris.net/downloads/'},
+ {name:'Heroic Games Launcher',desc:'管理 Epic、GOG 等游戏库的开源启动器',cat:'游戏',color:'#7c5cff',web:'https://heroicgameslauncher.com',pc:'https://heroicgameslauncher.com'},
+ {name:'Playnite',desc:'整合多平台游戏库的 Windows 管理器',cat:'游戏',color:'#4b79d8',web:'https://playnite.link',pc:'https://playnite.link'},
+ {name:'Prism Launcher',desc:'Minecraft 实例与模组管理启动器',cat:'游戏',color:'#4c83c3',web:'https://prismlauncher.org',pc:'https://prismlauncher.org/download/'},
+ {name:'Minecraft',desc:'沙盒建造与探索游戏',cat:'游戏',color:'#4c8b3b',web:'https://www.minecraft.net',pc:'https://www.minecraft.net/download'},
+ {name:'Roblox',desc:'在线游戏平台与用户创作体验',cat:'游戏',color:'#e23b3b',web:'https://www.roblox.com',pc:'https://www.roblox.com/download'},
+ {name:'0 A.D.',desc:'开源历史即时战略游戏',cat:'游戏',color:'#b78b4c',web:'https://play0ad.com',pc:'https://play0ad.com/download/'},
+ {name:'OpenTTD',desc:'开源交通运输经营模拟游戏',cat:'游戏',color:'#5a9b58',web:'https://www.openttd.org',pc:'https://www.openttd.org/downloads/openttd-releases/latest'},
+ {name:'SuperTuxKart',desc:'开源卡丁车竞速游戏',cat:'游戏',color:'#3b9b55',web:'https://supertuxkart.net',pc:'https://supertuxkart.net/Download'},
+ {name:'Luanti',desc:'开源体素沙盒游戏平台（原 Minetest）',cat:'游戏',color:'#5a9b50',web:'https://www.luanti.org',pc:'https://www.luanti.org/downloads/'},
+ {name:'The Battle for Wesnoth',desc:'开源回合制奇幻策略游戏',cat:'游戏',color:'#8c6b45',web:'https://www.wesnoth.org',pc:'https://www.wesnoth.org/downloads'},
+ {name:'osu!',desc:'节奏音乐游戏与社区',cat:'游戏',color:'#e66aa6',web:'https://osu.ppy.sh',pc:'https://osu.ppy.sh/home/download'},
+ {name:'Godot Engine',desc:'开源 2D 与 3D 游戏开发引擎',cat:'游戏开发',color:'#478cbf',web:'https://godotengine.org',pc:'https://godotengine.org/download'},
+ {name:'Unity',desc:'跨平台 2D 与 3D 游戏开发引擎',cat:'游戏开发',color:'#222c37',web:'https://unity.com',pc:'https://unity.com/download'},
+ {name:'Audacity',desc:'多轨音频录制与编辑软件',cat:'影音',color:'#1d78c1',web:'https://www.audacityteam.org',pc:'https://www.audacityteam.org/download/'},
+ {name:'Kdenlive',desc:'开源多轨视频剪辑软件',cat:'影音',color:'#527ebd',web:'https://kdenlive.org',pc:'https://kdenlive.org/en/download/'},
+ {name:'Shotcut',desc:'跨平台开源视频编辑器',cat:'影音',color:'#4a7caa',web:'https://shotcut.org',pc:'https://shotcut.org/download/'},
+ {name:'OpenShot',desc:'简单易用的开源视频编辑器',cat:'影音',color:'#5b9bda',web:'https://www.openshot.org',pc:'https://www.openshot.org/download/'},
+ {name:'DaVinci Resolve',desc:'专业视频剪辑、调色与音频后期软件',cat:'影音',color:'#c5a34a',web:'https://www.blackmagicdesign.com/products/davinciresolve',pc:'https://www.blackmagicdesign.com/products/davinciresolve'},
+ {name:'Kodi',desc:'家庭影音中心与媒体播放器',cat:'影音',color:'#1686c7',web:'https://kodi.tv',pc:'https://kodi.tv/download/'},
+ {name:'Jellyfin',desc:'自托管影音媒体库与串流服务器',cat:'影音',color:'#8b5cf6',web:'https://jellyfin.org',pc:'https://jellyfin.org/downloads/'},
+ {name:'Plex',desc:'个人媒体库整理与串流平台',cat:'影音',color:'#e5a00d',web:'https://www.plex.tv',pc:'https://www.plex.tv/media-server-downloads/'},
+ {name:'Emby',desc:'个人影音媒体服务器与播放器',cat:'影音',color:'#52a4dc',web:'https://emby.media',pc:'https://emby.media/download.html'},
+ {name:'Spotify',desc:'音乐与播客串流服务',cat:'影音',color:'#1db954',web:'https://www.spotify.com',pc:'https://www.spotify.com/download/'},
+ {name:'MusicBee',desc:'Windows 音乐管理与播放软件',cat:'影音',color:'#e0a62f',web:'https://www.getmusicbee.com',pc:'https://www.getmusicbee.com/download.html'},
+ {name:'foobar2000',desc:'轻量且可高度自定义的音乐播放器',cat:'影音',color:'#d8d8d8',web:'https://www.foobar2000.org',pc:'https://www.foobar2000.org/download'},
+ {name:'Strawberry Music Player',desc:'桌面音乐库管理与播放器',cat:'影音',color:'#d94b4b',web:'https://www.strawberrymusicplayer.org',pc:'https://www.strawberrymusicplayer.org/#download'},
+ {name:'LMMS',desc:'免费开源电子音乐制作软件',cat:'影音',color:'#45a6a2',web:'https://lmms.io',pc:'https://lmms.io/download'},
+ {name:'Ardour',desc:'数字音频工作站与多轨录音软件',cat:'影音',color:'#b44c4c',web:'https://ardour.org',pc:'https://ardour.org/download.html'},
+ {name:'MuseScore Studio',desc:'乐谱编写与音乐记谱软件',cat:'影音',color:'#2e8b75',web:'https://musescore.org',pc:'https://musescore.org/en/download'},
+ {name:'Tenacity',desc:'开源音频录制与编辑软件',cat:'影音',color:'#487ab3',web:'https://tenacityaudio.org',pc:'https://tenacityaudio.org'},
+ {name:'YouTube Music',desc:'在线音乐与音乐视频服务',cat:'影音',color:'#e62117',web:'https://music.youtube.com',pc:'https://music.youtube.com'},
+ {name:"Minetest Classic",desc:"开源体素沙盒游戏项目（现由 Luanti 延续）",cat:"游戏",color:"#5a9b50",web:"https://www.luanti.org",pc:"https://www.luanti.org"},
+ {name:"OpenRA",desc:"开源即时战略游戏引擎与经典游戏重制项目",cat:"游戏",color:"#b34d3d",web:"https://www.openra.net",pc:"https://www.openra.net"},
+ {name:"OpenRCT2",desc:"开源主题公园经营模拟游戏引擎",cat:"游戏",color:"#3a9b72",web:"https://openrct2.org",pc:"https://openrct2.org"},
+ {name:"Freeciv",desc:"开源文明建设回合制策略游戏",cat:"游戏",color:"#6b8f45",web:"https://www.freeciv.org",pc:"https://www.freeciv.org"},
+ {name:"OpenXcom",desc:"经典回合制策略游戏的开源引擎",cat:"游戏",color:"#6b789c",web:"https://openxcom.org",pc:"https://openxcom.org"},
+ {name:"Shattered Pixel Dungeon",desc:"开源像素风地牢探索游戏",cat:"游戏",color:"#b47b45",web:"https://shatteredpixel.com",pc:"https://shatteredpixel.com"},
+ {name:"Mindustry",desc:"塔防与工厂自动化结合的策略游戏",cat:"游戏",color:"#6b9e78",web:"https://mindustrygame.github.io",pc:"https://mindustrygame.github.io"},
+ {name:"Cataclysm: Dark Days Ahead",desc:"开放世界生存类开源游戏",cat:"游戏",color:"#6f8c55",web:"https://cataclysmdda.org",pc:"https://cataclysmdda.org"},
+ {name:"Endless Sky",desc:"开源太空探索与贸易游戏",cat:"游戏",color:"#4a77a8",web:"https://endless-sky.github.io",pc:"https://endless-sky.github.io"},
+ {name:"Xonotic",desc:"开源高速竞技第一人称射击游戏",cat:"游戏",color:"#5d78a8",web:"https://xonotic.org",pc:"https://xonotic.org"},
+ {name:"Teeworlds",desc:"开源多人横版动作游戏",cat:"游戏",color:"#5a9d9b",web:"https://www.teeworlds.com",pc:"https://www.teeworlds.com"},
+ {name:"Hedgewars",desc:"开源回合制多人策略游戏",cat:"游戏",color:"#7d9c4c",web:"https://www.hedgewars.org",pc:"https://www.hedgewars.org"},
+ {name:"Warzone 2100",desc:"开源即时战略游戏",cat:"游戏",color:"#638a9b",web:"https://wz2100.net",pc:"https://wz2100.net"},
+ {name:"Widelands",desc:"开源殖民建设与策略游戏",cat:"游戏",color:"#8b7548",web:"https://www.widelands.org",pc:"https://www.widelands.org"},
+ {name:"Unknown Horizons",desc:"开源城市建设与经济模拟游戏",cat:"游戏",color:"#4d9a91",web:"https://unknown-horizons.org",pc:"https://unknown-horizons.org"},
+ {name:"MegaGlest",desc:"开源 3D 即时战略游戏",cat:"游戏",color:"#a17a4c",web:"https://megaglest.org",pc:"https://megaglest.org"},
+ {name:"Globulation 2",desc:"开源实时策略游戏",cat:"游戏",color:"#688d72",web:"https://globulation2.org",pc:"https://globulation2.org"},
+ {name:"Red Eclipse",desc:"开源竞技场风格第一人称射击游戏",cat:"游戏",color:"#a65b4e",web:"https://redeclipse.net",pc:"https://redeclipse.net"},
+ {name:"AssaultCube",desc:"轻量级多人第一人称射击游戏",cat:"游戏",color:"#6683a5",web:"https://assault.cubers.net",pc:"https://assault.cubers.net"},
+ {name:"SuperTux",desc:"开源平台跳跃游戏",cat:"游戏",color:"#5a9bce",web:"https://www.supertux.org",pc:"https://www.supertux.org"},
+ {name:"Neverball",desc:"滚球技巧与物理益智游戏",cat:"游戏",color:"#5d9b7b",web:"https://neverball.org",pc:"https://neverball.org"},
+ {name:"Pingus",desc:"开源益智策略游戏",cat:"游戏",color:"#b08a4e",web:"https://pingus.seul.org",pc:"https://pingus.seul.org"},
+ {name:"Armagetron Advanced",desc:"开源光轮竞技游戏",cat:"游戏",color:"#4e83ad",web:"https://www.armagetronad.org",pc:"https://www.armagetronad.org"},
+ {name:"Dolphin Emulator",desc:"GameCube 与 Wii 游戏模拟器项目",cat:"游戏",color:"#4b8cbb",web:"https://dolphin-emu.org",pc:"https://dolphin-emu.org"},
+ {name:"PCSX2",desc:"PlayStation 2 模拟器项目",cat:"游戏",color:"#4f6ca8",web:"https://pcsx2.net",pc:"https://pcsx2.net"},
+ {name:"RPCS3",desc:"PlayStation 3 模拟器项目",cat:"游戏",color:"#647da8",web:"https://rpcs3.net",pc:"https://rpcs3.net"},
+ {name:"PPSSPP",desc:"PSP 游戏模拟器",cat:"游戏",color:"#4b8bb5",web:"https://www.ppsspp.org",pc:"https://www.ppsspp.org"},
+ {name:"RetroArch",desc:"多系统游戏模拟与前端平台",cat:"游戏",color:"#a34c65",web:"https://www.retroarch.com",pc:"https://www.retroarch.com"},
+ {name:"MAME",desc:"经典街机系统模拟器",cat:"游戏",color:"#6a7e9e",web:"https://www.mamedev.org",pc:"https://www.mamedev.org"},
+ {name:"ScummVM",desc:"经典冒险游戏兼容运行平台",cat:"游戏",color:"#6d8d61",web:"https://www.scummvm.org",pc:"https://www.scummvm.org"},
+ {name:"DuckStation",desc:"PlayStation 游戏模拟器项目",cat:"游戏",color:"#657da9",web:"https://duckstation.org",pc:"https://duckstation.org"},
+ {name:"melonDS",desc:"Nintendo DS 模拟器项目",cat:"游戏",color:"#6b9baf",web:"https://melonds.kuribo64.net",pc:"https://melonds.kuribo64.net"},
+ {name:"Citra",desc:"Nintendo 3DS 模拟器项目资料页",cat:"游戏",color:"#5b83a6",web:"https://citra-emu.org",pc:"https://citra-emu.org"},
+ {name:"RPG Maker",desc:"2D 角色扮演游戏制作工具",cat:"游戏",color:"#b27b54",web:"https://www.rpgmakerweb.com",pc:"https://www.rpgmakerweb.com"},
+ {name:"GameMaker",desc:"2D 游戏开发工具",cat:"游戏",color:"#6b82b5",web:"https://gamemaker.io",pc:"https://gamemaker.io"},
+ {name:"Ren'Py",desc:"视觉小说与互动故事引擎",cat:"游戏",color:"#a16b9a",web:"https://www.renpy.org",pc:"https://www.renpy.org"},
+ {name:"GDevelop",desc:"免代码游戏制作引擎",cat:"游戏",color:"#527fc4",web:"https://gdevelop.io",pc:"https://gdevelop.io"},
+ {name:"Defold",desc:"跨平台游戏开发引擎",cat:"游戏",color:"#5a9e87",web:"https://defold.com",pc:"https://defold.com"},
+ {name:"Construct",desc:"网页与 2D 游戏开发工具",cat:"游戏",color:"#6e9b50",web:"https://www.construct.net",pc:"https://www.construct.net"},
+ {name:"Riot Games",desc:"游戏开发与发行平台",cat:"游戏",color:"#d94b4b",web:"https://www.riotgames.com",pc:"https://www.riotgames.com"},
+ {name:"Battle.net",desc:"暴雪游戏启动与社交平台",cat:"游戏",color:"#2774bb",web:"https://battle.net",pc:"https://battle.net"},
+ {name:"EA app",desc:"EA 游戏启动与管理客户端",cat:"游戏",color:"#4b82bd",web:"https://www.ea.com/ea-app",pc:"https://www.ea.com/ea-app"},
+ {name:"Ubisoft Connect",desc:"育碧游戏库与社交客户端",cat:"游戏",color:"#4e85c5",web:"https://www.ubisoft.com/",pc:"https:// Ubisoftconnect.com"},
+ {name:"Xbox",desc:"Xbox 游戏与 PC 游戏服务",cat:"游戏",color:"#2b9b57",web:"https://www.xbox.com",pc:"https://www.xbox.com"},
+ {name:"PlayStation",desc:"PlayStation 游戏与服务平台",cat:"游戏",color:"#356bb5",web:"https://www.playstation.com",pc:"https://www.playstation.com"},
+ {name:"Nintendo",desc:"任天堂游戏与产品平台",cat:"游戏",color:"#e34a4a",web:"https://www.nintendo.com",pc:"https://www.nintendo.com"},
+ {name:"GeForce NOW",desc:"云端游戏串流服务",cat:"游戏",color:"#76a83b",web:"https://www.nvidia.com/geforce-now/",pc:"https://www.nvidia.com/geforce-now/"},
+ {name:"Amazon Luna",desc:"云端游戏串流服务",cat:"游戏",color:"#7c62a5",web:"https://luna.amazon.com",pc:"https://luna.amazon.com"},
+ {name:"Game Jolt",desc:"独立游戏社区与发布平台",cat:"游戏",color:"#48a2a1",web:"https://gamejolt.com",pc:"https://gamejolt.com"},
+ {name:"Modrinth",desc:"Minecraft 模组与资源平台",cat:"游戏",color:"#3d9c70",web:"https://modrinth.com",pc:"https://modrinth.com"},
+ {name:"CurseForge",desc:"游戏模组与插件平台",cat:"游戏",color:"#d18a43",web:"https://www.curseforge.com",pc:"https://www.curseforge.com"},
+ {name:"VLC media player",desc:"跨平台开源影音播放器",cat:"影音",color:"#e9a23b",web:"https://www.videolan.org/vlc/",pc:"https://www.videolan.org/vlc/"},
+ {name:"MPV",desc:"轻量开源媒体播放器",cat:"影音",color:"#5b8c72",web:"https://mpv.io",pc:"https://mpv.io"},
+ {name:"MPC-HC",desc:"Windows 经典媒体播放器",cat:"影音",color:"#547da8",web:"https://github.com/clsid2/mpc-hc",pc:"https://github.com/clsid2/mpc-hc"},
+ {name:"MPC-BE",desc:"Windows 媒体播放器",cat:"影音",color:"#4b87a7",web:"https://sourceforge.net/projects/mpcbe/",pc:"https://sourceforge.net/projects/mpcbe/"},
+ {name:"IINA",desc:"macOS 原生风格媒体播放器",cat:"影音",color:"#7b6ac4",web:"https://iina.io",pc:"https://iina.io"},
+ {name:"POTPlayer",desc:"Windows 多功能影音播放器",cat:"影音",color:"#5b8d70",web:"https://potplayer.daum.net",pc:"https://potplayer.daum.net"},
+ {name:"SMPlayer",desc:"支持多种格式的媒体播放器",cat:"影音",color:"#4e88a8",web:"https://www.smplayer.info",pc:"https://www.smplayer.info"},
+ {name:"Celluloid",desc:"Linux GTK 媒体播放器",cat:"影音",color:"#5c8d9d",web:"https://celluloid-player.github.io",pc:"https://celluloid-player.github.io"},
+ {name:"Haruna",desc:"KDE 桌面媒体播放器",cat:"影音",color:"#4d86bb",web:"https://apps.kde.org/haruna/",pc:"https://apps.kde.org/haruna/"},
+ {name:"QMPlay2",desc:"支持网络串流的影音播放器",cat:"影音",color:"#6185a4",web:"https://github.com/zaps166/QMPlay2",pc:"https://github.com/zaps166/QMPlay2"},
+ {name:"HandBrake",desc:"开源视频转码工具",cat:"影音",color:"#4b7da9",web:"https://handbrake.fr",pc:"https://handbrake.fr"},
+ {name:"FFmpeg",desc:"音视频录制、转换与处理工具",cat:"影音",color:"#5d9a74",web:"https://ffmpeg.org",pc:"https://ffmpeg.org"},
+ {name:"OBS Studio",desc:"直播与屏幕录制软件",cat:"影音",color:"#5b6f9c",web:"https://obsproject.com",pc:"https://obsproject.com"},
+ {name:"LosslessCut",desc:"无损视频与音频剪辑工具",cat:"影音",color:"#6b8dbe",web:"https://losslesscut.app",pc:"https://losslesscut.app"},
+ {name:"Avidemux",desc:"简单视频剪辑与编码工具",cat:"影音",color:"#6b8d9d",web:"https://avidemux.sourceforge.net",pc:"https://avidemux.sourceforge.net"},
+ {name:"Olive Video Editor",desc:"非线性视频编辑器项目",cat:"影音",color:"#6b7db1",web:"https://www.olivevideoeditor.org",pc:"https://www.olivevideoeditor.org"},
+ {name:"Flowblade",desc:"Linux 多轨视频编辑器",cat:"影音",color:"#4d8c87",web:"https://jliljebl.github.io/flowblade/",pc:"https://jliljebl.github.io/flowblade/"},
+ {name:"Pitivi",desc:"Linux 视频编辑软件",cat:"影音",color:"#5a9d9b",web:"https://www.pitivi.org",pc:"https://www.pitivi.org"},
+ {name:"Natron",desc:"开源节点式视觉特效合成软件",cat:"影音",color:"#6c82a7",web:"https://natrongithub.github.io",pc:"https://natrongithub.github.io"},
+ {name:"Blender",desc:"开源 3D 创作、动画与视频编辑软件",cat:"影音",color:"#e58b3c",web:"https://www.blender.org",pc:"https://www.blender.org"},
+ {name:"Lightworks",desc:"专业非线性视频编辑软件",cat:"影音",color:"#6482a9",web:"https://lwks.com",pc:"https://lwks.com"},
+ {name:"Aegisub",desc:"字幕制作与时间轴编辑工具",cat:"影音",color:"#7a6db0",web:"https://aegisub.org",pc:"https://aegisub.org"},
+ {name:"Subtitle Edit",desc:"字幕编辑与同步工具",cat:"影音",color:"#5b8eac",web:"https://www.nikse.dk/subtitleedit",pc:"https://www.nikse.dk/subtitleedit"},
+ {name:"JDownloader",desc:"下载管理工具，可处理媒体下载任务",cat:"影音",color:"#4d83b4",web:"https://jdownloader.org",pc:"https://jdownloader.org"},
+ {name:"MusicBrainz Picard",desc:"音乐标签与曲目信息整理工具",cat:"影音",color:"#5c9a75",web:"https://picard.musicbrainz.org",pc:"https://picard.musicbrainz.org"},
+ {name:"Kid3",desc:"音乐文件标签编辑器",cat:"影音",color:"#6585aa",web:"https://kid3.kde.org",pc:"https://kid3.kde.org"},
+ {name:"Vocaloid",desc:"虚拟歌声合成软件系列",cat:"影音",color:"#8b6ab5",web:"https://www.vocaloid.com",pc:"https://www.vocaloid.com"},
+ {name:"REAPER",desc:"数字音频工作站与录音软件",cat:"影音",color:"#a36a4d",web:"https://www.reaper.fm",pc:"https://www.reaper.fm"},
+ {name:"Waveform Free",desc:"数字音频工作站",cat:"影音",color:"#5487a7",web:"https://www.tracktion.com/products/waveform-free",pc:"https://www.tracktion.com/products/waveform-free"},
+ {name:"Cakewalk",desc:"音乐制作与录音软件品牌",cat:"影音",color:"#4b6da0",web:"https://www.cakewalk.com",pc:"https://www.cakewalk.com"},
+ {name:"FL Studio",desc:"数字音乐制作工作站",cat:"影音",color:"#c28b37",web:"https://www.image-line.com",pc:"https://www.image-line.com"},
+ {name:"Ableton Live",desc:"音乐创作与现场演出软件",cat:"影音",color:"#9b6c4c",web:"https://www.ableton.com",pc:"https://www.ableton.com"},
+ {name:"LMMS Plugins",desc:"LMMS 音乐制作扩展资源",cat:"影音",color:"#4b9a9a",web:"https://lmms.io",pc:"https://lmms.io"},
+ {name:"Qobuz",desc:"高音质音乐串流服务",cat:"影音",color:"#8a6b9f",web:"https://www.qobuz.com",pc:"https://www.qobuz.com"},
+ {name:"Deezer",desc:"音乐串流与播放列表服务",cat:"影音",color:"#9b69a8",web:"https://www.deezer.com",pc:"https://www.deezer.com"},
+ {name:"SoundCloud",desc:"音乐分享与创作者平台",cat:"影音",color:"#e77b36",web:"https://soundcloud.com",pc:"https://soundcloud.com"},
+ {name:"Bandcamp",desc:"独立音乐发行与聆听平台",cat:"影音",color:"#4f9b9d",web:"https://bandcamp.com",pc:"https://bandcamp.com"},
+ {name:"TIDAL",desc:"音乐与音乐视频串流服务",cat:"影音",color:"#555f70",web:"https://tidal.com",pc:"https://tidal.com"},
+ {name:"Apple Music",desc:"音乐串流服务",cat:"影音",color:"#c45c73",web:"https://music.apple.com",pc:"https://music.apple.com"},
+ {name:"YouTube",desc:"在线视频与创作者平台",cat:"影音",color:"#e34242",web:"https://www.youtube.com",pc:"https://www.youtube.com"},
+ {name:"Twitch",desc:"游戏直播与创作者直播平台",cat:"影音",color:"#8a65c5",web:"https://www.twitch.tv",pc:"https://www.twitch.tv"},
+ {name:"Dailymotion",desc:"在线视频平台",cat:"影音",color:"#4b8dc5",web:"https://www.dailymotion.com",pc:"https://www.dailymotion.com"},
+ {name:"Internet Archive",desc:"数字档案与影音资料馆",cat:"影音",color:"#6386a5",web:"https://archive.org",pc:"https://archive.org"},
+ {name:"Piwigo",desc:"自托管照片图库管理系统",cat:"影音",color:"#4f9a9b",web:"https://piwigo.org",pc:"https://piwigo.org"},
+ {name:"Immich",desc:"自托管照片与视频备份管理",cat:"影音",color:"#527fc0",web:"https://immich.app",pc:"https://immich.app"},
+ {name:"PhotoPrism",desc:"AI 辅助照片管理与图库",cat:"影音",color:"#5d8a9c",web:"https://www.photoprism.app",pc:"https://www.photoprism.app"},
+ {name:"digiKam",desc:"专业照片管理软件",cat:"影音",color:"#4c8fbd",web:"https://www.digikam.org",pc:"https://www.digikam.org"},
+ {name:"Darktable",desc:"开源 RAW 照片处理软件",cat:"影音",color:"#8b6a9f",web:"https://www.darktable.org",pc:"https://www.darktable.org"},
+ {name:"RawTherapee",desc:"RAW 照片处理软件",cat:"影音",color:"#6d8a9e",web:"https://rawtherapee.com",pc:"https://rawtherapee.com"},
+ {name:"Krita",desc:"数字绘画与插画软件",cat:"影音",color:"#4f8eaa",web:"https://krita.org",pc:"https://krita.org"},
+ {name:"ChatGPT",desc:"AI 对话、写作与学习助手",cat:"AI 工具",color:"#2e9b82",web:"https://chatgpt.com",pc:"https://chatgpt.com"},
+ {name:"Claude",desc:"AI 对话与写作助手",cat:"AI 工具",color:"#a87958",web:"https://claude.ai",pc:"https://claude.ai"},
+ {name:"Google Gemini",desc:"Google AI 助手",cat:"AI 工具",color:"#6585c7",web:"https://gemini.google.com",pc:"https://gemini.google.com"},
+ {name:"Microsoft Copilot",desc:"微软 AI 助手",cat:"AI 工具",color:"#4a83bd",web:"https://copilot.microsoft.com",pc:"https://copilot.microsoft.com"},
+ {name:"Perplexity",desc:"AI 搜索与答案引擎",cat:"AI 工具",color:"#4a8d9b",web:"https://www.perplexity.ai",pc:"https://www.perplexity.ai"},
+ {name:"Hugging Face",desc:"机器学习模型与数据集社区",cat:"AI 工具",color:"#d9a83c",web:"https://huggingface.co",pc:"https://huggingface.co"},
+ {name:"Ollama",desc:"本地运行大型语言模型工具",cat:"AI 工具",color:"#657d9a",web:"https://ollama.com",pc:"https://ollama.com"},
+ {name:"LM Studio",desc:"本地 AI 模型桌面运行工具",cat:"AI 工具",color:"#6d7fb4",web:"https://lmstudio.ai",pc:"https://lmstudio.ai"},
+ {name:"Jan",desc:"开源本地 AI 助手",cat:"AI 工具",color:"#5a8f9b",web:"https://jan.ai",pc:"https://jan.ai"},
+ {name:"AnythingLLM",desc:"文档知识库与本地 AI 工作区",cat:"AI 工具",color:"#6d7db3",web:"https://anythingllm.com",pc:"https://anythingllm.com"},
+ {name:"Open WebUI",desc:"自托管 AI 模型网页界面",cat:"AI 工具",color:"#4d8e82",web:"https://openwebui.com",pc:"https://openwebui.com"},
+ {name:"ComfyUI",desc:"节点式 AI 图像生成工作流界面",cat:"AI 工具",color:"#5a7fb4",web:"https://www.comfy.org",pc:"https://www.comfy.org"},
+ {name:"InvokeAI",desc:"AI 图像生成与创作工具",cat:"AI 工具",color:"#8a6ab0",web:"https://invoke.ai",pc:"https://invoke.ai"},
+ {name:"Fooocus",desc:"AI 图像生成界面项目",cat:"AI 工具",color:"#7a6fb0",web:"https://github.com/lllyasviel/Fooocus",pc:"https://github.com/lllyasviel/Fooocus"},
+ {name:"Whisper",desc:"语音识别与转录模型",cat:"AI 工具",color:"#4a9b8c",web:"https://openai.com/research/whisper",pc:"https://openai.com/research/whisper"},
+ {name:"Piper TTS",desc:"本地文字转语音工具",cat:"AI 工具",color:"#5d8c9e",web:"https://github.com/rhasspy/piper",pc:"https://github.com/rhasspy/piper"},
+ {name:"Stable Diffusion",desc:"文本生成图像模型生态",cat:"AI 工具",color:"#8b6db1",web:"https://stability.ai",pc:"https://stability.ai"},
+ {name:"KoboldAI",desc:"AI 文本生成与创作前端",cat:"AI 工具",color:"#6c7db0",web:"https://koboldai.com",pc:"https://koboldai.com"},
+ {name:"GIMP",desc:"开源图像编辑与修图软件",cat:"设计",color:"#6d8a55",web:"https://www.gimp.org",pc:"https://www.gimp.org"},
+ {name:"Inkscape",desc:"开源矢量绘图软件",cat:"设计",color:"#6688b4",web:"https://inkscape.org",pc:"https://inkscape.org"},
+ {name:"Figma",desc:"协作式界面与原型设计工具",cat:"设计",color:"#9a6ab0",web:"https://www.figma.com",pc:"https://www.figma.com"},
+ {name:"Penpot",desc:"开源界面与原型设计平台",cat:"设计",color:"#d77a52",web:"https://penpot.app",pc:"https://penpot.app"},
+ {name:"Paint.NET",desc:"Windows 图像编辑软件",cat:"设计",color:"#4f80ad",web:"https://www.getpaint.net",pc:"https://www.getpaint.net"},
+ {name:"Photopea",desc:"浏览器内图像编辑工具",cat:"设计",color:"#5c8c9b",web:"https://www.photopea.com",pc:"https://www.photopea.com"},
+ {name:"Canva",desc:"在线平面设计与演示制作平台",cat:"设计",color:"#5a82c5",web:"https://www.canva.com",pc:"https://www.canva.com"},
+ {name:"Scribus",desc:"开源桌面排版软件",cat:"设计",color:"#4d8b8b",web:"https://www.scribus.net",pc:"https://www.scribus.net"},
+ {name:"FreeCAD",desc:"开源参数化 3D CAD 建模工具",cat:"设计",color:"#d16e4d",web:"https://www.freecad.org",pc:"https://www.freecad.org"},
+ {name:"KiCad",desc:"开源电子电路设计与 PCB 工具",cat:"设计",color:"#4c9b83",web:"https://www.kicad.org",pc:"https://www.kicad.org"},
+ {name:"MeshLab",desc:"三维网格处理与编辑工具",cat:"设计",color:"#6b8bb2",web:"https://www.meshlab.net",pc:"https://www.meshlab.net"},
+ {name:"Sweet Home 3D",desc:"室内设计与家具布局工具",cat:"设计",color:"#a17a4a",web:"https://www.sweethome3d.com",pc:"https://www.sweethome3d.com"},
+ {name:"Tinkercad",desc:"浏览器 3D 设计与电路入门工具",cat:"设计",color:"#4b91b5",web:"https://www.tinkercad.com",pc:"https://www.tinkercad.com"},
+ {name:"Aseprite",desc:"像素艺术与动画编辑工具",cat:"设计",color:"#9a6e9c",web:"https://www.aseprite.org",pc:"https://www.aseprite.org"},
+ {name:"Piskel",desc:"在线像素画与动画编辑器",cat:"设计",color:"#4d9b87",web:"https://www.piskelapp.com",pc:"https://www.piskelapp.com"},
+ {name:"7-Zip",desc:"开源文件压缩与解压工具",cat:"文件与备份",color:"#5c8b9d",web:"https://www.7-zip.org",pc:"https://www.7-zip.org"},
+ {name:"PeaZip",desc:"跨平台文件压缩与归档工具",cat:"文件与备份",color:"#6c8b9d",web:"https://peazip.github.io",pc:"https://peazip.github.io"},
+ {name:"WinRAR",desc:"文件压缩与解压工具",cat:"文件与备份",color:"#8b6b4b",web:"https://www.win-rar.com",pc:"https://www.win-rar.com"},
+ {name:"Everything",desc:"Windows 极速文件名搜索工具",cat:"文件与备份",color:"#4c83a8",web:"https://www.voidtools.com",pc:"https://www.voidtools.com"},
+ {name:"FreeFileSync",desc:"文件夹同步与备份工具",cat:"文件与备份",color:"#5c9b76",web:"https://freefilesync.org",pc:"https://freefilesync.org"},
+ {name:"Syncthing",desc:"开源点对点文件同步工具",cat:"文件与备份",color:"#5b82b4",web:"https://syncthing.net",pc:"https://syncthing.net"},
+ {name:"rclone",desc:"云存储命令行同步工具",cat:"文件与备份",color:"#5a9b84",web:"https://rclone.org",pc:"https://rclone.org"},
+ {name:"Restic",desc:"加密增量备份工具",cat:"文件与备份",color:"#638b9b",web:"https://restic.net",pc:"https://restic.net"},
+ {name:"Duplicati",desc:"加密备份到云端与远程存储",cat:"文件与备份",color:"#4f8b9a",web:"https://www.duplicati.com",pc:"https://www.duplicati.com"},
+ {name:"Kopia",desc:"跨平台加密备份工具",cat:"文件与备份",color:"#6d83b1",web:"https://kopia.io",pc:"https://kopia.io"},
+ {name:"Cryptomator",desc:"云端文件加密工具",cat:"文件与备份",color:"#4b9b8a",web:"https://cryptomator.org",pc:"https://cryptomator.org"},
+ {name:"LocalSend",desc:"局域网跨设备文件传输工具",cat:"文件与备份",color:"#5c8eae",web:"https://localsend.org",pc:"https://localsend.org"},
+ {name:"PairDrop",desc:"浏览器点对点文件分享工具",cat:"文件与备份",color:"#548b9d",web:"https://pairdrop.net",pc:"https://pairdrop.net"},
+ {name:"Send Anywhere",desc:"跨设备文件传输服务",cat:"文件与备份",color:"#5b89b8",web:"https://send-anywhere.com",pc:"https://send-anywhere.com"},
+ {name:"FileZilla",desc:"FTP 与 SFTP 文件传输客户端",cat:"文件与备份",color:"#c65c4b",web:"https://filezilla-project.org",pc:"https://filezilla-project.org"},
+ {name:"Cyberduck",desc:"云端与服务器文件浏览客户端",cat:"文件与备份",color:"#5b8eb3",web:"https://cyberduck.io",pc:"https://cyberduck.io"},
+ {name:"AList",desc:"多存储挂载与文件列表程序",cat:"网络与服务器",color:"#5a8bb8",web:"https://alist.nn.ci",pc:"https://alist.nn.ci"},
+ {name:"Nextcloud",desc:"自托管文件同步与协作平台",cat:"网络与服务器",color:"#4a8fc2",web:"https://nextcloud.com",pc:"https://nextcloud.com"},
+ {name:"ownCloud",desc:"自托管文件协作平台",cat:"网络与服务器",color:"#4d80b4",web:"https://owncloud.com",pc:"https://owncloud.com"},
+ {name:"CasaOS",desc:"家庭服务器管理面板",cat:"网络与服务器",color:"#4c9a9a",web:"https://casaos.io",pc:"https://casaos.io"},
+ {name:"Umbrel",desc:"家庭服务器应用平台",cat:"网络与服务器",color:"#5a8eaa",web:"https://umbrel.com",pc:"https://umbrel.com"},
+ {name:"Portainer",desc:"容器管理网页界面",cat:"网络与服务器",color:"#4c8fb7",web:"https://www.portainer.io",pc:"https://www.portainer.io"},
+ {name:"Proxmox VE",desc:"虚拟化与服务器管理平台",cat:"网络与服务器",color:"#e27b3c",web:"https://www.proxmox.com/en/proxmox-virtual-environment/overview",pc:"https://www.proxmox.com/en/proxmox-virtual-environment/overview"},
+ {name:"TrueNAS",desc:"网络存储系统",cat:"网络与服务器",color:"#4b9b91",web:"https://www.truenas.com",pc:"https://www.truenas.com"},
+ {name:"OpenMediaVault",desc:"开源 NAS 管理系统",cat:"网络与服务器",color:"#6387a8",web:"https://www.openmediavault.org",pc:"https://www.openmediavault.org"},
+ {name:"Cloudflare",desc:"网络安全、DNS 与边缘网络服务",cat:"网络与服务器",color:"#e58b3b",web:"https://www.cloudflare.com",pc:"https://www.cloudflare.com"},
+ {name:"Tailscale",desc:"安全组网与设备互联工具",cat:"网络与服务器",color:"#5b7fb6",web:"https://tailscale.com",pc:"https://tailscale.com"},
+ {name:"ZeroTier",desc:"虚拟网络与设备互联平台",cat:"网络与服务器",color:"#4b9c9a",web:"https://www.zerotier.com",pc:"https://www.zerotier.com"},
+ {name:"WireGuard",desc:"现代 VPN 协议与工具",cat:"网络与服务器",color:"#6d7fa7",web:"https://www.wireguard.com",pc:"https://www.wireguard.com"},
+ {name:"OpenVPN",desc:"开源 VPN 连接方案",cat:"网络与服务器",color:"#e18a3e",web:"https://openvpn.net",pc:"https://openvpn.net"},
+ {name:"AdGuard Home",desc:"网络广告与追踪拦截 DNS 服务",cat:"网络与服务器",color:"#65a65b",web:"https://adguard.com/adguard-home/overview.html",pc:"https://adguard.com/adguard-home/overview.html"},
+ {name:"Pi-hole",desc:"网络级广告与追踪拦截工具",cat:"网络与服务器",color:"#9b6b4b",web:"https://pi-hole.net",pc:"https://pi-hole.net"},
+ {name:"Nginx",desc:"网页服务器与反向代理",cat:"网络与服务器",color:"#4b9b70",web:"https://nginx.org",pc:"https://nginx.org"},
+ {name:"Caddy",desc:"自动 HTTPS 网页服务器",cat:"网络与服务器",color:"#4e9b86",web:"https://caddyserver.com",pc:"https://caddyserver.com"},
+ {name:"Apache HTTP Server",desc:"开源网页服务器",cat:"网络与服务器",color:"#9b704e",web:"https://httpd.apache.org",pc:"https://httpd.apache.org"},
+ {name:"Grafana",desc:"监控数据可视化平台",cat:"网络与服务器",color:"#e58a3c",web:"https://grafana.com",pc:"https://grafana.com"},
+ {name:"Uptime Kuma",desc:"自托管服务状态监控工具",cat:"网络与服务器",color:"#4e9c8b",web:"https://uptime.kuma.pet",pc:"https://uptime.kuma.pet"},
+ {name:"Netdata",desc:"实时系统与服务器监控工具",cat:"网络与服务器",color:"#5b8db6",web:"https://www.netdata.cloud",pc:"https://www.netdata.cloud"},
+ {name:"Zabbix",desc:"企业级网络与服务器监控平台",cat:"网络与服务器",color:"#c34d4d",web:"https://www.zabbix.com",pc:"https://www.zabbix.com"},
+ {name:"Wireshark",desc:"网络封包分析工具",cat:"网络与服务器",color:"#5c8eaa",web:"https://www.wireshark.org",pc:"https://www.wireshark.org"},
+ {name:"Nmap",desc:"网络探索与安全审计工具",cat:"网络与服务器",color:"#5b7f9e",web:"https://nmap.org",pc:"https://nmap.org"},
+ {name:"LibreOffice",desc:"开源办公套件",cat:"效率办公",color:"#4c8db5",web:"https://www.libreoffice.org",pc:"https://www.libreoffice.org"},
+ {name:"ONLYOFFICE",desc:"文档、表格与演示办公套件",cat:"效率办公",color:"#4d83b7",web:"https://www.onlyoffice.com",pc:"https://www.onlyoffice.com"},
+ {name:"Obsidian",desc:"本地优先的笔记与知识管理工具",cat:"效率办公",color:"#8b6bb3",web:"https://obsidian.md",pc:"https://obsidian.md"},
+ {name:"Joplin",desc:"开源笔记与待办管理工具",cat:"效率办公",color:"#5a8ab4",web:"https://joplinapp.org",pc:"https://joplinapp.org"},
+ {name:"Standard Notes",desc:"加密笔记应用",cat:"效率办公",color:"#5b8b9b",web:"https://standardnotes.com",pc:"https://standardnotes.com"},
+ {name:"Logseq",desc:"大纲式笔记与知识管理工具",cat:"效率办公",color:"#6b7eb0",web:"https://logseq.com",pc:"https://logseq.com"},
+ {name:"Trilium Notes",desc:"个人知识库与笔记工具",cat:"效率办公",color:"#5c9b85",web:"https://github.com/TriliumNext/Trilium",pc:"https://github.com/TriliumNext/Trilium"},
+ {name:"Anytype",desc:"本地优先的知识管理工具",cat:"效率办公",color:"#8b7bb2",web:"https://anytype.io",pc:"https://anytype.io"},
+ {name:"AppFlowy",desc:"开源工作区与笔记平台",cat:"效率办公",color:"#4c91a3",web:"https://appflowy.io",pc:"https://appflowy.io"},
+ {name:"Notion",desc:"笔记、文档与团队工作区",cat:"效率办公",color:"#707070",web:"https://www.notion.com",pc:"https://www.notion.com"},
+ {name:"Trello",desc:"看板式任务与项目管理工具",cat:"效率办公",color:"#4c80bd",web:"https://trello.com",pc:"https://trello.com"},
+ {name:"Todoist",desc:"任务与待办清单管理工具",cat:"效率办公",color:"#d45c52",web:"https://todoist.com",pc:"https://todoist.com"},
+ {name:"TickTick",desc:"任务、日历与习惯管理工具",cat:"效率办公",color:"#4b9a78",web:"https://ticktick.com",pc:"https://ticktick.com"},
+ {name:"Zotero",desc:"研究资料与参考文献管理工具",cat:"效率办公",color:"#b46a4d",web:"https://www.zotero.org",pc:"https://www.zotero.org"},
+ {name:"Calibre",desc:"电子书管理与转换工具",cat:"效率办公",color:"#6c8b6a",web:"https://calibre-ebook.com",pc:"https://calibre-ebook.com"},
+ {name:"SumatraPDF",desc:"轻量级文档与电子书阅读器",cat:"效率办公",color:"#8c694d",web:"https://www.sumatrapdfreader.org",pc:"https://www.sumatrapdfreader.org"},
+ {name:"Okular",desc:"多格式文档阅读器",cat:"效率办公",color:"#5b85a9",web:"https://okular.kde.org",pc:"https://okular.kde.org"},
+ {name:"Xournal++",desc:"手写笔记与 PDF 注释工具",cat:"效率办公",color:"#5c8fa0",web:"https://xournalpp.github.io",pc:"https://xournalpp.github.io"},
+ {name:"LanguageTool",desc:"多语言拼写与语法检查工具",cat:"效率办公",color:"#4c9b8b",web:"https://languagetool.org",pc:"https://languagetool.org"},
+ {name:"DeepL",desc:"翻译与写作辅助服务",cat:"效率办公",color:"#477eb6",web:"https://www.deepl.com",pc:"https://www.deepl.com"},
+ {name:"Firefox",desc:"开源网页浏览器",cat:"浏览器",color:"#e47b3d",web:"https://www.mozilla.org/firefox/",pc:"https://www.mozilla.org/firefox/"},
+ {name:"Google Chrome",desc:"Google 网页浏览器",cat:"浏览器",color:"#4c8bc4",web:"https://www.google.com/chrome/",pc:"https://www.google.com/chrome/"},
+ {name:"Microsoft Edge",desc:"微软网页浏览器",cat:"浏览器",color:"#4c8bb5",web:"https://www.microsoft.com/edge",pc:"https://www.microsoft.com/edge"},
+ {name:"Brave",desc:"注重隐私的网页浏览器",cat:"浏览器",color:"#d66a4c",web:"https://brave.com",pc:"https://brave.com"},
+ {name:"Vivaldi",desc:"可高度自定义的网页浏览器",cat:"浏览器",color:"#b45b91",web:"https://vivaldi.com",pc:"https://vivaldi.com"},
+ {name:"Opera",desc:"多功能网页浏览器",cat:"浏览器",color:"#d65353",web:"https://www.opera.com",pc:"https://www.opera.com"},
+ {name:"Opera GX",desc:"面向游戏玩家的网页浏览器",cat:"浏览器",color:"#b54d8e",web:"https://www.opera.com/gx",pc:"https://www.opera.com/gx"},
+ {name:"Tor Browser",desc:"隐私保护网页浏览器",cat:"浏览器",color:"#7b68a8",web:"https://www.torproject.org",pc:"https://www.torproject.org"},
+ {name:"LibreWolf",desc:"注重隐私的 Firefox 衍生浏览器",cat:"浏览器",color:"#6c8a9d",web:"https://librewolf.net",pc:"https://librewolf.net"},
+ {name:"Waterfox",desc:"可自定义的网页浏览器",cat:"浏览器",color:"#5b8c7a",web:"https://www.waterfox.com",pc:"https://www.waterfox.com"},
+ {name:"Floorp",desc:"基于 Firefox 的自定义浏览器",cat:"浏览器",color:"#6b7fb0",web:"https://floorp.app",pc:"https://floorp.app"},
+ {name:"Chromium",desc:"开源网页浏览器项目",cat:"浏览器",color:"#5b87ad",web:"https://www.chromium.org",pc:"https://www.chromium.org"},
+ {name:"Ventoy",desc:"多系统启动 U 盘制作工具",cat:"系统工具",color:"#5b8fb7",web:"https://www.ventoy.net",pc:"https://www.ventoy.net"},
+ {name:"Rufus",desc:"Windows 启动 U 盘制作工具",cat:"系统工具",color:"#4b83b5",web:"https://rufus.ie",pc:"https://rufus.ie"},
+ {name:"balenaEtcher",desc:"跨平台系统镜像写入工具",cat:"系统工具",color:"#5b9b91",web:"https://etcher.balena.io",pc:"https://etcher.balena.io"},
+ {name:"GParted",desc:"磁盘分区管理工具",cat:"系统工具",color:"#5b8caa",web:"https://gparted.org",pc:"https://gparted.org"},
+ {name:"Clonezilla",desc:"磁盘克隆与映像备份工具",cat:"系统工具",color:"#4b8caa",web:"https://clonezilla.org",pc:"https://clonezilla.org"},
+ {name:"Rescuezilla",desc:"图形化磁盘备份与恢复工具",cat:"系统工具",color:"#5b9a89",web:"https://rescuezilla.com",pc:"https://rescuezilla.com"},
+ {name:"HWiNFO",desc:"Windows 硬件信息与监控工具",cat:"系统工具",color:"#6b8db4",web:"https://www.hwinfo.com",pc:"https://www.hwinfo.com"},
+ {name:"CPU-Z",desc:"处理器与硬件信息工具",cat:"系统工具",color:"#6689b4",web:"https://www.cpuid.com/softwares/cpu-z.html",pc:"https://www.cpuid.com/softwares/cpu-z.html"},
+ {name:"GPU-Z",desc:"显卡信息检测工具",cat:"系统工具",color:"#6b8bb2",web:"https://www.techpowerup.com/gpuz/",pc:"https://www.techpowerup.com/gpuz/"},
+ {name:"CrystalDiskInfo",desc:"硬盘健康状态检测工具",cat:"系统工具",color:"#4b91a0",web:"https://crystalmark.info/en/software/crystaldiskinfo/",pc:"https://crystalmark.info/en/software/crystaldiskinfo/"},
+ {name:"CrystalDiskMark",desc:"磁盘读写速度测试工具",cat:"系统工具",color:"#4d8da7",web:"https://crystalmark.info/en/software/crystaldiskmark/",pc:"https://crystalmark.info/en/software/crystaldiskmark/"},
+ {name:"EverythingToolbar",desc:"Windows 文件搜索栏扩展",cat:"系统工具",color:"#5b8b9b",web:"https://github.com/srwi/EverythingToolbar",pc:"https://github.com/srwi/EverythingToolbar"},
+ {name:"PowerToys",desc:"Windows 系统效率增强工具集",cat:"系统工具",color:"#5b7fb8",web:"https://learn.microsoft.com/windows/powertoys/",pc:"https://learn.microsoft.com/windows/powertoys/"},
+ {name:"AutoHotkey",desc:"Windows 自动化与快捷键脚本工具",cat:"系统工具",color:"#4b8c9d",web:"https://www.autohotkey.com",pc:"https://www.autohotkey.com"},
+ {name:"ShareX",desc:"截图、录屏与文件分享工具",cat:"系统工具",color:"#5b8ab4",web:"https://getsharex.com",pc:"https://getsharex.com"},
+ {name:"Greenshot",desc:"轻量截图工具",cat:"系统工具",color:"#5b9a78",web:"https://getgreenshot.org",pc:"https://getgreenshot.org"},
+ {name:"EarTrumpet",desc:"Windows 音量控制增强工具",cat:"系统工具",color:"#5b8db7",web:"https://eartrumpet.app",pc:"https://eartrumpet.app"},
+ {name:"Everything Search",desc:"Windows 文件快速搜索工具",cat:"系统工具",color:"#4c83a8",web:"https://www.voidtools.com",pc:"https://www.voidtools.com"},
+ {name:"RustDesk",desc:"开源远程桌面工具",cat:"系统工具",color:"#4b91a0",web:"https://rustdesk.com",pc:"https://rustdesk.com"},
+ {name:"AnyDesk",desc:"远程桌面与设备协助软件",cat:"系统工具",color:"#d64b4b",web:"https://anydesk.com",pc:"https://anydesk.com"},
+ {name:"TeamViewer",desc:"远程设备协助与桌面连接软件",cat:"系统工具",color:"#4b8dbd",web:"https://www.teamviewer.com",pc:"https://www.teamviewer.com"},
+ {name:"KDE Connect",desc:"手机与电脑互联工具",cat:"系统工具",color:"#4c8eb8",web:"https://kdeconnect.kde.org",pc:"https://kdeconnect.kde.org"},
+ {name:"BleachBit",desc:"系统清理与隐私清理工具",cat:"系统工具",color:"#5b8d9d",web:"https://www.bleachbit.org",pc:"https://www.bleachbit.org"},
+ {name:"KeePassXC",desc:"开源密码管理器",cat:"系统工具",color:"#5b8c7b",web:"https://keepassxc.org",pc:"https://keepassxc.org"},
+ {name:"Bitwarden",desc:"密码管理与跨设备同步服务",cat:"系统工具",color:"#4c80b8",web:"https://bitwarden.com",pc:"https://bitwarden.com"},
+ {name:"Proton Pass",desc:"密码与身份信息管理工具",cat:"系统工具",color:"#785eb4",web:"https://proton.me/pass",pc:"https://proton.me/pass"},
+ {name:"Malwarebytes",desc:"恶意软件防护与扫描工具",cat:"系统工具",color:"#4c83b4",web:"https://www.malwarebytes.com",pc:"https://www.malwarebytes.com"},
+ {name:"ClamAV",desc:"开源防病毒引擎",cat:"系统工具",color:"#5b8c9d",web:"https://www.clamav.net",pc:"https://www.clamav.net"},
+ {name:"GnuPG",desc:"文件与通信加密工具",cat:"系统工具",color:"#7c8b58",web:"https://gnupg.org",pc:"https://gnupg.org"},
+ {name:"Poe",desc:"集合多种 AI 助手与模型的聊天应用",cat:"AI 工具",color:"#6f64c8",web:"https://poe.com",pc:"https://poe.com",play:true},
+ {name:"Character.AI",desc:"AI 角色聊天与互动故事平台",cat:"AI 工具",color:"#8a63b8",web:"https://character.ai",pc:"https://character.ai",play:true},
+ {name:"DeepSeek",desc:"AI 对话、推理与编程助手",cat:"AI 工具",color:"#4c80bd",web:"https://www.deepseek.com",pc:"https://www.deepseek.com",play:true},
+ {name:"Meta AI",desc:"Meta 的 AI 助手与创作工具",cat:"AI 工具",color:"#4c83b8",web:"https://www.meta.ai",pc:"https://www.meta.ai",play:true},
+ {name:"Grok",desc:"AI 助手与实时信息问答服务",cat:"AI 工具",color:"#555b68",web:"https://grok.com",pc:"https://grok.com",play:true},
+ {name:"Le Chat",desc:"Mistral AI 对话助手",cat:"AI 工具",color:"#e3a34b",web:"https://chat.mistral.ai",pc:"https://chat.mistral.ai",play:true},
+ {name:"Qwen Chat",desc:"通义千问 AI 对话助手",cat:"AI 工具",color:"#6a78c5",web:"https://chat.qwen.ai",pc:"https://chat.qwen.ai",play:true},
+ {name:"Kimi",desc:"长文本阅读与 AI 助手",cat:"AI 工具",color:"#6076b5",web:"https://www.kimi.com",pc:"https://www.kimi.com",play:true},
+ {name:"豆包",desc:"AI 对话、写作与学习助手",cat:"AI 工具",color:"#4e8fc7",web:"https://www.doubao.com",pc:"https://www.doubao.com",play:true},
+ {name:"腾讯元宝",desc:"腾讯 AI 助手与文件问答工具",cat:"AI 工具",color:"#4d85c5",web:"https://yuanbao.tencent.com",pc:"https://yuanbao.tencent.com",play:true},
+ {name:"讯飞星火",desc:"AI 对话、学习与办公助手",cat:"AI 工具",color:"#4f8eb8",web:"https://xinghuo.xfyun.cn",pc:"https://xinghuo.xfyun.cn",play:true},
+ {name:"百度文心一言",desc:"百度 AI 助手与问答服务",cat:"AI 工具",color:"#527fc2",web:"https://yiyan.baidu.com",pc:"https://yiyan.baidu.com",play:true},
+ {name:"智谱清言",desc:"AI 对话与学习助手",cat:"AI 工具",color:"#5a7eb5",web:"https://chatglm.cn",pc:"https://chatglm.cn",play:true},
+ {name:"Monica AI",desc:"AI 助手、搜索与写作工具",cat:"AI 工具",color:"#6e72b9",web:"https://monica.im",pc:"https://monica.im",play:true},
+ {name:"Merlin AI",desc:"AI 搜索、摘要与写作助手",cat:"AI 工具",color:"#6b78b9",web:"https://www.getmerlin.in",pc:"https://www.getmerlin.in",play:true},
+ {name:"You.com",desc:"AI 搜索与智能问答服务",cat:"AI 工具",color:"#4a8b9c",web:"https://you.com",pc:"https://you.com",play:true},
+ {name:"NotebookLM",desc:"Google AI 资料研究与笔记助手",cat:"AI 工具",color:"#6b83b9",web:"https://notebooklm.google",pc:"https://notebooklm.google",play:true},
+ {name:"Gamma",desc:"AI 演示文稿与网页制作工具",cat:"AI 工具",color:"#8069b7",web:"https://gamma.app",pc:"https://gamma.app",play:true},
+ {name:"Canva AI",desc:"AI 设计、图片与演示制作功能",cat:"AI 工具",color:"#5687c5",web:"https://www.canva.com/ai/",pc:"https://www.canva.com/ai/",play:true},
+ {name:"Adobe Express",desc:"AI 辅助图片、海报与视频设计",cat:"AI 工具",color:"#b65b9c",web:"https://www.adobe.com/express/",pc:"https://www.adobe.com/express/",play:true},
+ {name:"Picsart AI",desc:"AI 图片编辑、设计与创作工具",cat:"AI 工具",color:"#a65db4",web:"https://picsart.com",pc:"https://picsart.com",play:true},
+ {name:"PhotoRoom",desc:"AI 商品图与背景编辑工具",cat:"AI 工具",color:"#5a8bb6",web:"https://www.photoroom.com",pc:"https://www.photoroom.com",play:true},
+ {name:"Remini",desc:"AI 照片增强与图像处理应用",cat:"AI 工具",color:"#7b6bb5",web:"https://remini.ai",pc:"https://remini.ai",play:true},
+ {name:"Microsoft Designer",desc:"AI 图片与设计创作工具",cat:"AI 工具",color:"#4d82bd",web:"https://designer.microsoft.com",pc:"https://designer.microsoft.com",play:true},
+ {name:"WOMBO Dream",desc:"AI 图像生成与艺术创作工具",cat:"AI 工具",color:"#a16ab4",web:"https://dream.ai",pc:"https://dream.ai",play:true},
+ {name:"StarryAI",desc:"AI 图像生成应用",cat:"AI 工具",color:"#6c76b8",web:"https://starryai.com",pc:"https://starryai.com",play:true},
+ {name:"ImagineArt",desc:"AI 图片与创意生成工具",cat:"AI 工具",color:"#8b6db8",web:"https://www.imagine.art",pc:"https://www.imagine.art",play:true},
+ {name:"CapCut AI",desc:"AI 辅助视频剪辑与字幕工具",cat:"AI 工具",color:"#4f83b7",web:"https://www.capcut.com",pc:"https://www.capcut.com",play:true},
+ {name:"Captions",desc:"AI 视频字幕与创作者工具",cat:"AI 工具",color:"#7a69b4",web:"https://www.captions.ai",pc:"https://www.captions.ai",play:true},
+ {name:"ElevenLabs",desc:"AI 语音生成与配音平台",cat:"AI 工具",color:"#6a79ad",web:"https://elevenlabs.io",pc:"https://elevenlabs.io",play:true},
+ {name:"Suno",desc:"AI 音乐创作与歌曲生成服务",cat:"AI 工具",color:"#9b6c9c",web:"https://suno.com",pc:"https://suno.com",play:true},
+ {name:"Otter.ai",desc:"AI 会议记录与语音转文字工具",cat:"AI 工具",color:"#4e8f9b",web:"https://otter.ai",pc:"https://otter.ai",play:true},
+ {name:"Notta",desc:"AI 录音转写与会议摘要工具",cat:"AI 工具",color:"#5289a8",web:"https://www.notta.ai",pc:"https://www.notta.ai",play:true},
+ {name:"Quizlet",desc:"AI 辅助学习卡片与练习工具",cat:"AI 工具",color:"#526fc1",web:"https://quizlet.com",pc:"https://quizlet.com",play:true},
+ {name:"Photomath",desc:"数学题识别与分步讲解学习工具",cat:"AI 工具",color:"#4b9b85",web:"https://photomath.com",pc:"https://photomath.com",play:true},
+ {name:"Gauth",desc:"AI 学习问答与题目讲解工具",cat:"AI 工具",color:"#5a8dbb",web:"https://www.gauthmath.com",pc:"https://www.gauthmath.com",play:true},
+ {name:"Brainly",desc:"学习问答与 AI 学习辅助平台",cat:"AI 工具",color:"#4d9b78",web:"https://brainly.com",pc:"https://brainly.com",play:true},
+ {name:"Grammarly",desc:"AI 写作、拼写与语法辅助工具",cat:"AI 工具",color:"#4d9b83",web:"https://www.grammarly.com",pc:"https://www.grammarly.com",play:true},
+ {name:"DeepL",desc:"AI 翻译与写作辅助服务",cat:"AI 工具",color:"#477eb6",web:"https://www.deepl.com",pc:"https://www.deepl.com",play:true},
+ {name:"Elicit",desc:"AI 学术研究与论文资料整理工具",cat:"AI 工具",color:"#588b9b",web:"https://elicit.com",pc:"https://elicit.com"},
+ {name:"Consensus",desc:"AI 学术搜索与研究问答工具",cat:"AI 工具",color:"#5c88a8",web:"https://consensus.app",pc:"https://consensus.app"},
+ {name:"SciSpace",desc:"AI 论文阅读与研究辅助工具",cat:"AI 工具",color:"#5a82b5",web:"https://scispace.com",pc:"https://scispace.com"},
+ {name:"ChatPDF",desc:"AI PDF 阅读与问答工具",cat:"AI 工具",color:"#6585aa",web:"https://www.chatpdf.com",pc:"https://www.chatpdf.com"},
+ {name:"Humata AI",desc:"AI 文档阅读与资料问答工具",cat:"AI 工具",color:"#7a75b3",web:"https://www.humata.ai",pc:"https://www.humata.ai"},
+ {name:"Goblin Tools",desc:"任务拆解与文字辅助工具集合",cat:"AI 工具",color:"#6c8b83",web:"https://goblin.tools",pc:"https://goblin.tools"},
+ {name:"Replit",desc:"AI 辅助编程与在线开发环境",cat:"AI 工具",color:"#6c79a8",web:"https://replit.com",pc:"https://replit.com",play:true},
+ {name:"Phind",desc:"面向开发者的 AI 搜索与问答",cat:"AI 工具",color:"#5b8ba5",web:"https://www.phind.com",pc:"https://www.phind.com"},
+ {name:"Blackbox AI",desc:"AI 编程助手与代码搜索工具",cat:"AI 工具",color:"#6576b4",web:"https://www.blackbox.ai",pc:"https://www.blackbox.ai",play:true},
+ {name:"Poe AI",desc:"多模型 AI 聊天与机器人平台",cat:"AI 工具",color:"#6f64c8",web:"https://poe.com",pc:"https://poe.com",play:true}
+];
+const knownCurated = new Set(apps.map(a=>a.name.toLowerCase()));
+for (const item of curatedApps) if (!knownCurated.has(item.name.toLowerCase())) { apps.push(item); knownCurated.add(item.name.toLowerCase()); }
+const playEnabledNames = new Set(["Adobe Express", "Blackbox AI", "Brainly", "Canva AI", "CapCut AI", "Captions", "Character.AI", "ChatGPT", "Claude", "DeepL", "DeepSeek", "ElevenLabs", "Gamma", "Gauth", "Google Gemini", "Grammarly", "Grok", "ImagineArt", "Kimi", "Le Chat", "Merlin AI", "Meta AI", "Microsoft Copilot", "Microsoft Designer", "Monica AI", "NotebookLM", "Notta", "Otter.ai", "Perplexity", "PhotoRoom", "Photomath", "Picsart AI", "Poe", "Poe AI", "Quizlet", "Qwen Chat", "Remini", "Replit", "StarryAI", "Suno", "WOMBO Dream", "You.com", "智谱清言", "百度文心一言", "腾讯元宝", "讯飞星火", "豆包"]);
+for (const app of apps) if (playEnabledNames.has(app.name)) app.play = true;
 
-            // ================= 社交 =================
-            { name: "WhatsApp", desc: "大马最普及的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.whatsapp", webUrl: "https://www.whatsapp.com/", pcUrl: "https://www.whatsapp.com/download", iconChar: "W", iconColor: "#25D366" },
-            { name: "Instagram", desc: "分享生活瞬间，全球图文。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.android", webUrl: "https://www.instagram.com/", iconChar: "I", iconColor: "#E1306C" },
-            { name: "Facebook", desc: "全球最大的社交网络。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.facebook.katana", webUrl: "https://www.facebook.com/", iconChar: "F", iconColor: "#1877F2" },
-            { name: "TikTok", desc: "风靡全球的短视频平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.zhiliaoapp.musically", webUrl: "https://www.tiktok.com/", iconChar: "T", iconColor: "#000000" },
-            { name: "Telegram", desc: "极速、安全的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=org.telegram.messenger", webUrl: "https://telegram.org/", pcUrl: "https://desktop.telegram.org/", iconChar: "T", iconColor: "#0088cc" },
-            { name: "微信", desc: "腾讯出品的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mm", webUrl: "https://weixin.qq.com/", pcUrl: "https://pc.weixin.qq.com/", iconChar: "微", iconColor: "#07c160" },
-            { name: "QQ", desc: "腾讯出品的即时通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.mobileqq", webUrl: "https://im.qq.com/", pcUrl: "https://im.qq.com/pcqq", iconChar: "Q", iconColor: "#12B7F5" },
-            { name: "小红书", desc: "你的生活方式指南。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.xingin.xhs", webUrl: "https://www.xiaohongshu.com/", iconChar: "红", iconColor: "#FF2442" },
-            { name: "X (Twitter)", desc: "全球实时新闻与热点讨论。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.twitter.android", webUrl: "https://x.com/", iconChar: "X", iconColor: "#000000" },
-            { name: "Threads", desc: "Meta 的文字社交平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.instagram.barcelona", webUrl: "https://www.threads.net/", iconChar: "@", iconColor: "#000000" },
-            { name: "Snapchat", desc: "阅后即焚的趣味社交。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.snapchat.android", webUrl: "https://www.snapchat.com/", iconChar: "S", iconColor: "#FFFC00" },
-            { name: "Discord", desc: "社群语音聊天软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.discord", webUrl: "https://discord.com/", pcUrl: "https://discord.com/download", iconChar: "D", iconColor: "#5865F2" },
-            { name: "Line", desc: "日韩台马地区常用的通讯软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=jp.naver.line.android", webUrl: "https://line.me/", pcUrl: "https://line.me/en/download", iconChar: "L", iconColor: "#06C755" },
-            { name: "微博", desc: "随时随地发现新鲜事。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.sina.weibo", webUrl: "https://weibo.com/", iconChar: "微", iconColor: "#E6162D" },
-            { name: "LinkedIn", desc: "全球职场社交平台。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.linkedin.android", webUrl: "https://www.linkedin.com/", iconChar: "in", iconColor: "#0A66C2" },
-            { name: "Reddit", desc: "美国最大的论坛社区。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.reddit.frontpage", webUrl: "https://www.reddit.com/", iconChar: "R", iconColor: "#FF4500" },
-            { name: "Pinterest", desc: "全球灵感图片素材库。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.pinterest", webUrl: "https://www.pinterest.com/", iconChar: "P", iconColor: "#E60023" },
-            { name: "Tinder", desc: "全球著名的滑动交友软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.tinder", webUrl: "https://tinder.com/", iconChar: "T", iconColor: "#FD5068" },
-            { name: "Bumble", desc: "女性主导的约会交友软件。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.bumble.app", webUrl: "https://bumble.com/", iconChar: "B", iconColor: "#FFC629" },
-            { name: "Viber", desc: "免费通话和即时通讯。", category: "社交", playUrl: "https://play.google.com/store/apps/details?id=com.viber.voip", webUrl: "https://www.viber.com/", iconChar: "V", iconColor: "#7360F2" },
-
-            // ================= 工具 =================
-            { name: "Grab", desc: "大马最常用的打车外卖。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.grabtaxi.passenger", webUrl: "https://www.grab.com/my/", iconChar: "G", iconColor: "#00B14F" },
-            { name: "Touch 'n Go", desc: "马来西亚国民级电子钱包。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=my.com.tngdigital.ewallet", webUrl: "https://www.touchngo.com.my/", iconChar: "T", iconColor: "#0066CC" },
-            { name: "Shopee", desc: "东南亚最火的电商平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.shopee.my", webUrl: "https://shopee.com.my/", iconChar: "S", iconColor: "#EE4D2D" },
-            { name: "Lazada", desc: "大马购物必备电商。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.lazada.android", webUrl: "https://www.lazada.com.my/", iconChar: "L", iconColor: "#0F146D" },
-            { name: "Foodpanda", desc: "大马主流外卖平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.global.foodpanda.android", webUrl: "https://www.foodpanda.my/", iconChar: "F", iconColor: "#D70F64" },
-            { name: "Google Chrome", desc: "谷歌快速安全浏览器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.android.chrome", webUrl: "https://www.google.com/chrome/", pcUrl: "https://www.google.com/chrome/", iconChar: "C", iconColor: "#4285F4" },
-            { name: "Google Maps", desc: "全球最强大的地图。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.maps", webUrl: "https://maps.google.com/", iconChar: "M", iconColor: "#34A853" },
-            { name: "Waze", desc: "避开塞车的实时导航。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.waze", webUrl: "https://www.waze.com/", iconChar: "W", iconColor: "#00D3FE" },
-            { name: "ChatGPT", desc: "OpenAI 出品的 AI 助手。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.openai.chatgpt", webUrl: "https://chatgpt.com/", iconChar: "AI", iconColor: "#10A37F" },
-            { name: "CapCut", desc: "剪映国际版视频剪辑。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.lemon.lvoverseas", webUrl: "https://www.capcut.com/", pcUrl: "https://www.capcut.com/download", iconChar: "C", iconColor: "#000000" },
-            { name: "Canva", desc: "在线平面设计神器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.canva.editor", webUrl: "https://www.canva.com/", iconChar: "C", iconColor: "#00C4CC" },
-            { name: "Google Drive", desc: "谷歌云盘存储。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.docs", webUrl: "https://drive.google.com/", iconChar: "D", iconColor: "#0F9D58" },
-            { name: "Gmail", desc: "谷歌官方邮箱。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.gm", webUrl: "https://mail.google.com/", iconChar: "G", iconColor: "#EA4335" },
-            { name: "Google Translate", desc: "谷歌翻译，多语言互译。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.apps.translate", webUrl: "https://translate.google.com/", iconChar: "译", iconColor: "#4285F4" },
-            { name: "Microsoft Word", desc: "微软官方文档编辑。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.microsoft.office.word", webUrl: "https://www.microsoft.com/", pcUrl: "https://www.microsoft.com/en-us/microsoft-365/word", iconChar: "W", iconColor: "#2B579A" },
-            { name: "Zoom", desc: "全球视频会议工具。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=us.zoom.videomeetings", webUrl: "https://zoom.us/", pcUrl: "https://zoom.us/download", iconChar: "Z", iconColor: "#2D8CFF" },
-            { name: "PayPal", desc: "全球跨境支付平台。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.paypal.android.p2pmobile", webUrl: "https://www.paypal.com/", iconChar: "P", iconColor: "#00457C" },
-            { name: "Speedtest", desc: "网络测速工具。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=org.zwanoo.android.speedtest", webUrl: "https://www.speedtest.net/", iconChar: "S", iconColor: "#00B0FF" },
-            { name: "1.1.1.1", desc: "Cloudflare 隐私安全 DNS。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.cloudflare.onedotonedotonedotone", webUrl: "https://1.1.1.1/", pcUrl: "https://1.1.1.1/", iconChar: "1", iconColor: "#F38020" },
-            { name: "Bitwarden", desc: "开源密码管理器。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.x8bit.bitwarden", webUrl: "https://bitwarden.com/", pcUrl: "https://bitwarden.com/download/", iconChar: "B", iconColor: "#175DDC" },
-            { name: "Alipay (支付宝)", desc: "中国主流电子钱包。", category: "工具", playUrl: "https://play.google.com/store/apps/details?id=com.eg.android.AlipayGphone", webUrl: "https://www.alipay.com/", iconChar: "支", iconColor: "#1677FF" },
-
-            // ================= 影音 =================
-            { name: "YouTube", desc: "全球最大的视频分享平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.google.android.youtube", webUrl: "https://www.youtube.com/", iconChar: "Y", iconColor: "#FF0000" },
-            { name: "Netflix", desc: "顶级流媒体服务平台，海量影视。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.netflix.mediaclient", webUrl: "https://www.netflix.com/", iconChar: "N", iconColor: "#E50914" },
-            { name: "Spotify", desc: "全球最大的正版音乐流媒体。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.spotify.music", webUrl: "https://www.spotify.com/", pcUrl: "https://www.spotify.com/download/", iconChar: "S", iconColor: "#1DB954" },
-            { name: "哔哩哔哩", desc: "年轻人的文化社区，看番剧必备。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=tv.danmaku.bili", webUrl: "https://app.bilibili.com/", iconChar: "B", iconColor: "#fb7299" },
-            { name: "Disney+", desc: "迪士尼、漫威、星战独家影视。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.disney.disneyplus", webUrl: "https://www.disneyplus.com/", iconChar: "D", iconColor: "#113CCF" },
-            { name: "Viu", desc: "东南亚超火的追剧神器，海量韩剧。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.viu.pad", webUrl: "https://www.viu.com/", iconChar: "V", iconColor: "#FFD700" },
-            { name: "爱奇艺 (iQIYI)", desc: "海量高清正版影视剧和综艺。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.iqiyi.i18n", webUrl: "https://www.iq.com/", iconChar: "爱", iconColor: "#00BE06" },
-            { name: "腾讯视频", desc: "腾讯官方视频播放平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.qqlivei18n", webUrl: "https://v.qq.com/", iconChar: "腾", iconColor: "#FF6022" },
-            { name: "优酷", desc: "阿里巴巴旗下的视频平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.youku.international.phone", webUrl: "https://www.youku.com/", iconChar: "优", iconColor: "#1B9EFE" },
-            { name: "芒果TV", desc: "湖南卫视官方视频应用。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.hunantv.imgo.activity.inter", webUrl: "https://www.mgtv.com/", iconChar: "芒", iconColor: "#FF5F00" },
-            { name: "快手", desc: "记录世界，记录你。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.kwai.video", webUrl: "https://www.kuaishou.com/", iconChar: "快", iconColor: "#FF4906" },
-            { name: "Twitch", desc: "全球最大的游戏直播平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=tv.twitch.android.app", webUrl: "https://www.twitch.tv/", iconChar: "T", iconColor: "#9146FF" },
-            { name: "KKBOX", desc: "亚洲领先的音乐流媒体。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.skysoft.kkbox.android", webUrl: "https://www.kkbox.com/", iconChar: "K", iconColor: "#00A1E0" },
-            { name: "SoundCloud", desc: "全球独立音乐人的聚集地。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.soundcloud.android", webUrl: "https://soundcloud.com/", iconChar: "S", iconColor: "#FF5500" },
-            { name: "Apple Music", desc: "苹果出品的音乐流媒体。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.apple.android.music", webUrl: "https://music.apple.com/", iconChar: "A", iconColor: "#FA243C" },
-            { name: "Prime Video", desc: "亚马逊出品的影视平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.amazon.avod.thirdpartyclient", webUrl: "https://www.primevideo.com/", iconChar: "P", iconColor: "#00A8E1" },
-            { name: "HBO Max", desc: "HBO 官方流媒体平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.hbo.hbonow", webUrl: "https://www.hbomax.com/", iconChar: "H", iconColor: "#5B0E8E" },
-            { name: "Tidal", desc: "高品质无损音乐平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.aspiro.tidal", webUrl: "https://tidal.com/", iconChar: "T", iconColor: "#000000" },
-            { name: "Deezer", desc: "全球音乐流媒体平台。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=deezer.android.app", webUrl: "https://www.deezer.com/", iconChar: "D", iconColor: "#A238FF" },
-            { name: "Plex", desc: "个人流媒体媒体服务器。", category: "影音", playUrl: "https://play.google.com/store/apps/details?id=com.plexapp.android", webUrl: "https://www.plex.tv/", iconChar: "P", iconColor: "#E5A00D" },
-
-            // ================= 游戏 =================
-            { name: "Mobile Legends", desc: "东南亚最火的 MOBA 竞技。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mobile.legends", webUrl: "https://m.mobilelegends.com/", iconChar: "M", iconColor: "#1A237E" },
-            { name: "PUBG MOBILE", desc: "全球知名的战术竞技类射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tencent.ig", playText: "国际服", playUrl2: "https://play.google.com/store/apps/details?id=com.rekoo.pubgm", playText2: "台服", webUrl: "https://www.pubgmobile.com/", pcUrl: "", iconChar: "P", iconColor: "#F4A460" },
-            { name: "Blockman GO", desc: "3D像素风格的沙盒多人在线游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.sandboxol.blockymods", webUrl: "https://www.blockmango.com/", iconChar: "B", iconColor: "#00bcd4" },
-            { name: "Free Fire", desc: "节奏极快的生存射击游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.dts.freefireth", webUrl: "https://ff.garena.com/", iconChar: "F", iconColor: "#FF5722" },
-            { name: "我的世界", desc: "风靡全球的 3D 沙盒建造游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe", webUrl: "https://www.minecraft.net/", pcUrl: "https://www.minecraft.net/en-us/download", iconChar: "M", iconColor: "#4CAF50" },
-            { name: "Roblox", desc: "3D 沙盒游戏平台。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.roblox.client", webUrl: "https://www.roblox.com/", pcUrl: "https://www.roblox.com/download", iconChar: "R", iconColor: "#e2231a" },
-            { name: "原神", desc: "开放世界冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.miHoYo.GenshinImpact", webUrl: "https://ys.mihoyo.com/", pcUrl: "https://ys.mihoyo.com/download", iconChar: "原", iconColor: "#ffc107" },
-            { name: "崩坏：星穹铁道", desc: "银河冒险策略游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.hkrpgoversea", webUrl: "https://hsr.hoyoverse.com/", pcUrl: "https://hsr.hoyoverse.com/download", iconChar: "星", iconColor: "#4A148C" },
-            { name: "绝区零", desc: "都市动作冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.HoYoverse.Nap", webUrl: "https://zzz.mihoyo.com/", pcUrl: "https://zzz.mihoyo.com/download", iconChar: "绝", iconColor: "#FFEB3B" },
-            { name: "光·遇", desc: "唯美社交冒险游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.tgc.sky.android", webUrl: "https://sky.163.com/", iconChar: "光", iconColor: "#FFD54F" },
-            { name: "Pokémon GO", desc: "AR 捕捉宝可梦游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.nianticlabs.pokemongo", webUrl: "https://pokemongolive.com/", iconChar: "皮", iconColor: "#FDD835" },
-            { name: "Call of Duty", desc: "使命召唤手游版。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter", webUrl: "https://www.callofduty.com/", iconChar: "C", iconColor: "#000000" },
-            { name: "Stumble Guys", desc: "多人派对闯关游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.kitkagames.fallbuddies", webUrl: "https://stumbleguys.com/", pcUrl: "https://store.steampowered.com/app/1677740/Stumble_Guys/", iconChar: "S", iconColor: "#FFCA28" },
-            { name: "部落冲突", desc: "经典策略对战游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.clashofclans", webUrl: "https://supercell.com/", iconChar: "C", iconColor: "#8D6E63" },
-            { name: "荒野乱斗", desc: "快节奏 3v3 乱斗游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.brawlstars", webUrl: "https://supercell.com/", iconChar: "B", iconColor: "#FFC107" },
-            { name: "皇室战争", desc: "卡牌即时对战游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.supercell.clashroyale", webUrl: "https://supercell.com/", iconChar: "CR", iconColor: "#00BFFF" },
-            { name: "明日方舟", desc: "二次元塔防策略 RPG。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.YoStarEN.Arknights", webUrl: "https://ak.hypergryph.com/", iconChar: "明", iconColor: "#212121" },
-            { name: "第五人格", desc: "非对称性对抗竞技游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.netease.idv.googleplay", webUrl: "https://id5.163.com/", iconChar: "5", iconColor: "#424242" },
-            { name: "Asphalt 9", desc: "狂野飙车9，极致竞速。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.gameloft.android.ANMP.GloftA9HM", webUrl: "https://asphaltlegends.com/", pcUrl: "https://store.steampowered.com/app/1088090/Asphalt_9_Legends/", iconChar: "A9", iconColor: "#03A9F4" },
-            { name: "植物大战僵尸2", desc: "经典塔防休闲游戏。", category: "游戏", playUrl: "https://play.google.com/store/apps/details?id=com.ea.game.pvz2_row", webUrl: "https://www.ea.com/", iconChar: "植", iconColor: "#8BC34A" }
-        ];
-
-const appGrid=document.getElementById('appGrid');
-const searchInput=document.getElementById('searchInput');
-const loadingText=document.getElementById('loadingText');
-const catBtns=document.querySelectorAll('.cat-btn');
-let currentCategory='全部',searchQuery='',filteredApps=[...appsData],currentPage=1,isLoading=false,hasMore=true;
-let sortMode='default',favoritesOnly=false;
-const itemsPerPage=20;
-const FAVORITES_KEY='geek-app-library-favorites-v1';
-function readFavorites(){try{return new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY)||'[]'));}catch(e){return new Set();}}
-let favorites=readFavorites();
-function saveFavorites(){try{localStorage.setItem(FAVORITES_KEY,JSON.stringify([...favorites]));}catch(e){}}
-function isFavorite(name){return favorites.has(name);}
-function toggleFavorite(name){
-  if(favorites.has(name))favorites.delete(name);else favorites.add(name);
-  saveFavorites();renderApps(true);fillShowcases();
+function appIcon(a){
+ const fallback=escapeHtml(initials(a.name));
+ let iconUrl='';
+ try{
+  const host=new URL(a.web).hostname;
+  iconUrl='https://www.google.com/s2/favicons?domain='+encodeURIComponent(host)+'&sz=128';
+ }catch(_){}
+ return `<div class="appicon" style="background:${/^#[0-9a-f]{3,8}$/i.test(a.color)?a.color:'#345'}"><span>${fallback}</span>${iconUrl?`<img src="${iconUrl}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">`:''}</div>`;
 }
-function escapeHtml(value){
-  return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const $ = id => document.getElementById(id);
+const state={category:'全部',favoritesOnly:false,query:'',sort:'default',shown:24};
+const storeKey='geek-app-library-favorites-v2';
+function getFavorites(){try{const x=JSON.parse(localStorage.getItem(storeKey)||'[]');return new Set(Array.isArray(x)?x:[])}catch(e){return new Set()}}
+let favorites=getFavorites();
+let categories=['全部',...new Set(apps.map(a=>a.cat).filter(Boolean))];
+function safeUrl(value){try{const u=new URL(value);return ['https:','http:'].includes(u.protocol)?u.href:'#'}catch(e){return '#'}}
+function initials(name){return [...name].slice(0,2).join('').toUpperCase()}
+function filtered(){
+ let list=apps.filter(a=>(state.category==='全部'||a.cat===state.category)&&(!state.favoritesOnly||favorites.has(a.name))&&(!state.query||(a.name+' '+a.desc+' '+a.cat).toLowerCase().includes(state.query)));
+ if(state.sort==='name')list.sort((a,b)=>a.name.localeCompare(b.name));
+ if(state.sort==='cat')list.sort((a,b)=>a.cat.localeCompare(b.cat)||a.name.localeCompare(b.name));
+ return list;
 }
-const findApp=name=>appsData.find(a=>a.name===name);
-const iconMarkup=app=>app.iconUrl?'<img src="'+app.iconUrl+'" alt="">':app.iconChar;
-function makeLinks(app,compact=false){
-  let out='';
-  if(app.playUrl)out+='<a class="btn btn-play" href="'+app.playUrl+'" target="_blank" rel="noopener noreferrer">'+(app.playText||'Google Play')+'</a>';
-  if(app.playUrl2)out+='<a class="btn btn-play" href="'+app.playUrl2+'" target="_blank" rel="noopener noreferrer">'+(app.playText2||'Google Play')+'</a>';
-  if(app.webUrl)out+='<a class="btn btn-web" href="'+app.webUrl+'" target="_blank" rel="noopener noreferrer">'+(compact?'官网':'官网下载')+'</a>';
-  if(app.pcUrl)out+='<a class="btn btn-pc" href="'+app.pcUrl+'" target="_blank" rel="noopener noreferrer">PC 下载</a>';
-  return out;
+function renderCategories(){
+ $('categories').innerHTML=categories.map(c=>`<button class="cat ${state.category===c?'active':''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
 }
-function featureCard(app){
-  if(!app)return '';
-  return '<article class="feature-card"><div class="feature-top"><div class="app-icon" style="background:'+app.iconColor+'">'+iconMarkup(app)+'</div><div><h3>'+escapeHtml(app.name)+'</h3><p>'+escapeHtml(app.desc)+'</p></div></div><div class="feature-actions"><button class="pill-link" type="button" onclick="showAppDetails(\''+escapeHtml(app.name).replace(/'/g,"\\'")+'\')">查看详情</button>'+(app.webUrl?'<a class="pill-link secondary" href="'+app.webUrl+'" target="_blank" rel="noopener noreferrer">官方网站</a>':'')+'</div></article>';
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function playUrl(a){return 'https://play.google.com/store/search?q='+encodeURIComponent(a.name)+'&c=apps'}
+function card(a){
+ const fav=favorites.has(a.name);
+ const play=a.play?`<a class="play" href="${playUrl(a)}" target="_blank" rel="noopener noreferrer">▶ Play 下载</a>`:'';
+ return `<article class="card"><div class="cardhead">${appIcon(a)}<div style="min-width:0"><div class="appname">${escapeHtml(a.name)}</div><div class="tag">${escapeHtml(a.cat)}</div></div></div><p class="desc">${escapeHtml(a.desc)}</p><div class="actions"><button data-detail="${escapeHtml(a.name)}">详情</button><a href="${safeUrl(a.web)}" target="_blank" rel="noopener noreferrer">官方网站</a>${play}<button class="fav" data-fav="${escapeHtml(a.name)}" aria-label="${fav?'取消收藏':'收藏'}">${fav?'♥':'♡'}</button></div></article>`;
 }
-function fillShowcases(){
-  const featuredNames=['Termux','GitHub','ChatGPT','Shizuku','Visual Studio Code','Roblox'];
-  const latestNames=['Winlator','Shizuku','ChatGPT','CapCut','Bitwarden','Termius'];
-  document.getElementById('featuredApps').innerHTML=featuredNames.map(n=>featureCard(findApp(n))).join('');
-  document.getElementById('latestApps').innerHTML=latestNames.map(n=>featureCard(findApp(n))).join('');
-  renderRanking('popular');
+function render(){
+ const list=filtered(), visible=list.slice(0,state.shown);
+ $('grid').innerHTML=visible.length?visible.map(card).join(''):'<div class="empty">没有找到符合条件的应用<br><small>试试其他关键词，或切换分类。</small></div>';
+ $('resultCount').textContent=`找到 ${list.length} 款应用 · 当前显示 ${visible.length} 款`;
+ $('favCount').textContent=`已收藏 ${favorites.size} 款`;
+ $('more').hidden=visible.length>=list.length;
+ $('more').textContent='加载更多应用';
 }
-function renderRanking(type){
-  const sets={
-    popular:['ChatGPT','YouTube','WhatsApp','Google Chrome','Roblox'],
-    rising:['Termux','Shizuku','Winlator','CapCut','Telegram'],
-    new:['Bitwarden','Termius','Canva','Discord','GitHub']
-  };
-  document.getElementById('rankList').innerHTML=sets[type].map((name,i)=>{
-    const app=findApp(name);if(!app)return '';
-    return '<div class="rank-row"><span class="rank-no '+(i<3?'top':'')+'">'+String(i+1).padStart(2,'0')+'</span><span class="app-icon" style="width:34px;height:34px;border-radius:10px;background:'+app.iconColor+';font-size:13px">'+iconMarkup(app)+'</span><span class="rank-name">'+app.name+'</span><span class="rank-category">'+app.category+'</span></div>';
-  }).join('');
+function update(){const order=['游戏','影音','游戏开发','AI','AI 工具','开发','设计','截图与录屏','文件与备份','效率办公','网络与服务器','教育学习','商务管理','系统','工具','实用工具'];const found=[...new Set(apps.map(a=>a.cat).filter(Boolean))];categories=['全部',...order.filter(c=>found.includes(c)),...found.filter(c=>!order.includes(c))];renderCategories();render()}
+function toggleFavorite(name){favorites.has(name)?favorites.delete(name):favorites.add(name);try{localStorage.setItem(storeKey,JSON.stringify([...favorites]))}catch(e){}update()}
+function showDetail(name){
+ const a=apps.find(x=>x.name===name);if(!a)return;
+ const playLink=a.play?`<a href="${playUrl(a)}" target="_blank" rel="noopener noreferrer">▶ Google Play 下载</a>`:'';
+ $('detailBody').innerHTML=`<div class="detailtop">${appIcon(a)}<div><h2 style="margin:0 0 5px">${escapeHtml(a.name)}</h2><span class="tag">${escapeHtml(a.cat)}</span></div></div><p class="detaildesc">${escapeHtml(a.desc)}<br><br>Play 按钮会打开 Google Play 搜索结果，请确认开发者名称后再安装。</p><div class="detailactions"><a href="${safeUrl(a.web)}" target="_blank" rel="noopener noreferrer">访问官方网站</a>${playLink}<button class="close" id="closeDetail">关闭</button></div>`;
+ $('detail').showModal();
+ $('closeDetail').addEventListener('click',()=>$('detail').close());
 }
-function renderApps(reset=false){
-  if(reset){appGrid.innerHTML='';currentPage=1;hasMore=true;filteredApps=appsData.filter(app=>(currentCategory==='全部'||app.category===currentCategory)&&(!favoritesOnly||isFavorite(app.name))&&(app.name.toLowerCase().includes(searchQuery.toLowerCase())||app.desc.toLowerCase().includes(searchQuery.toLowerCase())));if(sortMode==='name')filteredApps.sort((a,b)=>a.name.localeCompare(b.name,'zh-CN'));else if(sortMode==='category')filteredApps.sort((a,b)=>a.category.localeCompare(b.category,'zh-CN')||a.name.localeCompare(b.name,'zh-CN'));}
-  if(!hasMore||isLoading)return;
-  isLoading=true;loadingText.style.display='block';
-  const start=(currentPage-1)*itemsPerPage,end=start+itemsPerPage,items=filteredApps.slice(start,end);
-  if(items.length===0&&currentPage===1){appGrid.innerHTML='<div class="empty">没有找到相关应用，试试其他关键词吧。</div>';loadingText.style.display='none';document.getElementById('resultCount').textContent='0 个结果';isLoading=false;return;}
-  items.forEach((app,index)=>{
-    const card=document.createElement('article');card.className='app-card';card.style.animationDelay=(index*.018)+'s';
-    const iconStyle=app.iconUrl?'':'background:'+app.iconColor+';box-shadow:0 5px 15px '+app.iconColor+'35';
-    card.innerHTML='<div class="app-header"><div class="app-icon" style="'+iconStyle+'">'+iconMarkup(app)+'</div><div class="app-info"><h3 class="app-title">'+escapeHtml(app.name)+'</h3><p class="app-desc">'+escapeHtml(app.desc)+'</p></div></div><div class="card-actions"><button class="card-open" type="button">查看详情 ›</button><button class="fav-btn '+(isFavorite(app.name)?'saved':'')+'" type="button" aria-label="收藏">'+(isFavorite(app.name)?'♥ 已收藏':'♡ 收藏')+'</button></div><div class="btn-group">'+makeLinks(app)+'</div>';
-    card.querySelector('.card-open').addEventListener('click',()=>openDetails(app));
-    card.querySelector('.fav-btn').addEventListener('click',()=>toggleFavorite(app.name));
-    appGrid.appendChild(card);
-  });
-  currentPage++;hasMore=end<filteredApps.length;loadingText.style.display='none';
-  document.getElementById('resultCount').textContent=filteredApps.length+' 个应用';
-  isLoading=false;
+$('search').addEventListener('input',e=>{state.query=e.target.value.trim().toLowerCase();state.shown=24;render()});
+$('categories').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;state.category=b.dataset.cat;state.shown=24;update()});
+$('grid').addEventListener('click',e=>{const f=e.target.closest('[data-fav]'),d=e.target.closest('[data-detail]');if(f)toggleFavorite(f.dataset.fav);if(d)showDetail(d.dataset.detail)});
+$('more').addEventListener('click',()=>{state.shown+=24;render()});
+$('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
+function setFavorites(on){state.favoritesOnly=on;state.shown=24;$('favBtn').classList.toggle('active',on);$('allBtn').classList.toggle('active',!on);update()}
+$('allBtn').addEventListener('click',()=>setFavorites(false));$('favBtn').addEventListener('click',()=>setFavorites(true));
+document.querySelector('.bottom').addEventListener('click',e=>{const b=e.target.closest('[data-nav]');if(!b)return;document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x===b));if(b.dataset.nav==='home'){setFavorites(false);state.category='全部';state.query='';$('search').value='';update();window.scrollTo({top:0,behavior:'smooth'})}else if(b.dataset.nav==='category'){setFavorites(false);$('categories').scrollIntoView({behavior:'smooth',block:'center'})}else if(b.dataset.nav==='favorites'){setFavorites(true);window.scrollTo({top:0,behavior:'smooth'})}else if(b.dataset.nav==='about'){alert(`极客应用库\\n当前收录 ${apps.length} 款应用。\\n本网站为应用导航目录，下载前请确认软件来源与设备兼容性。`)}});
+// 加载公开的开源工具目录数据，合并原有应用并按名称去重。
+function parseCSV(text){
+ const rows=[];let row=[],field='',quoted=false;
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+  if(quoted){if(c==='"'&&text[i+1]==='"'){field+='"';i++}else if(c==='"'){quoted=false}else{field+=c}}
+  else if(c==='"'){quoted=true}else if(c===','){row.push(field);field=''}
+  else if(c==='\n'){row.push(field);rows.push(row);row=[];field=''}else if(c!=='\r'){field+=c}
+ }
+ if(field.length||row.length){row.push(field);rows.push(row)}return rows;
 }
-catBtns.forEach(btn=>btn.addEventListener('click',()=>{
-  catBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  currentCategory=btn.dataset.category;renderApps(true);
-}));
-let searchTimer;
-searchInput.addEventListener('input',e=>{
-  clearTimeout(searchTimer);searchTimer=setTimeout(()=>{searchQuery=e.target.value.trim();renderApps(true);},180);
-});
-window.addEventListener('scroll',()=>{
-  if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-260)renderApps();
-},{passive:true});
-document.querySelectorAll('[data-jump]').forEach(btn=>btn.addEventListener('click',()=>document.getElementById(btn.dataset.jump).scrollIntoView({behavior:'smooth'})));
-document.querySelectorAll('.rank-tab').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('.rank-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderRanking(btn.dataset.rank);
-}));
-document.querySelectorAll('.nav-item').forEach(link=>link.addEventListener('click',()=>{
-  document.querySelectorAll('.nav-item').forEach(a=>a.classList.remove('active'));link.classList.add('active');
-}));
-
-function openDetails(app){
-  const iconStyle=app.iconUrl?'':'background:'+app.iconColor;
-  document.getElementById('detailContent').innerHTML=
-    '<div class="detail-head"><div class="app-icon" style="'+iconStyle+'">'+iconMarkup(app)+'</div><div><h2 id="detailTitle">'+escapeHtml(app.name)+'</h2><div class="detail-meta">'+escapeHtml(app.category)+' · 应用详情</div></div></div>'+
-    '<p class="detail-description">'+escapeHtml(app.desc)+'</p>'+
-    '<div class="detail-links">'+makeLinks(app)+'</div>'+
-    '<p class="detail-note">下载前请确认页面来源、应用名称及开发者信息。本站只提供跳转入口，不托管安装包。</p>'+
-    '<button class="fav-btn '+(isFavorite(app.name)?'saved':'')+'" id="detailFav" type="button" style="margin-top:14px">'+(isFavorite(app.name)?'♥ 已收藏':'♡ 收藏应用')+'</button>';
-  document.getElementById('detailFav').addEventListener('click',()=>{toggleFavorite(app.name);openDetails(app);});
-  const modal=document.getElementById('appModal');modal.classList.add('show');modal.setAttribute('aria-hidden','false');
+function guessCategory(name,desc){
+ const t=(name+' '+desc).toLowerCase();
+ // 游戏平台、游戏本体与游戏相关软件优先识别，避免被“工具/开发”关键词抢先归类。
+ if(/\b(steam|epic games store|gog galaxy|itch\.io|lutris|heroic games launcher|playnite|prism launcher|roblox|minecraft|osu!|openttd|supertuxkart|luanti|battle for wesnoth|0 a\.d\.)\b/.test(t) || /\b(video game|game launcher|gaming platform|game library|game client|pc game|open.?source game|game emulator)\b/.test(t))return '游戏';
+ if(/\b(godot engine|unity engine|unreal engine|game development|game engine)\b/.test(t))return '游戏开发';
+ // 截图、屏幕录制工具不属于影音播放器/编辑器。
+ if(/\b(screenshot|screen capture|screen recorder|screen recording|flameshot|sharex)\b/.test(t))return '截图与录屏';
+ if(/\b(video|audio|music|media|stream|podcast|subtitle|transcod|player|sound|midi|daw|video editor|music player|audio editor)\b/.test(t))return '影音';
+ const rules=[
+ ['AI 工具',/\b(ai|llm|machine learning|artificial intelligence|agent|chatbot|inference|embedding)\b/],
+ ['开发',/\b(code|coding|developer|git|ide|compiler|debug|api|sdk|programming|database|sql|terminal)\b/],
+ ['设计',/\b(design|drawing|vector|image editor|photo|illustration|3d|animation|graphics|font)\b/],
+ ['文件与备份',/\b(file|files|backup|sync|storage|cloud|drive|sharing|document|pdf)\b/],
+ ['效率办公',/\b(note|notes|task|todo|calendar|project management|productivity|office|wiki|knowledge|bookmark)\b/],
+ ['网络与服务器',/\b(server|hosting|docker|container|network|dns|proxy|vpn|monitoring|deployment|self-hosted)\b/],
+ ['教育学习',/\b(learn|learning|education|course|school|flashcard|study|dictionary)\b/],
+ ['商务管理',/\b(crm|erp|invoice|business|commerce|shop|sales|customer|finance|accounting)\b/]
+ ];for(const [cat,re] of rules)if(re.test(t))return cat;return '实用工具';
 }
-window.showAppDetails=name=>{const app=findApp(name);if(app)openDetails(app);};
-function closeDetails(){const modal=document.getElementById('appModal');modal.classList.remove('show');modal.setAttribute('aria-hidden','true');}
-document.getElementById('modalClose').addEventListener('click',closeDetails);
-document.getElementById('appModal').addEventListener('click',e=>{if(e.target.id==='appModal')closeDetails();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetails();});
-document.getElementById('sortSelect').addEventListener('change',e=>{sortMode=e.target.value;renderApps(true);});
-document.getElementById('favoritesOnly').addEventListener('click',e=>{
-  favoritesOnly=!favoritesOnly;e.currentTarget.classList.toggle('active',favoritesOnly);
-  e.currentTarget.textContent=favoritesOnly?'♥ 正在看收藏':'♡ 只看收藏';renderApps(true);
-});
-document.getElementById('favoritesNav').addEventListener('click',()=>{
-  favoritesOnly=true;document.getElementById('favoritesOnly').classList.add('active');
-  document.getElementById('favoritesOnly').textContent='♥ 正在看收藏';renderApps(true);
-  document.getElementById('allApps').scrollIntoView({behavior:'smooth'});
-});
-
-fillShowcases();renderApps(true);
+async function loadExtraApps(){
+ const url='https://raw.githubusercontent.com/i-ayushsingh/oss-tools-dataset/main/data/tools.csv';
+ try{
+  const res=await fetch(url,{cache:'no-cache'});if(!res.ok)throw new Error('HTTP '+res.status);
+  const rows=parseCSV(await res.text());if(rows.length<2)throw new Error('数据为空');
+  const heads=rows[0],idx=Object.fromEntries(heads.map((h,i)=>[h,i]));
+  const known=new Set(apps.map(a=>a.name.trim().toLowerCase()));let added=0;
+  for(const r of rows.slice(1)){
+   const get=k=>(r[idx[k]]||'').trim(),name=get('name'),desc=get('description');
+   if(!name||!desc||known.has(name.toLowerCase()))continue;
+   if(/\b(casino|gambling|sportsbook|betting|prediction market|poker|slot machine)\b/i.test(name+' '+desc))continue;
+   const web=get('website_url')||get('github_url');if(!/^https?:\/\//i.test(web))continue;
+   apps.push({name,desc:desc.replace(/\s+/g,' ').slice(0,220),cat:guessCategory(name,desc),color:'#405b83',web,pc:get('github_url')||web});
+   known.add(name.toLowerCase());added++;
+  }
+  update();$('resultCount').textContent=`已载入 ${apps.length} 款应用（新增 ${added} 款） · 当前显示 ${Math.min(state.shown,filtered().length)} 款`;
+ }catch(err){$('resultCount').textContent=`目前显示 ${apps.length} 款应用；额外目录暂时无法载入，请检查网络后刷新。`;console.warn('额外目录加载失败：',err)}
+}
+update();
+loadExtraApps();
 </script>
-</body>
-</html>
+</body></html>
